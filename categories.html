@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Nuvora – Browse by Category</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="page-categories">
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="logo" title="Back to home">Nuvora</a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="categories.html">Categories</a>
+        <a href="collections.html">Collections</a>
+        <a href="index.html#about">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="section reveal">
+    <div class="section-header">
+      <h2>Browse by Category</h2>
+      <p>Choose your device type, then a category. All wallpapers for that choice will appear below.</p>
+    </div>
+
+    <!-- PHONE vs DESKTOP toggle -->
+    <div class="device-toggle">
+      <button class="device-btn active" data-device="all">All devices</button>
+      <button class="device-btn" data-device="phone">Phone</button>
+      <button class="device-btn" data-device="desktop">Desktop</button>
+    </div>
+
+    <!-- Main categories -->
+    <div class="category-buttons cat-page-buttons">
+      <button class="cat-btn active" data-category="all">All</button>
+      <button class="cat-btn" data-category="minimal">Minimal</button>
+      <button class="cat-btn" data-category="abstract">Abstract</button>
+      <button class="cat-btn" data-category="nature">Nature</button>
+      <button class="cat-btn" data-category="anime">Anime</button>
+      <button class="cat-btn" data-category="cars">Cars</button>
+      <button class="cat-btn" data-category="dark">Dark</button>
+      <button class="cat-btn" data-category="gradient">Gradient</button>
+    </div>
+
+    <!-- Sub-categories ONLY for Cars -->
+    <div id="car-subcats" class="car-subcats">
+      <span class="car-subcats-label">Cars:</span>
+      <!-- later you can create car-specific pages like car-bmw.html etc -->
+      <a href="car-bmw.html" class="car-chip">BMW</a>
+      <a href="car-porsche.html" class="car-chip">Porsche</a>
+      <a href="car-tesla.html" class="car-chip">Tesla</a>
+      <span class="car-small-note">(each car can be its own page later)</span>
+    </div>
+  </section>
+
+  <section id="gallery" class="section reveal">
+    <div class="section-header">
+      <h2>All Wallpapers</h2>
+      <p>Click any wallpaper to download the full-resolution version.</p>
+    </div>
+
+    <div class="gallery-grid">
+      <!-- NOTE: data-category and data-device decide where each wallpaper shows -->
+      <!-- data-device can be "phone", "desktop" or "both" -->
+
+      <article class="wall-card" data-category="minimal" data-device="both">
+        <div class="thumb" style="background-image: url('assets/wallpapers/minimal/minimal-1.jpg');"></div>
+        <div class="wall-info">
+          <h3>Soft Minimal Gradient</h3>
+          <p>Minimal • 4K • Phone & Desktop</p>
+          <a href="assets/wallpapers/minimal/minimal-1.jpg" download class="download-link">Download</a>
+        </div>
+      </article>
+
+      <article class="wall-card" data-category="minimal" data-device="desktop">
+        <div class="thumb" style="background-image: url('assets/wallpapers/minimal/minimal-2.jpg');"></div>
+        <div class="wall-info">
+          <h3>Muted Minimal Shapes</h3>
+          <p>Minimal • 4K • Desktop</p>
+          <a href="assets/wallpapers/minimal/minimal-2.jpg" download class="download-link">Download</a>
+        </div>
+      </article>
+
+      <article class="wall-card" data-category="dark" data-device="phone">
+        <div class="thumb" style="background-image: url('assets/wallpapers/dark/dark-1.jpg');"></div>
+        <div class="wall-info">
+          <h3>Neon Dark Glow</h3>
+          <p>Dark • 4K • Phone</p>
+          <a href="assets/wallpapers/dark/dark-1.jpg" download class="download-link">Download</a>
+        </div>
+      </article>
+
+      <article class="wall-card" data-category="anime" data-device="phone">
+        <div class="thumb" style="background-image: url('assets/wallpapers/anime/anime-1.jpg');"></div>
+        <div class="wall-info">
+          <h3>Focus Frame</h3>
+          <p>Anime • 4K • Phone</p>
+          <a href="assets/wallpapers/anime/anime-1.jpg" download class="download-link">Download</a>
+        </div>
+      </article>
+
+      <!-- as you add more wallpapers, just duplicate these articles and change paths/category/device -->
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>© 2025 NUVORA • Crafted by Pratik.</p>
+  </footer>
+
+  <script src="assets/js/script.js"></script>
+</body>
+</html>
