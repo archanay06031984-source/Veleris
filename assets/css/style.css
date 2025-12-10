@@ -15,6 +15,8 @@
   --radius-xl: 26px;
   --shadow-soft: 0 20px 45px rgba(0, 0, 0, 0.7);
   --transition-fast: 0.25s ease-out;
+  --content-max: 1360px;
+  --content-wide: 1850px;
 }
 
 *,
@@ -47,7 +49,7 @@ body {
 body::before {
   content: "";
   position: fixed;
-  inset: 0 0 45vh 0;               /* covers top ~55% of screen */
+  inset: 0 0 45vh 0;
   background: radial-gradient(circle at top, #17172a 0, #05040a 42%);
   pointer-events: none;
   z-index: -1;
@@ -55,9 +57,9 @@ body::before {
 
 /* Shared centered container */
 .shell {
-  max-width: 1120px;
+  max-width: var(--content-max);
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 32px;
 }
 
 /* =========================
@@ -82,12 +84,8 @@ body::before {
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  /* breathing space from left & right edges */
   padding: 0 56px;
-
-  /* keep nav content in a centered band */
-  max-width: 1280px;
+  max-width: var(--content-max);
   margin: 0 auto;
 }
 
@@ -119,6 +117,12 @@ body::before {
     transform var(--transition-fast);
 }
 
+/* Active page */
+.nav-links a[aria-current="page"] {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.06);
+}
+
 .nav-links a::after {
   content: "";
   position: absolute;
@@ -144,6 +148,25 @@ body::before {
 .nav-links a:hover::after {
   opacity: 1;
   transform: scaleX(1);
+}
+
+/* =========================
+   GLOBAL INTERACTION REFINEMENTS
+   ========================= */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent-2);
+  outline-offset: 3px;
+}
+
+/* Reduce motion if user prefers */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto !important;
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
 }
 
 /* =========================
@@ -196,61 +219,90 @@ body::before {
   flex: 1;
   display: flex;
   flex-direction: column;
-  background: none !important; /* never draw its own gradient */
+  background: none !important;
 }
 
-/* Home page layout spacing */
+/* Home page layout spacing – slightly lifted */
 body.page-home .page-main {
-  gap: 80px;
-  padding: 72px 0 80px;
+  gap: 72px;
+  padding: 56px 0 80px;
 }
 
-/* Interior pages (Collections, Minimal, Lamborghini etc) */
+/* Interior pages (default) */
 body:not(.page-home) .page-main {
-  gap: 48px;
-  padding: 72px 0 72px;
+  gap: 52px;
+  padding: 80px 0 72px;
   align-items: center;
 }
 
-/* First content block on interior pages (heading + description) */
+/* Collections pages */
+body.page-collections .page-main {
+  gap: 52px;
+  padding: 80px 0 72px;
+  align-items: stretch;
+}
+
+/* First block on interior pages (heading + description) */
 body:not(.page-home) .page-main > .shell:first-of-type {
   max-width: 780px;
 }
 
-/* Let main Collections / Cars grid be wider if these classes exist */
-body.page-collections .page-main > *,
-body.page-cars .page-main > * {
-  max-width: 1120px;
+/* Wider heading block on collection detail pages */
+body.page-collections .page-main > .shell:first-of-type {
+  max-width: 1200px;
+  text-align: center;
+}
+
+/* Make collections hero text area larger & more premium */
+body.page-collections .page-main > .shell:first-of-type h1,
+body.page-collections .page-main > .shell:first-of-type h2 {
+  font-size: clamp(2.1rem, 3.4vw, 2.8rem);
+  margin-bottom: 10px;
+}
+
+body.page-collections .page-main > .shell:first-of-type p {
+  font-size: 1.02rem;
+  line-height: 1.6;
+  max-width: 760px;
+  margin: 8px auto 0;
+  color: var(--text-soft);
+}
+
+/* Let main Collections grid area be wider */
+body.page-collections .page-main > * {
+  max-width: var(--content-wide);
 }
 
 /* =========================
    HOME PAGE – HERO
    ========================= */
 .hero {
-  padding-top: 8px;
+  padding-top: 28px;
 }
 
 .hero-inner {
-  max-width: 780px;
+  max-width: 840px;
   margin: 0 auto;
-  padding-top: 4px;
+  padding: 24px 0 8px;
+  text-align: center;
 }
 
 .hero-tag {
   font-size: 0.78rem;
   text-transform: uppercase;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   color: var(--text-soft);
-  margin: 0 0 8px;
+  margin: 0 0 10px;
 }
 
 .hero-title {
   margin: 0;
-  font-size: clamp(2.3rem, 3.6vw, 2.9rem);
+  font-size: clamp(2.5rem, 3.8vw, 3.1rem);
+  line-height: 1.1;
 }
 
 .hero-desc {
-  margin: 12px 0 0;
+  margin: 18px auto 0;
   max-width: 640px;
   color: var(--text-soft);
   line-height: 1.55;
@@ -262,6 +314,8 @@ body.page-cars .page-main > * {
 .section-header {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
   gap: 4px;
   margin-bottom: 18px;
 }
@@ -277,129 +331,210 @@ body.page-cars .page-main > * {
 }
 
 /* =========================
-   HIGHLIGHTS CAROUSEL
+   HIGHLIGHTS – LAYOUT & ANIMATION
    ========================= */
-.highlights-shell {
-  display: flex;
-  align-items: center;
-  gap: 14px;
+.highlights {
+  width: 100%;
 }
 
-.highlights-viewport {
-  flex: 1;
-  overflow: hidden;
+.highlights .shell {
+  max-width: var(--content-max);
+}
+
+/* Heading aligned visually with hero */
+.highlights-head {
+  max-width: 840px;
+  margin: 0 auto 22px;
+  text-align: center;
+}
+
+.highlights-head h2 {
+  margin: 0 0 6px;
+  font-size: 1.3rem;
+}
+
+.highlights-head p {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 0.9rem;
 }
 
 .highlights-row {
-  display: flex;
-  gap: 14px;
-  transition:
-    transform 0.22s ease-out,
-    opacity 0.22s ease-out;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 24px;
 }
 
-.highlight-card {
-  flex: 1;
-  min-width: 0;
-  border-radius: var(--radius-xl);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: radial-gradient(circle at 20% 20%, rgba(72, 104, 220, 0.3), rgba(7, 7, 18, 1));
-  position: relative;
-  overflow: hidden;
-  transform: translateY(0) scale(1);
-  transition:
-    transform var(--transition-fast),
-    box-shadow var(--transition-fast),
-    border-color var(--transition-fast),
-    opacity 0.25s ease-out;
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.9);
-  opacity: 0.95;
-}
-
-.highlight-card:hover {
-  transform: translateY(-3px) scale(1.01);
-}
-
-.highlight-card.center {
-  border-color: rgba(195, 107, 255, 0.16);
-  box-shadow: 0 26px 80px rgba(0, 0, 0, 0.96);
-  transform: translateY(-4px) scale(1.02);
-  opacity: 1;
-}
-
-.highlight-thumb {
-  width: 100%;
-  padding-top: 58%; /* slightly shorter tiles */
-  background-size: cover;
-  background-position: center;
-  position: relative;
-  filter: saturate(1.05);
-}
-
-.highlight-thumb::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.55), transparent 45%);
-}
-
-/* hide pill text entirely for clean look */
-.highlight-tag {
-  display: none;
-}
-
+/* Prev / next buttons */
 .highlight-nav {
   border: none;
-  width: 32px;
-  height: 32px;
+  background: rgba(255, 255, 255, 0.05);
+  width: 38px;
+  height: 38px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: var(--text-soft);
   cursor: pointer;
-  display: inline-flex;
+  color: var(--text-soft);
+  font-size: 1.3rem;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.1rem;
-  backdrop-filter: blur(12px);
   transition:
-    background var(--transition-fast),
-    border-color var(--transition-fast),
-    transform var(--transition-fast),
-    color var(--transition-fast);
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
 }
 
 .highlight-nav:hover {
-  background: var(--accent-soft);
-  border-color: rgba(195, 107, 255, 0.6);
+  background: rgba(255, 255, 255, 0.11);
   color: var(--text);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
 }
 
-.highlights-row.slide-next {
-  transform: translateX(-18px);
-  opacity: 0;
+/* Viewport */
+.highlights-viewport {
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.highlights-row.slide-prev {
-  transform: translateX(18px);
+/* Base state for every set */
+.highlight-set {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
   opacity: 0;
+  pointer-events: none;
+}
+
+/* Currently visible set */
+.highlight-set.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Animation classes applied by JS */
+.highlight-set.slide-in-right {
+  animation: highlight-slide-in-right 0.45s ease forwards;
+}
+
+.highlight-set.slide-in-left {
+  animation: highlight-slide-in-left 0.45s ease forwards;
+}
+
+.highlight-set.slide-out-left {
+  animation: highlight-slide-out-left 0.45s ease forwards;
+}
+
+.highlight-set.slide-out-right {
+  animation: highlight-slide-out-right 0.45s ease forwards;
+}
+
+/* Keyframes */
+@keyframes highlight-slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(40px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes highlight-slide-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-40px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes highlight-slide-out-left {
+  from {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-40px) scale(0.96);
+  }
+}
+
+@keyframes highlight-slide-out-right {
+  from {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(40px) scale(0.96);
+  }
+}
+
+/* Highlight cards */
+.highlight-card {
+  border-radius: 20px;
+  aspect-ratio: 16 / 9;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.highlight-card:hover {
+  border-color: rgba(195, 107, 255, 0.9);
+  box-shadow: 0 26px 70px rgba(0, 0, 0, 1);
+}
+
+/* Assign wallpapers to highlight cards */
+.card-1a { background-image: url("../wallpapers/highlights/h1.jpg"); }
+.card-1b { background-image: url("../wallpapers/highlights/h2.jpg"); }
+.card-1c { background-image: url("../wallpapers/highlights/h3.jpg"); }
+.card-2a { background-image: url("../wallpapers/highlights/h4.jpg"); }
+.card-2b { background-image: url("../wallpapers/highlights/h5.jpg"); }
+.card-2c { background-image: url("../wallpapers/highlights/h6.jpg"); }
+.card-3a { background-image: url("../wallpapers/highlights/h7.jpg"); }
+.card-3b { background-image: url("../wallpapers/highlights/h8.jpg"); }
+.card-3c { background-image: url("../wallpapers/highlights/h9.jpg"); }
+
+@media (max-width: 900px) {
+  .highlight-set {
+    grid-template-columns: 1fr;
+  }
+  .highlights-viewport {
+    height: auto;
+  }
 }
 
 /* =========================
-   CTA PANEL — REDESIGNED
+   CTA PANEL
    ========================= */
+.home-section .shell {
+  max-width: 1120px;
+}
+
 .cta-panel {
   max-width: 960px;
   margin: 0 auto;
   border-radius: 22px;
   padding: 32px 36px;
-
-  /* Subtle glass effect */
   background: rgba(20, 20, 35, 0.42);
   border: 1px solid rgba(255, 255, 255, 0.06);
   backdrop-filter: blur(22px);
-
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.85);
   display: flex;
   align-items: center;
@@ -429,7 +564,6 @@ body.page-cars .page-main > * {
 .cta-actions .btn.primary {
   padding: 12px 22px;
   font-size: 0.92rem;
-  background: linear-gradient(135deg, var(--accent), var(--accent-2));
   box-shadow: 0 18px 50px rgba(0, 0, 0, 0.9);
 }
 
@@ -439,7 +573,7 @@ body.page-cars .page-main > * {
 }
 
 /* =========================
-   ABOUT BLOCK — solid dark & cleaner
+   ABOUT BLOCK
    ========================= */
 #about {
   position: relative;
@@ -450,7 +584,7 @@ body.page-cars .page-main > * {
   content: "";
   position: absolute;
   inset: 0;
-  background: var(--bg);    /* same black as rest of page */
+  background: var(--bg);
   z-index: -1;
 }
 
@@ -479,27 +613,33 @@ body.page-cars .page-main > * {
 }
 
 /* =========================
-   COLLECTION TILES (Collections + Cars)
+   COLLECTION TILES (Collections overview page)
    ========================= */
+.section {
+  width: 100%;
+  max-width: 1220px;
+  margin: 0 auto;
+}
+
 .device-cards {
-  max-width: 960px;
+  max-width: 1080px;
   margin: 32px auto 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
 }
 
 .device-card {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
   border-radius: var(--radius-xl);
-  padding: 18px 18px 20px;
+  padding: 22px 22px 24px;
   text-decoration: none;
   background: radial-gradient(circle at top left, rgba(91, 141, 239, 0.24), rgba(5, 5, 10, 0.98));
   border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.85);
+  box-shadow: 0 20px 44px rgba(0, 0, 0, 0.9);
   transform: translateY(0) scale(1);
   transition:
     transform var(--transition-fast),
@@ -510,19 +650,24 @@ body.page-cars .page-main > * {
 
 .device-card:hover {
   transform: translateY(-6px) scale(1.01);
-  box-shadow: 0 26px 70px rgba(0, 0, 0, 0.95);
+  box-shadow: 0 28px 72px rgba(0, 0, 0, 1);
   border-color: rgba(195, 107, 255, 0.7);
   background: radial-gradient(circle at top left, rgba(195, 107, 255, 0.3), rgba(7, 7, 14, 0.98));
 }
 
+/* TITLE: "Abstract wallpapers" etc – bigger */
 .device-card h3 {
   margin: 2px 0 4px;
-  font-size: 1.02rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text);
 }
 
+/* SUBTEXT: "Bold gradient shapes" etc – bigger & more readable */
 .device-card p {
   margin: 0;
-  font-size: 0.88rem;
+  font-size: 1.02rem;
+  line-height: 1.55;
   color: var(--text-soft);
 }
 
@@ -530,79 +675,136 @@ body.page-cars .page-main > * {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.78rem;
-  padding: 5px 11px;
+  font-size: 0.82rem;
+  padding: 5px 13px;
   border-radius: 999px;
   background: rgba(0, 0, 0, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.16);
   text-transform: uppercase;
   letter-spacing: 0.08em;
+  color: var(--text-soft);
 }
 
 /* =========================
-   GENERIC GALLERY FOR WALLPAPERS
+   GENERIC GALLERY FOR WALLPAPERS (Collections detail pages)
    ========================= */
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 16px;
-  margin-top: 18px;
+
+/* Collections pages use EXTRA-WIDE area */
+body.page-collections .shell {
+  max-width: var(--content-wide);
 }
 
+/* 3 columns, wide 16:9-ish tiles */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(460px, 1fr));
+  gap: 40px;
+  margin: 50px auto 0;
+  justify-content: center; /* center the columns */
+}
+
+/* Medium screens → still 3 columns but slightly narrower */
+@media (max-width: 1500px) {
+  .gallery-grid {
+    grid-template-columns: repeat(3, minmax(340px, 1fr));
+    justify-content: center;
+  }
+}
+
+/* Tablets → 2 columns */
+@media (max-width: 1100px) {
+  .gallery-grid {
+    grid-template-columns: repeat(2, minmax(280px, 1fr));
+    gap: 28px;
+  }
+}
+
+/* Phones → 1 column */
+@media (max-width: 700px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+}
+
+/* Card + hover behaviour */
 .wall-card {
-  display: flex;
-  flex-direction: column;
-  border-radius: 18px;
+  position: relative;
+  border-radius: 24px;
   overflow: hidden;
   border: 1px solid var(--border-subtle);
-  background: radial-gradient(circle at top left, rgba(91, 141, 239, 0.2), rgba(5, 5, 10, 1));
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.9);
+  background: radial-gradient(circle at top left, rgba(91, 141, 239, 0.18), rgba(5, 5, 10, 1));
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.95);
   transition:
     transform var(--transition-fast),
     box-shadow var(--transition-fast),
     border-color var(--transition-fast);
+  will-change: transform, box-shadow;
 }
 
 .wall-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 22px 60px rgba(0, 0, 0, 1);
+  transform: translateY(-8px);
+  box-shadow: 0 35px 90px rgba(0, 0, 0, 1);
   border-color: rgba(195, 107, 255, 0.7);
 }
 
-.thumb {
+/* The wallpaper image – ~16:9, not squarish, but still big */
+.wall-thumb {
   width: 100%;
-  padding-top: 65%;
+  padding-top: 56.25%; /* ~16:9 ratio */
   background-size: cover;
   background-position: center;
-  position: relative;
+  background-repeat: no-repeat;
+  transition: transform 0.4s ease;
 }
 
-.wall-info {
-  padding: 10px 12px 12px;
+.wall-card:hover .wall-thumb {
+  transform: scale(1.03);
 }
 
-.wall-info h3 {
-  margin: 0 0 4px;
-  font-size: 0.95rem;
-}
-
-.wall-info p {
-  margin: 0 0 8px;
-  font-size: 0.8rem;
-  color: var(--text-soft);
-}
-
-.download-link {
-  display: inline-flex;
-  align-items: center;
+/* Clickable overlay with download button */
+.wall-link {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
   justify-content: center;
-  font-size: 0.8rem;
-  padding: 5px 10px;
-  border-radius: 999px;
   text-decoration: none;
-  color: #fff;
-  background: linear-gradient(135deg, var(--accent), var(--accent-2));
-  border: none;
+}
+
+.wall-overlay {
+  width: 100%;
+  padding: 20px 0 28px;
+  display: flex;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(18px);
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.95),
+    rgba(0, 0, 0, 0)
+  );
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease;
+}
+
+.wall-card:hover .wall-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Pill button that appears on hover */
+.download-pill {
+  padding: 10px 26px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(5, 5, 10, 0.92);
+  color: var(--text);
+  cursor: pointer;
 }
 
 /* =========================
@@ -620,12 +822,13 @@ body.page-cars .page-main > * {
    ========================= */
 .reveal {
   opacity: 0;
-  transform: translateY(50px);
-  filter: blur(6px);
+  transform: translateY(40px);
+  filter: blur(5px);
   transition:
-    opacity 0.8s ease-out,
-    transform 0.8s ease-out,
-    filter 0.8s ease-out;
+    opacity 0.7s ease-out,
+    transform 0.7s ease-out,
+    filter 0.7s ease-out;
+  will-change: opacity, transform;
 }
 
 .reveal.visible {
@@ -639,13 +842,13 @@ body.page-cars .page-main > * {
    ========================= */
 @media (max-width: 800px) {
   body.page-home .page-main {
-    gap: 56px;
-    padding: 72px 0 52px;
+    gap: 64px;
+    padding: 76px 0 60px;
   }
 
   body:not(.page-home) .page-main {
     gap: 40px;
-    padding: 64px 0 56px;
+    padding: 70px 0 56px;
   }
 
   .cta-panel {
@@ -654,7 +857,7 @@ body.page-cars .page-main > * {
   }
 
   .hero-title {
-    font-size: 2rem;
+    font-size: 2.1rem;
   }
 
   .nav-inner {

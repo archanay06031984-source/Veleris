@@ -2,8 +2,43 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Nuvora – Calm, Sharp, Premium Wallpapers</title>
+  <title>Veleris – Calm, Sharp, Premium Wallpapers</title>
+
+  <!-- Primary Meta Tags -->
+  <meta name="title" content="Veleris – Calm, Sharp, Premium 4K Wallpapers">
+  <meta name="description" content="Premium, minimal and sharp wallpapers crafted for clean setups. Explore minimal, abstract, nature and anime collections in high resolution.">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://veleris.in/">
+  <meta property="og:title" content="Veleris – Calm, Sharp, Premium Wallpapers">
+  <meta property="og:description" content="Premium, minimal and sharp wallpapers crafted for clean setups. Explore minimal, abstract, nature and anime collections.">
+  <meta property="og:image" content="https://veleris.in/assets/seo/preview.PNG">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://veleris.in/">
+  <meta property="twitter:title" content="Veleris – Calm, Sharp, Premium Wallpapers">
+  <meta property="twitter:description" content="Premium, minimal and sharp wallpapers crafted for clean setups.">
+  <meta property="twitter:image" content="https://veleris.in/assets/seo/preview.PNG">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://veleris.in">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ES6BDQMP3K"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ES6BDQMP3K');
+  </script>
+
   <link rel="stylesheet" href="assets/css/style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,12 +49,13 @@
 </head>
 
 <body class="page-home">
+
   <!-- NAVBAR -->
   <header class="nav">
     <div class="nav-inner shell">
-      <a href="index.html" class="logo">NUVORA</a>
-      <nav class="nav-links">
-        <a href="index.html">Home</a>
+      <a href="index.html" class="logo">VELERIS</a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="index.html" aria-current="page">Home</a>
         <a href="collections.html">Collections</a>
         <a href="#about">About</a>
       </nav>
@@ -30,93 +66,117 @@
   <main class="page-main">
 
     <!-- HERO -->
-    <section id="hero" class="hero reveal">
+    <section id="hero" class="hero reveal" aria-labelledby="hero-title">
       <div class="shell hero-inner">
-        <p class="hero-tag">NUVORA WALLPAPER STUDIO</p>
-        <h1 class="hero-title">
-          Wallpapers that keep your setup calm, sharp and premium.
+
+        <p class="hero-tag">Veleris Studio</p>
+
+        <h1 id="hero-title" class="hero-title">
+          Precision in every pixel
         </h1>
+
         <p class="hero-desc">
-          A collection of minimal, abstract, anime and car-themed wallpapers curated to
-          feel clean and modern — no clutter, just visuals that make your setup look intentional.
+          Wallpapers that sit quietly in the background and make everything else look better.
         </p>
+
       </div>
     </section>
 
     <!-- HIGHLIGHTS -->
-    <section id="highlights" class="home-section reveal">
+    <section class="highlights" aria-labelledby="highlights-heading">
       <div class="shell">
-        <div class="section-header">
-          <h2>Highlights from Nuvora</h2>
-          <p>
-            A rotating mix of wallpapers from different categories — just a preview of the full library.
-          </p>
+
+        <div class="highlights-head">
+          <h2 id="highlights-heading">From the studio wall</h2>
+          <p>A small selection from across the collections, rotated often.</p>
         </div>
 
-        <div class="highlights-shell">
-          <button class="highlight-nav prev" type="button" aria-label="Previous highlights">
-            ‹
-          </button>
+        <div class="highlights-row" role="region" aria-label="Featured wallpapers">
+
+          <button class="highlight-nav" type="button" data-highlight-prev aria-label="Previous wallpapers">‹</button>
 
           <div class="highlights-viewport">
-            <div class="highlights-row">
-              <article class="highlight-card">
-                <div class="highlight-thumb"></div>
-                <span class="highlight-tag"></span>
-              </article>
-              <article class="highlight-card">
-                <div class="highlight-thumb"></div>
-                <span class="highlight-tag"></span>
-              </article>
-              <article class="highlight-card">
-                <div class="highlight-thumb"></div>
-                <span class="highlight-tag"></span>
-              </article>
+
+            <!-- SET 1 -->
+            <div class="highlight-set active">
+              <article class="highlight-card card-1a" aria-label="Featured wallpaper 1"></article>
+              <article class="highlight-card card-1b" aria-label="Featured wallpaper 2"></article>
+              <article class="highlight-card card-1c" aria-label="Featured wallpaper 3"></article>
             </div>
+
+            <!-- SET 2 -->
+            <div class="highlight-set">
+              <article class="highlight-card card-2a" aria-label="Featured wallpaper 4"></article>
+              <article class="highlight-card card-2b" aria-label="Featured wallpaper 5"></article>
+              <article class="highlight-card card-2c" aria-label="Featured wallpaper 6"></article>
+            </div>
+
+            <!-- SET 3 -->
+            <div class="highlight-set">
+              <article class="highlight-card card-3a" aria-label="Featured wallpaper 7"></article>
+              <article class="highlight-card card-3b" aria-label="Featured wallpaper 8"></article>
+              <article class="highlight-card card-3c" aria-label="Featured wallpaper 9"></article>
+            </div>
+
           </div>
 
-          <button class="highlight-nav next" type="button" aria-label="Next highlights">
-            ›
-          </button>
+          <button class="highlight-nav" type="button" data-highlight-next aria-label="Next wallpapers">›</button>
+
         </div>
+
       </div>
     </section>
 
-    <!-- CTA STRIP -->
-    <section class="home-section reveal">
+    <!-- CTA PANEL -->
+    <section class="home-section reveal" aria-labelledby="cta-heading">
       <div class="shell">
         <div class="cta-panel">
+
           <div class="cta-text">
-            <h2>One place for your setups.</h2>
+            <h2 id="cta-heading">Your aesthetic, elevated across your entire setup.</h2>
             <p>
-              Whether you're building a dark RGB desk, a minimal home-screen, or an anime-inspired lock
-              screen, Nuvora keeps the look consistent and premium across every device.
+              Premium, minimal and visually balanced wallpapers crafted to make your desktop look
+              intentional, modern and consistently high-end — whether it’s for gaming, work or just your everyday screen.
             </p>
           </div>
+
           <div class="cta-actions">
             <a href="collections.html" class="btn primary">View collections</a>
           </div>
+
         </div>
       </div>
     </section>
 
     <!-- ABOUT -->
-    <section id="about" class="home-section reveal">
+    <section id="about" class="home-section reveal" aria-labelledby="about-heading">
       <div class="shell about-inner">
+
         <div class="section-header">
-          <h2>About Nuvora</h2>
-          <p>A small, personal wallpaper studio by Pratik.</p>
+          <h2 id="about-heading">About Veleris</h2>
+          <p>A personal wallpaper studio.</p>
         </div>
+
         <div class="about-content">
+
           <p>
-            Nuvora is built around one idea: your screen should feel calm and premium every time you unlock it.
-            Each wallpaper is created and curated to be clean, modern and easy on the eyes — no clutter, no noise.
+            Veleris is built around a simple idea: your screen should feel as considered as everything around it.
+            Every wallpaper is curated to be clean and modern — designed to sit in the background
+            while still giving your desktop a premium, finished look.
           </p>
+
+          <p>
+            From minimal gradients to abstract pieces, nature scenes and anime-inspired visuals,
+            each collection is crafted to feel cohesive, sharp and tuned for high-resolution displays.
+          </p>
+
           <p class="about-small">
-            You’re welcome to use these for your personal devices. If you share them online,
-            a small credit back to <strong>Nuvora</strong> means a lot.
+            You’re welcome to use these for your personal desktop.
+            If you share them online, a small credit back to <strong>Veleris</strong> goes a long way.
           </p>
+
         </div>
+
       </div>
     </section>
 
@@ -124,7 +184,7 @@
 
   <!-- FOOTER -->
   <footer class="footer">
-    <p>© 2025 NUVORA • Crafted by Pratik.</p>
+    <p>©️ 2025 VELERIS • Crafted by Pratik.</p>
   </footer>
 
   <script src="assets/js/script.js"></script>

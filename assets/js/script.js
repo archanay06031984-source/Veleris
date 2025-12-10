@@ -1,79 +1,185 @@
-// YEAR IN FOOTER (SAFE EVEN IF NOT PRESENT)
-const yearSpan = document.getElementById("year");
-if (yearSpan) {
-  yearSpan.textContent = new Date().getFullYear();
-}
+// assets/js/script.js
 
-// SCROLL REVEAL
-const revealEls = document.querySelectorAll(".reveal");
-if (revealEls.length) {
-  const obs = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-          obs.unobserve(entry.target);
-        }
+document.addEventListener("DOMContentLoaded", function () {
+  /* =========================
+     SCROLL REVEAL
+     ========================= */
+  var revealEls = document.querySelectorAll(".reveal");
+
+  if (revealEls.length) {
+    if ("IntersectionObserver" in window) {
+      var observer = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.16 }
+      );
+
+      revealEls.forEach(function (el) {
+        observer.observe(el);
       });
-    },
-    { threshold: 0.2 }
+    } else {
+      // Fallback: just show everything if IO not supported
+      revealEls.forEach(function (el) {
+        el.classList.add("visible");
+      });
+    }
+  }
+
+  /* =========================
+     HIGHLIGHTS SLIDER (HOME)
+     ========================= */
+  var sets = Array.prototype.slice.call(
+    document.querySelectorAll(".highlight-set")
   );
+  var prevBtn = document.querySelector("[data-highlight-prev]");
+  var nextBtn = document.querySelector("[data-highlight-next]");
 
-  revealEls.forEach((el) => obs.observe(el));
-}
+  if (sets.length && prevBtn && nextBtn) {
+    var current = 0;
+    var isAnimating = false;
 
-// HIGHLIGHTS CAROUSEL
-const highlightCards = document.querySelectorAll(".highlight-card");
-const highlightRow = document.querySelector(".highlights-row");
-const prevBtn = document.querySelector(".highlight-nav.prev");
-const nextBtn = document.querySelector(".highlight-nav.next");
+    function clearAnimClasses(el) {
+      el.classList.remove(
+        "slide-in-right",
+        "slide-in-left",
+        "slide-out-right",
+        "slide-out-left"
+      );
+    }
 
-if (highlightCards.length && highlightRow && prevBtn && nextBtn) {
-  const highlightData = [
-    { image: "assets/wallpapers/minimal/minimal-1.jpg" },
-    { image: "assets/wallpapers/anime/anime-1.jpg" },
-    { image: "assets/wallpapers/cars/lamborghini/lamborghini-1.jpg" },
-    { image: "assets/wallpapers/abstract/abstract-1.jpg" },
-    { image: "assets/wallpapers/nature/nature-1.jpg" },
-    { image: "assets/wallpapers/gradient/gradient-1.jpg" },
-  ];
+    function goTo(nextIndex, direction) {
+      if (nextIndex === current || isAnimating) return;
 
-  let startIndex = 0;
-  let isAnimating = false;
+      var currentSet = sets[current];
+      var nextSet = sets[nextIndex];
 
-  function renderHighlights() {
-    highlightCards.forEach((card, i) => {
-      const thumb = card.querySelector(".highlight-thumb");
-      const data = highlightData[(startIndex + i) % highlightData.length];
-      if (thumb && data) {
-        thumb.style.backgroundImage = `url('${data.image}')`;
-      }
+      isAnimating = true;
 
-      card.classList.remove("center");
-      if (i === 1) card.classList.add("center");
+      clearAnimClasses(currentSet);
+      clearAnimClasses(nextSet);
+
+      currentSet.classList.remove("active");
+      currentSet.classList.add(
+        direction === "next" ? "slide-out-left" : "slide-out-right"
+      );
+
+      nextSet.classList.add("active");
+      nextSet.classList.add(
+        direction === "next" ? "slide-in-right" : "slide-in-left"
+      );
+
+      // End animation lock after duration (keeps clicks from spamming)
+      setTimeout(function () {
+        clearAnimClasses(currentSet);
+        clearAnimClasses(nextSet);
+        isAnimating = false;
+      }, 460);
+      current = nextIndex;
+    }
+
+    // only first active on load
+    sets.forEach(function (set, idx) {
+      set.classList.toggle("active", idx === 0);
+    });
+
+    prevBtn.addEventListener("click", function () {
+      var nextIndex = (current - 1 + sets.length) % sets.length;
+      goTo(nextIndex, "prev");
+    });
+
+    nextBtn.addEventListener("click", function () {
+      var nextIndex = (current + 1) % sets.length;
+      goTo(nextIndex, "next");
     });
   }
 
-  function shift(dir) {
-    if (isAnimating) return;
-    isAnimating = true;
+  /* =========================
+     COLLECTION GALLERIES
+     - tries .jpg → .jpeg → .png
+     - only creates card if an image exists
+     ========================= */
 
-    highlightRow.classList.add(dir === "next" ? "slide-next" : "slide-prev");
+  var gallerySections = document.querySelectorAll(
+    "section[data-gallery-prefix][data-gallery-count]"
+  );
 
-    setTimeout(() => {
-      startIndex =
-        dir === "next"
-          ? (startIndex + 1) % highlightData.length
-          : (startIndex - 1 + highlightData.length) % highlightData.length;
+  gallerySections.forEach(function (section) {
+    var root = section.querySelector("[data-gallery-root]");
+    if (!root) return;
 
-      renderHighlights();
-      highlightRow.classList.remove("slide-next", "slide-prev");
-      isAnimating = false;
-    }, 220);
-  }
+    var prefix = section.getAttribute("data-gallery-prefix") || "";
+    var countAttr = section.getAttribute("data-gallery-count") || "0";
+    var count = parseInt(countAttr, 10);
 
-  prevBtn.addEventListener("click", () => shift("prev"));
-  nextBtn.addEventListener("click", () => shift("next"));
+    if (!count || count <= 0) return;
 
-  renderHighlights();
-}
+    for (var i = 1; i <= count; i++) {
+      (function (orderIndex) {
+        var indexStr = String(orderIndex).padStart(2, "0"); // "01"
+        var basePath = prefix + indexStr;                   // e.g. abstract-01
+        var exts = [".jpg", ".jpeg", ".png"];
+        var candidateIndex = 0;
+        var testImg = new Image();
+
+        function tryNext() {
+          if (candidateIndex >= exts.length) {
+            // no working file → no card, no blank tile
+            return;
+          }
+          testImg.src = basePath + exts[candidateIndex];
+        }
+
+        testImg.onload = function () {
+          var chosenPath = basePath + exts[candidateIndex];
+
+          // Build card ONLY after we know this file exists
+          var card = document.createElement("article");
+          card.className = "wall-card";
+
+          var thumb = document.createElement("div");
+          thumb.className = "wall-thumb";
+          thumb.style.backgroundImage = 'url("' + chosenPath + '")';
+
+          var link = document.createElement("a");
+          link.className = "wall-link";
+          link.href = chosenPath;
+          link.setAttribute("download", chosenPath.split("/").pop());
+          link.setAttribute("aria-label", "Download wallpaper");
+
+          var overlay = document.createElement("div");
+          overlay.className = "wall-overlay";
+
+          var pill = document.createElement("button");
+          pill.type = "button";
+          pill.className = "download-pill";
+          pill.textContent = "Download";
+
+          pill.addEventListener("click", function (e) {
+            e.preventDefault();
+            link.click(); // uses <a download> so it should download instead of open
+          });
+
+          overlay.appendChild(pill);
+          link.appendChild(overlay);
+          card.appendChild(thumb);
+          card.appendChild(link);
+          root.appendChild(card);
+        };
+
+        testImg.onerror = function () {
+          candidateIndex += 1;
+          tryNext();
+        };
+
+        // start with .jpg
+        tryNext();
+      })(i);
+    }
+  });
+});
