@@ -1,185 +1,196 @@
 // assets/js/script.js
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
   /* =========================
      SCROLL REVEAL
-     ========================= */
-  var revealEls = document.querySelectorAll(".reveal");
-
+  ========================= */
+  const revealEls = document.querySelectorAll(".reveal");
   if (revealEls.length) {
-    if ("IntersectionObserver" in window) {
-      var observer = new IntersectionObserver(
-        function (entries) {
-          entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("visible");
-              observer.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.16 }
-      );
-
-      revealEls.forEach(function (el) {
-        observer.observe(el);
-      });
-    } else {
-      // Fallback: just show everything if IO not supported
-      revealEls.forEach(function (el) {
-        el.classList.add("visible");
-      });
-    }
+    const obs = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.16 }
+    );
+    revealEls.forEach((el) => obs.observe(el));
   }
 
   /* =========================
-     HIGHLIGHTS SLIDER (HOME)
-     ========================= */
-  var sets = Array.prototype.slice.call(
-    document.querySelectorAll(".highlight-set")
-  );
-  var prevBtn = document.querySelector("[data-highlight-prev]");
-  var nextBtn = document.querySelector("[data-highlight-next]");
+     HIGHLIGHTS SLIDER
+  ========================= */
+  const sets = Array.from(document.querySelectorAll(".highlight-set"));
+  const prevBtn = document.querySelector("[data-highlight-prev]");
+  const nextBtn = document.querySelector("[data-highlight-next]");
 
   if (sets.length && prevBtn && nextBtn) {
-    var current = 0;
-    var isAnimating = false;
+    let current = 0;
 
-    function clearAnimClasses(el) {
-      el.classList.remove(
-        "slide-in-right",
-        "slide-in-left",
-        "slide-out-right",
-        "slide-out-left"
-      );
-    }
+    const clearAnim = (el) => {
+      el.classList.remove("slide-in-right","slide-in-left","slide-out-right","slide-out-left");
+    };
 
-    function goTo(nextIndex, direction) {
-      if (nextIndex === current || isAnimating) return;
+    const goTo = (nextIndex, direction) => {
+      if (nextIndex === current) return;
 
-      var currentSet = sets[current];
-      var nextSet = sets[nextIndex];
+      const cur = sets[current];
+      const next = sets[nextIndex];
 
-      isAnimating = true;
+      clearAnim(cur);
+      clearAnim(next);
 
-      clearAnimClasses(currentSet);
-      clearAnimClasses(nextSet);
+      cur.classList.remove("active");
+      cur.classList.add(direction === "next" ? "slide-out-left" : "slide-out-right");
 
-      currentSet.classList.remove("active");
-      currentSet.classList.add(
-        direction === "next" ? "slide-out-left" : "slide-out-right"
-      );
+      next.classList.add("active");
+      next.classList.add(direction === "next" ? "slide-in-right" : "slide-in-left");
 
-      nextSet.classList.add("active");
-      nextSet.classList.add(
-        direction === "next" ? "slide-in-right" : "slide-in-left"
-      );
-
-      // End animation lock after duration (keeps clicks from spamming)
-      setTimeout(function () {
-        clearAnimClasses(currentSet);
-        clearAnimClasses(nextSet);
-        isAnimating = false;
-      }, 460);
       current = nextIndex;
-    }
+    };
 
-    // only first active on load
-    sets.forEach(function (set, idx) {
-      set.classList.toggle("active", idx === 0);
+    sets.forEach((s, idx) => s.classList.toggle("active", idx === 0));
+
+    prevBtn.addEventListener("click", () => {
+      goTo((current - 1 + sets.length) % sets.length, "prev");
     });
 
-    prevBtn.addEventListener("click", function () {
-      var nextIndex = (current - 1 + sets.length) % sets.length;
-      goTo(nextIndex, "prev");
-    });
-
-    nextBtn.addEventListener("click", function () {
-      var nextIndex = (current + 1) % sets.length;
-      goTo(nextIndex, "next");
+    nextBtn.addEventListener("click", () => {
+      goTo((current + 1) % sets.length, "next");
     });
   }
 
   /* =========================
      COLLECTION GALLERIES
-     - tries .jpg → .jpeg → .png
-     - only creates card if an image exists
-     ========================= */
+     - try thumbs first (wallpapers_thumbs)
+     - fallback to full images
+     - only create card if an image exists for that slot
+     - use lazy <img> for previews to avoid jank
+  ========================= */
 
-  var gallerySections = document.querySelectorAll(
-    "section[data-gallery-prefix][data-gallery-count]"
-  );
-
-  gallerySections.forEach(function (section) {
-    var root = section.querySelector("[data-gallery-root]");
-    if (!root) return;
-
-    var prefix = section.getAttribute("data-gallery-prefix") || "";
-    var countAttr = section.getAttribute("data-gallery-count") || "0";
-    var count = parseInt(countAttr, 10);
-
-    if (!count || count <= 0) return;
-
-    for (var i = 1; i <= count; i++) {
-      (function (orderIndex) {
-        var indexStr = String(orderIndex).padStart(2, "0"); // "01"
-        var basePath = prefix + indexStr;                   // e.g. abstract-01
-        var exts = [".jpg", ".jpeg", ".png"];
-        var candidateIndex = 0;
-        var testImg = new Image();
-
-        function tryNext() {
-          if (candidateIndex >= exts.length) {
-            // no working file → no card, no blank tile
-            return;
-          }
-          testImg.src = basePath + exts[candidateIndex];
+  function testImageCandidates(candidates = []) {
+    return new Promise((resolve, reject) => {
+      let i = 0;
+      const tryNext = () => {
+        if (i >= candidates.length) {
+          reject(new Error("no candidate loaded"));
+          return;
         }
-
-        testImg.onload = function () {
-          var chosenPath = basePath + exts[candidateIndex];
-
-          // Build card ONLY after we know this file exists
-          var card = document.createElement("article");
-          card.className = "wall-card";
-
-          var thumb = document.createElement("div");
-          thumb.className = "wall-thumb";
-          thumb.style.backgroundImage = 'url("' + chosenPath + '")';
-
-          var link = document.createElement("a");
-          link.className = "wall-link";
-          link.href = chosenPath;
-          link.setAttribute("download", chosenPath.split("/").pop());
-          link.setAttribute("aria-label", "Download wallpaper");
-
-          var overlay = document.createElement("div");
-          overlay.className = "wall-overlay";
-
-          var pill = document.createElement("button");
-          pill.type = "button";
-          pill.className = "download-pill";
-          pill.textContent = "Download";
-
-          pill.addEventListener("click", function (e) {
-            e.preventDefault();
-            link.click(); // uses <a download> so it should download instead of open
-          });
-
-          overlay.appendChild(pill);
-          link.appendChild(overlay);
-          card.appendChild(thumb);
-          card.appendChild(link);
-          root.appendChild(card);
-        };
-
-        testImg.onerror = function () {
-          candidateIndex += 1;
+        const src = candidates[i];
+        const img = new Image();
+        img.onload = () => resolve(src);
+        img.onerror = () => {
+          i++;
           tryNext();
         };
+        img.src = src;
+      };
+      tryNext();
+    });
+  }
 
-        // start with .jpg
-        tryNext();
-      })(i);
+  function buildCard(root, previewUrl, fullUrl) {
+    const card = document.createElement("article");
+    card.className = "wall-card";
+
+    const thumb = document.createElement("div");
+    thumb.className = "wall-thumb";
+
+    const img = document.createElement("img");
+    img.loading = "lazy";
+    img.decoding = "async";
+    img.alt = "Wallpaper preview";
+    img.style.width = "100%";
+    img.style.height = "100%";
+    img.style.objectFit = "cover";
+
+    img.src = previewUrl;
+    img.srcset = `${previewUrl} 1000w, ${fullUrl} 2160w`;
+    img.sizes = "(min-width:1200px) 33vw, (min-width:700px) 50vw, 100vw";
+
+    thumb.appendChild(img);
+
+    const link = document.createElement("a");
+    link.className = "wall-link";
+    link.href = fullUrl;
+    link.setAttribute("aria-label", "Download wallpaper");
+
+    const filename = fullUrl.split("/").pop();
+    link.setAttribute("download", filename);
+
+    const overlay = document.createElement("div");
+    overlay.className = "wall-overlay";
+
+    const pill = document.createElement("button");
+    pill.type = "button";
+    pill.className = "download-pill";
+    pill.textContent = "Download";
+
+    pill.addEventListener("click", async (e) => {
+      e.preventDefault();
+      try {
+        const res = await fetch(fullUrl, { mode: "cors" });
+        if (!res.ok) throw new Error("fetch failed");
+        const blob = await res.blob();
+        const blobUrl = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = blobUrl;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(blobUrl);
+      } catch (err) {
+        const a = document.createElement("a");
+        a.href = fullUrl;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+      }
+    });
+
+    overlay.appendChild(pill);
+    link.appendChild(overlay);
+
+    card.appendChild(thumb);
+    card.appendChild(link);
+    root.appendChild(card);
+  }
+
+  const gallerySections = document.querySelectorAll("section[data-gallery-prefix][data-gallery-count]");
+  gallerySections.forEach((section) => {
+    const root = section.querySelector("[data-gallery-root]");
+    if (!root) return;
+
+    const prefix = section.getAttribute("data-gallery-prefix");
+    const count = parseInt(section.getAttribute("data-gallery-count"), 10);
+    if (!prefix || !count || count <= 0) return;
+
+    for (let i = 1; i <= count; i++) {
+      const fileNum = String(i).padStart(2, "0");
+      const base = `${prefix}${fileNum}`;
+      const thumbCandidate = base.replace("/wallpapers/", "/wallpapers_thumbs/") + ".jpg";
+      const candidates = [
+        thumbCandidate,
+        base + ".jpg",
+        base + ".jpeg",
+        base + ".png"
+      ];
+
+      testImageCandidates(candidates)
+        .then((foundUrl) => {
+          const previewUrl = foundUrl;
+          const fullUrl = base + ".jpg";
+          buildCard(root, previewUrl, fullUrl);
+        })
+        .catch((err) => {
+          console.warn("No image for slot", base, err);
+        });
     }
   });
-});
+
+}); // end DOMContentLoaded
