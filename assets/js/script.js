@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  function buildCard(root, previewUrl, fullUrl) {
+  function buildCard(root, previewUrl, fullUrl, meta = {}) {
     const card = document.createElement('article');
     card.className = 'wall-card';
 
@@ -84,6 +84,20 @@ document.addEventListener("DOMContentLoaded", () => {
     img.sizes = '(min-width:1200px) 33vw, (min-width:700px) 50vw, 100vw';
 
     thumb.appendChild(img);
+
+    // Analytics: fire thumb-click when user taps the preview
+    img.addEventListener('click', () => {
+      try {
+        if (typeof gtag === 'function') {
+          gtag('event', 'gallery_thumb_click', {
+            category: meta.category || '(unknown)',
+            file_name: meta.file_name || fullUrl.split('/').pop(),
+            thumb_url: meta.thumb_url || previewUrl,
+            full_url: meta.full_url || fullUrl
+          });
+        }
+      } catch (e) { /* ignore analytics errors */ }
+    });
 
     const link = document.createElement('a');
     link.className = 'wall-link';
@@ -112,6 +126,16 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.appendChild(a);
         a.click();
         a.remove();
+        try {
+          if (typeof gtag === 'function') {
+            gtag('event', 'wallpaper_download', {
+              category: meta.category || '(unknown)',
+              file_name: meta.file_name || fullUrl.split('/').pop(),
+              thumb_url: meta.thumb_url || previewUrl,
+              full_url: meta.full_url || fullUrl
+            });
+          }
+        } catch (e) { /* ignore analytics errors */ }
         URL.revokeObjectURL(blobUrl);
       } catch (err) {
         // last-resort fallback: attempt normal download link (will open in new tab in some browsers)
@@ -126,6 +150,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
     overlay.appendChild(pill);
     link.appendChild(overlay);
+
+    // Fire thumbnail view event once when card enters viewport
+    try {
+      if (typeof IntersectionObserver === 'function') {
+        const viewObs = new IntersectionObserver((entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              try {
+                if (typeof gtag === 'function') {
+                  gtag('event', 'gallery_thumb_view', {
+                    category: meta.category || '(unknown)',
+                    file_name: meta.file_name || fullUrl.split('/').pop(),
+                    thumb_url: meta.thumb_url || previewUrl,
+                    full_url: meta.full_url || fullUrl
+                  });
+                }
+              } catch (e) { /* ignore analytics errors */ }
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.5 });
+        viewObs.observe(thumb);
+      }
+    } catch (e) { /* ignore observer errors */ }
 
     card.appendChild(thumb);
     card.appendChild(link);
@@ -161,7 +209,19 @@ document.addEventListener("DOMContentLoaded", () => {
       const p = testImageCandidates(candidates)
         .then((foundUrl) => {
           createdCount++;
-          buildCard(root, foundUrl, base + '.jpg');
+          // Derive category and file_name for analytics
+          let category = '(unknown)';
+          try {
+            const m = prefix.match(/wallpapers\/([^\/\-]+)/i);
+            if (m && m[1]) category = m[1];
+            else {
+              const parts = prefix.split('/').filter(Boolean);
+              category = parts[parts.length - 1] || category;
+            }
+          } catch (e) { /* ignore */ }
+          const file_name = (base.split('/').pop() || '') + '.jpg';
+          const meta = { category, file_name, thumb_url: foundUrl, full_url: base + '.jpg' };
+          buildCard(root, foundUrl, base + '.jpg', meta);
         })
         .catch(() => {
           missingCount++;
