@@ -1,5 +1,28 @@
 // assets/js/script.js
 
+// --- GA lazy loader (only if gtag not present) ---
+(function ensureGtag() {
+  if (typeof window.gtag === 'function') return;
+  // quick guard so we only inject once
+  if (window._gtag_injected) return;
+  window._gtag_injected = true;
+
+  // Create script element for gtag.js
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-ES6BDQMP3K'; // use your measurement id
+  s.onload = function() {
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', 'G-ES6BDQMP3K', { 'send_page_view': false });
+    // note: send_page_view false so we don't duplicate pageview if GA added elsewhere
+  };
+  document.head.appendChild(s);
+})();
+// --- end gtag lazy loader ---
+
 document.addEventListener("DOMContentLoaded", () => {
   // Simple reveal (keep existing behavior)
   const revealEls = document.querySelectorAll(".reveal");
