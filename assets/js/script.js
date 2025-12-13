@@ -221,8 +221,13 @@ document.addEventListener("DOMContentLoaded", () => {
     for (let i = 1; i <= count; i++) {
       const fileNum = String(i).padStart(2, '0');
       const base = `${prefix}${fileNum}`; // e.g. assets/wallpapers/abstract-01
+      // Prefer flattened thumbs folder (assets/wallpapers_thumbs/<basename>),
+      // then fallback to possible subfolder thumbs and finally full images.
+      const basename = base.split('/').pop();
+      const flatThumb = `assets/wallpapers_thumbs/${basename}.jpg`;
       const thumbCandidateJpg = base.replace('/wallpapers/', '/wallpapers_thumbs/') + '.jpg';
       const candidates = [
+        flatThumb,
         thumbCandidateJpg,
         base + '.jpg',
         base + '.jpeg',
