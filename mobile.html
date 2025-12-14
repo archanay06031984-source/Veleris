@@ -71,32 +71,35 @@
       opacity: 0.9;
     }
 
-    /* ---------- WALLPAPERS ---------- */
-    .wall-list {
-      display: flex;
-      flex-direction: column;
-      gap: 28px;
-      padding: 0 18px;
+    /* ---------- WALLPAPERS (GRID) ---------- */
+    .wall-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      padding: 0 16px;
     }
 
-    .wall {
-      border-radius: var(--radius);
+    .wall-card {
+      border-radius: 18px;
       overflow: hidden;
       background: var(--card);
-      box-shadow: 0 24px 70px rgba(0,0,0,0.95);
-      transform: translateY(24px);
-      opacity: 0;
-      transition: opacity 0.5s ease, transform 0.5s ease;
+      border: 1px solid rgba(255,255,255,0.06);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.85);
+      text-decoration: none;
+      display: block;
     }
 
-    .wall.visible {
-      transform: translateY(0);
-      opacity: 1;
-    }
-
-    .wall img {
+    .wall-thumb {
+      position: relative;
       width: 100%;
-      height: auto;
+      aspect-ratio: 9 / 19.5;
+      background: #0b0b14;
+    }
+
+    .wall-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
       display: block;
     }
 
@@ -132,24 +135,32 @@
   </header>
 
   <!-- WALLPAPERS -->
-  <main class="wall-list">
+  <main class="wall-grid">
 
     <!-- COPY / DUPLICATE THESE BLOCKS FOR MORE WALLPAPERS -->
-    <div class="wall">
-      <img src="assets/wallpapers/mobile/IMG_0560.JPG" alt="Wallpaper">
-    </div>
+    <a href="mobile-view.html?img=IMG_0560.JPG" class="wall-card">
+      <div class="wall-thumb">
+        <img src="assets/wallpapers/mobile/IMG_0560.JPG" alt="Wallpaper">
+      </div>
+    </a>
 
-    <div class="wall">
-      <img src="assets/wallpapers/mobile/IMG_0561.JPG" alt="Wallpaper">
-    </div>
+    <a href="mobile-view.html?img=IMG_0561.JPG" class="wall-card">
+      <div class="wall-thumb">
+        <img src="assets/wallpapers/mobile/IMG_0561.JPG" alt="Wallpaper">
+      </div>
+    </a>
 
-    <div class="wall">
-      <img src="assets/wallpapers/mobile/IMG_0562.JPG" alt="Wallpaper">
-    </div>
+    <a href="mobile-view.html?img=IMG_0562.JPG" class="wall-card">
+      <div class="wall-thumb">
+        <img src="assets/wallpapers/mobile/IMG_0562.JPG" alt="Wallpaper">
+      </div>
+    </a>
 
-    <div class="wall">
-      <img src="assets/wallpapers/mobile/IMG_0563.JPG" alt="Wallpaper">
-    </div>
+    <a href="mobile-view.html?img=IMG_0563.JPG" class="wall-card">
+      <div class="wall-thumb">
+        <img src="assets/wallpapers/mobile/IMG_0563.JPG" alt="Wallpaper">
+      </div>
+    </a>
 
   </main>
 
@@ -164,30 +175,6 @@
       localStorage.setItem("veleris_force_desktop", "1");
       window.location.replace("index.html");
     }
-
-    // Scroll reveal
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.2 });
-
-    document.querySelectorAll(".wall").forEach(w => observer.observe(w));
-
-    // Tap image = direct download
-    document.querySelectorAll(".wall img").forEach(img => {
-      img.addEventListener("click", () => {
-        const a = document.createElement("a");
-        a.href = img.src;
-        a.download = img.src.split("/").pop();
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
-      });
-    });
   </script>
 
 </body>

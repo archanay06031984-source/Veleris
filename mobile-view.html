@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Wallpaper Preview — Veleris</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex">
+
+  <style>
+    body {
+      margin: 0;
+      background: #05040a;
+      color: #fff;
+      font-family: Inter, system-ui;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .preview {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .preview img {
+      width: 100%;
+      max-width: 420px;
+      aspect-ratio: 9 / 19.5;
+      object-fit: cover;
+      border-radius: 28px;
+      box-shadow: 0 40px 120px rgba(0,0,0,1);
+    }
+
+    .actions {
+      padding: 18px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .download {
+      width: 100%;
+      max-width: 360px;
+      padding: 14px;
+      border-radius: 999px;
+      background: #fff;
+      color: #000;
+      font-size: 0.95rem;
+      font-weight: 500;
+      border: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="preview">
+    <img id="wall">
+  </div>
+
+  <div class="actions">
+    <button class="download" onclick="download()">Download wallpaper</button>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const img = params.get("img");
+
+    const src = "assets/wallpapers/mobile/" + img;
+    document.getElementById("wall").src = src;
+
+    function download() {
+      const a = document.createElement("a");
+      a.href = src;
+      a.download = img;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    }
+  </script>
+
+</body>
+</html>
