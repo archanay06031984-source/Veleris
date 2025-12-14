@@ -99,6 +99,7 @@
   <script>
     const params = new URLSearchParams(window.location.search);
     const img = params.get("img");
+    const v = params.get("v") || "20251215";
     const imageEl = document.getElementById("wall");
 
     if (!img) {
@@ -108,7 +109,7 @@
         </div>
       `;
     } else {
-      const src = "assets/wallpapers/mobile/" + img;
+      const src = "assets/wallpapers/mobile/" + img + "?v=" + v;
       imageEl.src = src;
 
       window.download = function () {
