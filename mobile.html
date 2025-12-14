@@ -24,9 +24,9 @@
     /* =========================
        MOBILE HEADER
        ========================= */
-    .mobile-header { padding: 28px 6px 18px; }
+    .mobile-header { padding: 28px 6px 10px; }
     .mobile-header h1 { margin: 0; font-size: 1.35rem; letter-spacing: 0.22em; }
-    .mobile-header p { margin-top: 6px; font-size: 0.85rem; color: var(--text-soft); }
+    .brand-desc { margin-top: 8px; font-size: 0.88rem; line-height: 1.55; color: var(--text-soft); max-width: 320px; }
 
     /* =========================
        SCROLL REVEAL — calm motion (no blur)
@@ -38,10 +38,10 @@
     .reveal-item.visible { opacity: 1; transform: translateY(0); }
     .reveal-item { transition-delay: 0.06s; }
 
-    /* Drop header */
-    .mobile-drop { margin-top: 72px; }
-    .mobile-drop h2 { font-size: 1.3rem; margin-bottom: 6px; letter-spacing: 0.02em; }
-    .drop-desc { font-size: 0.85rem; color: var(--text-soft); margin-bottom: 26px; line-height: 1.55; }
+    /* Drop intro */
+    .drop-intro { margin: 18px 6px 22px; }
+    .drop-intro h2 { margin: 0; font-size: 1.15rem; }
+    .drop-intro p { margin-top: 6px; font-size: 0.85rem; line-height: 1.5; color: var(--text-soft); max-width: 340px; }
 
     /* =========================
        WALLPAPER CARDS
@@ -74,12 +74,13 @@
     <!-- MOBILE GALLERY (single drop: Dark Calm) -->
     <section class="mobile-section reveal" aria-label="Curated mobile drops">
 
-      <!-- DROP: DARK CALM -->
-      <div class="mobile-drop">
-        <h2>Dark Calm</h2>
-        <p class="drop-desc">
-          Low-light wallpapers designed for focus, balance, and deep contrast.
-        </p>
+        <!-- DROP: DARK CALM -->
+        <section class="drop-intro reveal">
+          <h2>Dark Calm</h2>
+          <p>
+            Low-light wallpapers designed for focus, balance, and deep contrast.
+          </p>
+        </section>
 
         <!-- Begin auto-generated gallery (single drop) -->
         <div class="wall-feed">
@@ -152,16 +153,6 @@
         </div>
 
         <!-- End auto-generated gallery -->
-      </div> <!-- end mobile-drop -->
-    </section>
-
-    <!-- ABOUT (moved here) -->
-    <section class="mobile-section reveal">
-      <h2>About</h2>
-      <p>
-        Veleris is a personal wallpaper studio focused on calm, modern visuals.
-        Designed for phones and distraction-free setups.
-      </p>
     </section>
 
     <!-- SWITCH -->
