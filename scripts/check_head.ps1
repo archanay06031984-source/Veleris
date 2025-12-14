@@ -4,7 +4,8 @@ $urls = @(
     'https://veleris.in/collection-minimal.html',
     'https://veleris.in/collection-abstract.html',
     'https://veleris.in/collection-nature.html',
-    'https://veleris.in/collection-anime.html'
+    'https://veleris.in/collection-anime.html',
+    'https://veleris.in/collection-gradients.html'
 )
 
 $opts = [System.Text.RegularExpressions.RegexOptions]::Singleline -bor [System.Text.RegularExpressions.RegexOptions]::IgnoreCase
