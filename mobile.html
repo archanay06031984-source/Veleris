@@ -2,6 +2,135 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <title>Veleris — Mobile</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, follow" />
+  <link rel="canonical" href="https://veleris.in/" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #05040a;
+      --card: #0b0b14;
+      --text: #f5f5f7;
+      --text-soft: #9a9ab0;
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, system-ui, -apple-system, sans-serif;
+    }
+
+    /* HERO */
+    .mobile-hero {
+      padding: 34px 18px 18px;
+    }
+
+    .mobile-hero h1 {
+      margin: 0;
+      font-size: 1.4rem;
+      letter-spacing: 0.28em;
+      font-weight: 500;
+    }
+
+    .mobile-hero p {
+      margin-top: 10px;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: var(--text-soft);
+      max-width: 320px;
+    }
+
+    /* GRID */
+    .wall-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      padding: 12px 16px 28px;
+    }
+
+    .wall-card {
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--card);
+      box-shadow: 0 18px 50px rgba(0,0,0,0.85);
+      display: block;
+      text-decoration: none;
+    }
+
+    .wall-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* FOOTER */
+    .mobile-footer {
+      padding: 20px 0 32px;
+      text-align: center;
+    }
+
+    .mobile-footer button {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.18);
+      color: var(--text-soft);
+      padding: 10px 22px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="mobile-hero">
+  <h1>VELERIS</h1>
+  <p>Minimal wallpapers designed to stay out of your way.</p>
+</header>
+
+<main class="wall-grid">
+  <!-- ONLY 4 WALLPAPERS -->
+  <a class="wall-card" href="mobile-view.html?img=IMG_0560.JPG">
+    <img src="assets/wallpapers/mobile/IMG_0560.JPG" alt="Wallpaper">
+  </a>
+
+  <a class="wall-card" href="mobile-view.html?img=IMG_0561.JPG">
+    <img src="assets/wallpapers/mobile/IMG_0561.JPG" alt="Wallpaper">
+  </a>
+
+  <a class="wall-card" href="mobile-view.html?img=IMG_0562.JPG">
+    <img src="assets/wallpapers/mobile/IMG_0562.JPG" alt="Wallpaper">
+  </a>
+
+  <a class="wall-card" href="mobile-view.html?img=IMG_0563.JPG">
+    <img src="assets/wallpapers/mobile/IMG_0563.JPG" alt="Wallpaper">
+  </a>
+</main>
+
+<div class="mobile-footer">
+  <button onclick="switchToDesktop()">View desktop version</button>
+</div>
+
+<script>
+  function switchToDesktop() {
+    localStorage.setItem("veleris_force_desktop", "1");
+    location.href = "index.html";
+  }
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
   <title>Veleris – Mobile</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
