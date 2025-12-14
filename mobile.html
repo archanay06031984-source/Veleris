@@ -177,6 +177,49 @@
       cursor: pointer;
       font-size: 0.85rem;
     }
+
+    /* Download button overlay */
+    .mobile-wall {
+      position: relative;
+    }
+
+    .mobile-download {
+      position: absolute;
+      bottom: 14px;
+      right: 14px;
+
+      padding: 8px 16px;
+      border-radius: 999px;
+
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+
+      border: 1px solid rgba(255,255,255,0.28);
+      background: rgba(5,5,10,0.7);
+      color: #fff;
+
+      backdrop-filter: blur(6px);
+      cursor: pointer;
+
+      opacity: 0;
+      transform: translateY(6px);
+      transition:
+        opacity 0.3s ease,
+        transform 0.3s ease,
+        background 0.2s ease;
+    }
+
+    /* Show button on interaction */
+    .mobile-wall:active .mobile-download,
+    .mobile-wall:focus-within .mobile-download {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .mobile-download:hover {
+      background: rgba(20,20,35,0.85);
+    }
   </style>
 </head>
 
@@ -217,114 +260,312 @@
 
         <!-- Begin auto-generated gallery (single drop) -->
         <div class="mobile-wall reveal-item">
-          <a href="assets/wallpapers/mobile/IMG_0560.JPG" target="_blank" rel="noopener">
-            <img src="assets/wallpapers_thumbs/IMG_0560.JPG" alt="Wallpaper" loading="lazy">
-          </a>
+          <img
+            src="assets/wallpapers_thumbs/IMG_0560.JPG"
+            alt="Dark Calm wallpaper"
+            loading="lazy"
+          >
+          <button
+            class="mobile-download"
+            data-file="assets/wallpapers/mobile/IMG_0560.JPG"
+            aria-label="Download wallpaper"
+          >
+            Download
+          </button>
         </div>
         <div class="mobile-wall reveal-item">
-          <a href="assets/wallpapers/mobile/IMG_0561.JPG" target="_blank" rel="noopener">
-            <img src="assets/wallpapers_thumbs/IMG_0561.JPG" alt="Wallpaper" loading="lazy">
-          </a>
+          <img
+            src="assets/wallpapers_thumbs/IMG_0561.JPG"
+            alt="Dark Calm wallpaper"
+            loading="lazy"
+          >
+          <button
+            class="mobile-download"
+            data-file="assets/wallpapers/mobile/IMG_0561.JPG"
+            aria-label="Download wallpaper"
+          >
+            Download
+          </button>
         </div>
         <div class="mobile-wall reveal-item">
-          <a href="assets/wallpapers/mobile/IMG_0562.JPG" target="_blank" rel="noopener">
-            <img src="assets/wallpapers_thumbs/IMG_0562.JPG" alt="Wallpaper" loading="lazy">
-          </a>
+          <img
+            src="assets/wallpapers_thumbs/IMG_0562.JPG"
+            alt="Dark Calm wallpaper"
+            loading="lazy"
+          >
+          <button
+            class="mobile-download"
+            data-file="assets/wallpapers/mobile/IMG_0562.JPG"
+            aria-label="Download wallpaper"
+          >
+            Download
+          </button>
         </div>
         <div class="mobile-wall reveal-item">
-          <a href="assets/wallpapers/mobile/IMG_0563.JPG" target="_blank" rel="noopener">
-            <img src="assets/wallpapers_thumbs/IMG_0563.JPG" alt="Wallpaper" loading="lazy">
-          </a>
+          <img
+            src="assets/wallpapers_thumbs/IMG_0563.JPG"
+            alt="Dark Calm wallpaper"
+            loading="lazy"
+          >
+          <button
+            class="mobile-download"
+            data-file="assets/wallpapers/mobile/IMG_0563.JPG"
+            aria-label="Download wallpaper"
+          >
+            Download
+          </button>
         </div>
         <div class="mobile-wall reveal-item">
-          <a href="assets/wallpapers/mobile/IMG_0564.JPG" target="_blank" rel="noopener">
-            <img src="assets/wallpapers_thumbs/IMG_0564.JPG" alt="Wallpaper" loading="lazy">
-          </a>
+          <img
+            src="assets/wallpapers_thumbs/IMG_0564.JPG"
+            alt="Dark Calm wallpaper"
+            loading="lazy"
+          >
+          <button
+            class="mobile-download"
+            data-file="assets/wallpapers/mobile/IMG_0564.JPG"
+            aria-label="Download wallpaper"
+          >
+            Download
+          </button>
         </div>
         <div class="mobile-wall reveal-item">
-          <a href="assets/wallpapers/mobile/IMG_0566.JPG" target="_blank" rel="noopener">
-            <img src="assets/wallpapers_thumbs/IMG_0566.JPG" alt="Wallpaper" loading="lazy">
-          </a>
+          <img
+            src="assets/wallpapers_thumbs/IMG_0566.JPG"
+            alt="Dark Calm wallpaper"
+            loading="lazy"
+          >
+          <button
+            class="mobile-download"
+            data-file="assets/wallpapers/mobile/IMG_0566.JPG"
+            aria-label="Download wallpaper"
+          >
+            Download
+          </button>
         </div>
         <div class="mobile-wall reveal-item">
-          <a href="assets/wallpapers/mobile/IMG_0567.JPG" target="_blank" rel="noopener">
-            <img src="assets/wallpapers_thumbs/IMG_0567.JPG" alt="Wallpaper" loading="lazy">
-          </a>
+          <img
+            src="assets/wallpapers_thumbs/IMG_0567.JPG"
+            alt="Dark Calm wallpaper"
+            loading="lazy"
+          >
+          <button
+            class="mobile-download"
+            data-file="assets/wallpapers/mobile/IMG_0567.JPG"
+            aria-label="Download wallpaper"
+          >
+            Download
+          </button>
         </div>
         <div class="mobile-wall reveal-item">
-          <a href="assets/wallpapers/mobile/IMG_0568.JPG" target="_blank" rel="noopener">
-            <img src="assets/wallpapers_thumbs/IMG_0568.JPG" alt="Wallpaper" loading="lazy">
-          </a>
+          <img
+            src="assets/wallpapers_thumbs/IMG_0568.JPG"
+            alt="Dark Calm wallpaper"
+            loading="lazy"
+          >
+          <button
+            class="mobile-download"
+            data-file="assets/wallpapers/mobile/IMG_0568.JPG"
+            aria-label="Download wallpaper"
+          >
+            Download
+          </button>
         </div>
         <div class="mobile-wall reveal-item">
-          <a href="assets/wallpapers/mobile/IMG_0569.JPG" target="_blank" rel="noopener">
-            <img src="assets/wallpapers_thumbs/IMG_0569.JPG" alt="Wallpaper" loading="lazy">
-          </a>
+          <img
+            src="assets/wallpapers_thumbs/IMG_0569.JPG"
+            alt="Dark Calm wallpaper"
+            loading="lazy"
+          >
+          <button
+            class="mobile-download"
+            data-file="assets/wallpapers/mobile/IMG_0569.JPG"
+            aria-label="Download wallpaper"
+          >
+            Download
+          </button>
         </div>
         <div class="mobile-wall reveal-item">
-          <a href="assets/wallpapers/mobile/IMG_0570.JPG" target="_blank" rel="noopener">
-            <img src="assets/wallpapers_thumbs/IMG_0570.JPG" alt="Wallpaper" loading="lazy">
-          </a>
+          <img
+            src="assets/wallpapers_thumbs/IMG_0570.JPG"
+            alt="Dark Calm wallpaper"
+            loading="lazy"
+          >
+          <button
+            class="mobile-download"
+            data-file="assets/wallpapers/mobile/IMG_0570.JPG"
+            aria-label="Download wallpaper"
+          >
+            Download
+          </button>
         </div>
         <div class="mobile-wall reveal-item">
-          <a href="assets/wallpapers/mobile/IMG_0571.JPG" target="_blank" rel="noopener">
-            <img src="assets/wallpapers_thumbs/IMG_0571.JPG" alt="Wallpaper" loading="lazy">
-          </a>
+          <img
+            src="assets/wallpapers_thumbs/IMG_0571.JPG"
+            alt="Dark Calm wallpaper"
+            loading="lazy"
+          >
+          <button
+            class="mobile-download"
+            data-file="assets/wallpapers/mobile/IMG_0571.JPG"
+            aria-label="Download wallpaper"
+          >
+            Download
+          </button>
         </div>
         <div class="mobile-wall reveal-item">
-          <a href="assets/wallpapers/mobile/IMG_0572.JPG" target="_blank" rel="noopener">
-            <img src="assets/wallpapers_thumbs/IMG_0572.JPG" alt="Wallpaper" loading="lazy">
-          </a>
+          <img
+            src="assets/wallpapers_thumbs/IMG_0572.JPG"
+            alt="Dark Calm wallpaper"
+            loading="lazy"
+          >
+          <button
+            class="mobile-download"
+            data-file="assets/wallpapers/mobile/IMG_0572.JPG"
+            aria-label="Download wallpaper"
+          >
+            Download
+          </button>
         </div>
         <div class="mobile-wall reveal-item">
-          <a href="assets/wallpapers/mobile/IMG_0573.JPG" target="_blank" rel="noopener">
-            <img src="assets/wallpapers_thumbs/IMG_0573.JPG" alt="Wallpaper" loading="lazy">
-          </a>
+          <img
+            src="assets/wallpapers_thumbs/IMG_0573.JPG"
+            alt="Dark Calm wallpaper"
+            loading="lazy"
+          >
+          <button
+            class="mobile-download"
+            data-file="assets/wallpapers/mobile/IMG_0573.JPG"
+            aria-label="Download wallpaper"
+          >
+            Download
+          </button>
         </div>
         <div class="mobile-wall reveal-item">
-          <a href="assets/wallpapers/mobile/IMG_0596.JPG" target="_blank" rel="noopener">
-            <img src="assets/wallpapers_thumbs/IMG_0596.JPG" alt="Wallpaper" loading="lazy">
-          </a>
+          <img
+            src="assets/wallpapers_thumbs/IMG_0596.JPG"
+            alt="Dark Calm wallpaper"
+            loading="lazy"
+          >
+          <button
+            class="mobile-download"
+            data-file="assets/wallpapers/mobile/IMG_0596.JPG"
+            aria-label="Download wallpaper"
+          >
+            Download
+          </button>
         </div>
         <div class="mobile-wall reveal-item">
-          <a href="assets/wallpapers/mobile/IMG_0597.JPG" target="_blank" rel="noopener">
-            <img src="assets/wallpapers_thumbs/IMG_0597.JPG" alt="Wallpaper" loading="lazy">
-          </a>
+          <img
+            src="assets/wallpapers_thumbs/IMG_0597.JPG"
+            alt="Dark Calm wallpaper"
+            loading="lazy"
+          >
+          <button
+            class="mobile-download"
+            data-file="assets/wallpapers/mobile/IMG_0597.JPG"
+            aria-label="Download wallpaper"
+          >
+            Download
+          </button>
         </div>
         <div class="mobile-wall reveal-item">
-          <a href="assets/wallpapers/mobile/IMG_0598.JPG" target="_blank" rel="noopener">
-            <img src="assets/wallpapers_thumbs/IMG_0598.JPG" alt="Wallpaper" loading="lazy">
-          </a>
+          <img
+            src="assets/wallpapers_thumbs/IMG_0598.JPG"
+            alt="Dark Calm wallpaper"
+            loading="lazy"
+          >
+          <button
+            class="mobile-download"
+            data-file="assets/wallpapers/mobile/IMG_0598.JPG"
+            aria-label="Download wallpaper"
+          >
+            Download
+          </button>
         </div>
         <div class="mobile-wall reveal-item">
-          <a href="assets/wallpapers/mobile/IMG_0599.JPG" target="_blank" rel="noopener">
-            <img src="assets/wallpapers_thumbs/IMG_0599.JPG" alt="Wallpaper" loading="lazy">
-          </a>
+          <img
+            src="assets/wallpapers_thumbs/IMG_0599.JPG"
+            alt="Dark Calm wallpaper"
+            loading="lazy"
+          >
+          <button
+            class="mobile-download"
+            data-file="assets/wallpapers/mobile/IMG_0599.JPG"
+            aria-label="Download wallpaper"
+          >
+            Download
+          </button>
         </div>
         <div class="mobile-wall reveal-item">
-          <a href="assets/wallpapers/mobile/IMG_0600.JPG" target="_blank" rel="noopener">
-            <img src="assets/wallpapers_thumbs/IMG_0600.JPG" alt="Wallpaper" loading="lazy">
-          </a>
+          <img
+            src="assets/wallpapers_thumbs/IMG_0600.JPG"
+            alt="Dark Calm wallpaper"
+            loading="lazy"
+          >
+          <button
+            class="mobile-download"
+            data-file="assets/wallpapers/mobile/IMG_0600.JPG"
+            aria-label="Download wallpaper"
+          >
+            Download
+          </button>
         </div>
         <div class="mobile-wall reveal-item">
-          <a href="assets/wallpapers/mobile/IMG_0611.JPG" target="_blank" rel="noopener">
-            <img src="assets/wallpapers_thumbs/IMG_0611.JPG" alt="Wallpaper" loading="lazy">
-          </a>
+          <img
+            src="assets/wallpapers_thumbs/IMG_0611.JPG"
+            alt="Dark Calm wallpaper"
+            loading="lazy"
+          >
+          <button
+            class="mobile-download"
+            data-file="assets/wallpapers/mobile/IMG_0611.JPG"
+            aria-label="Download wallpaper"
+          >
+            Download
+          </button>
         </div>
         <div class="mobile-wall reveal-item">
-          <a href="assets/wallpapers/mobile/IMG_0612.JPG" target="_blank" rel="noopener">
-            <img src="assets/wallpapers_thumbs/IMG_0612.JPG" alt="Wallpaper" loading="lazy">
-          </a>
+          <img
+            src="assets/wallpapers_thumbs/IMG_0612.JPG"
+            alt="Dark Calm wallpaper"
+            loading="lazy"
+          >
+          <button
+            class="mobile-download"
+            data-file="assets/wallpapers/mobile/IMG_0612.JPG"
+            aria-label="Download wallpaper"
+          >
+            Download
+          </button>
         </div>
         <div class="mobile-wall reveal-item">
-          <a href="assets/wallpapers/mobile/IMG_0615.JPG" target="_blank" rel="noopener">
-            <img src="assets/wallpapers_thumbs/IMG_0615.JPG" alt="Wallpaper" loading="lazy">
-          </a>
+          <img
+            src="assets/wallpapers_thumbs/IMG_0615.JPG"
+            alt="Dark Calm wallpaper"
+            loading="lazy"
+          >
+          <button
+            class="mobile-download"
+            data-file="assets/wallpapers/mobile/IMG_0615.JPG"
+            aria-label="Download wallpaper"
+          >
+            Download
+          </button>
         </div>
         <div class="mobile-wall reveal-item">
-          <a href="assets/wallpapers/mobile/IMG_0640.JPG" target="_blank" rel="noopener">
-            <img src="assets/wallpapers_thumbs/IMG_0640.JPG" alt="Wallpaper" loading="lazy">
-          </a>
+          <img
+            src="assets/wallpapers_thumbs/IMG_0640.JPG"
+            alt="Dark Calm wallpaper"
+            loading="lazy"
+          >
+          <button
+            class="mobile-download"
+            data-file="assets/wallpapers/mobile/IMG_0640.JPG"
+            aria-label="Download wallpaper"
+          >
+            Download
+          </button>
         </div>
 
         <!-- End auto-generated gallery -->
@@ -360,6 +601,37 @@
 
     document.querySelectorAll(".reveal, .reveal-item").forEach(el => {
       revealObserver.observe(el);
+    });
+  </script>
+
+  <script>
+    document.querySelectorAll(".mobile-download").forEach(button => {
+      button.addEventListener("click", async (e) => {
+        e.stopPropagation();
+
+        const file = button.getAttribute("data-file");
+
+        try {
+          const res = await fetch(file, { mode: "cors" });
+          if (!res.ok) throw new Error("Fetch failed");
+
+          const blob = await res.blob();
+          const url = URL.createObjectURL(blob);
+
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = file.split("/").pop();
+
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+
+          URL.revokeObjectURL(url);
+        } catch (err) {
+          // Fallback: open image normally
+          window.open(file, "_blank");
+        }
+      });
     });
   </script>
 
