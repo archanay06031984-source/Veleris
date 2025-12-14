@@ -23,7 +23,7 @@
     .mobile-shell {
       max-width: 520px;
       margin: 0 auto;
-      padding: 32px 18px 56px;
+      padding: 0 18px 64px;
     }
 
     .mobile-hero {
@@ -40,6 +40,52 @@
       font-size: 0.95rem;
       color: var(--text-soft);
       line-height: 1.55;
+    }
+
+    /* HERO — full screen entry */
+    .mobile-hero {
+      min-height: 92vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+    }
+
+    .mobile-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at top, rgba(91,141,239,0.18), transparent 60%),
+        radial-gradient(circle at bottom, rgba(195,107,255,0.14), transparent 65%);
+      z-index: -1;
+    }
+
+    .mobile-hero-inner {
+      max-width: 420px;
+      padding: 0 12px;
+    }
+
+    .mobile-hero h1 {
+      font-size: 2.2rem;
+      letter-spacing: 0.18em;
+      margin-bottom: 14px;
+    }
+
+    .mobile-hero p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: var(--text-soft);
+    }
+
+    .mobile-hero-note {
+      display: inline-block;
+      margin-top: 18px;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
     }
 
     .mobile-section {
@@ -93,11 +139,14 @@
 
     <!-- HERO -->
     <section class="mobile-hero">
-      <h1>VELERIS</h1>
-      <p>
-        Precision in every pixel.  
-        Calm, premium wallpapers crafted to sit quietly on your screen.
-      </p>
+      <div class="mobile-hero-inner">
+        <h1>VELERIS</h1>
+        <p>
+          Precision in every pixel.<br>
+          Calm, premium wallpapers crafted to sit quietly on your screen.
+        </p>
+        <span class="mobile-hero-note">Curated mobile drops</span>
+      </div>
     </section>
 
     <!-- ABOUT -->
