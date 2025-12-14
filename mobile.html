@@ -125,7 +125,7 @@
 
     /* Single drop layout */
     .mobile-drop {
-      margin-top: 56px;
+      margin-top: 72px;
     }
 
     .mobile-drop h2 {
@@ -142,7 +142,7 @@
     }
 
     .mobile-wall {
-      margin-bottom: 32px;
+      margin-bottom: 40px;
       border-radius: 22px;
       overflow: hidden;
       background: #0b0b14;
@@ -230,6 +230,69 @@
     .mobile-download:hover {
       background: rgba(20,20,35,0.85);
     }
+    
+    /* =========================
+       MOBILE HERO – IMAGE FIRST
+       ========================= */
+
+    .mobile-hero {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .mobile-hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url("assets/wallpapers/mobile/hero-dark.jpg");
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.05);
+    }
+
+    /* Dark overlay for readability */
+    .mobile-hero-bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(5,5,10,0.55),
+        rgba(5,5,10,0.85)
+      );
+    }
+
+    .mobile-hero-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 0 20px;
+      max-width: 420px;
+    }
+
+    .mobile-hero h1 {
+      font-size: 2.4rem;
+      letter-spacing: 0.22em;
+      margin-bottom: 14px;
+    }
+
+    .mobile-hero p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: var(--text-soft);
+    }
+
+    .mobile-hero-note {
+      display: inline-block;
+      margin-top: 22px;
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+    }
   </style>
 </head>
 
@@ -239,23 +302,16 @@
 
     <!-- HERO -->
     <section class="mobile-hero">
-      <div class="mobile-hero-inner">
+      <div class="mobile-hero-bg"></div>
+
+      <div class="mobile-hero-content">
         <h1>VELERIS</h1>
         <p>
           Precision in every pixel.<br>
-          Calm, premium wallpapers crafted to sit quietly on your screen.
+          Calm, premium wallpapers for focused setups.
         </p>
         <span class="mobile-hero-note">Curated mobile drops</span>
       </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section class="mobile-section reveal">
-      <h2>About</h2>
-      <p>
-        Veleris is a personal wallpaper studio focused on clean, modern visuals.
-        Designed for balance, clarity and restraint.
-      </p>
     </section>
 
     <!-- MOBILE GALLERY (single drop: Dark Calm) -->
@@ -558,6 +614,15 @@
 
         <!-- End auto-generated gallery -->
       </div> <!-- end mobile-drop -->
+    </section>
+
+    <!-- ABOUT (moved here) -->
+    <section class="mobile-section reveal">
+      <h2>About</h2>
+      <p>
+        Veleris is a personal wallpaper studio focused on clean, modern visuals.
+        Designed for balance, clarity and restraint.
+      </p>
     </section>
 
     <!-- SWITCH -->
