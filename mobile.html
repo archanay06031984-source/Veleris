@@ -15,284 +15,49 @@
   <meta name="robots" content="noindex, follow">
 
   <style>
-    /* 🔒 MOBILE ISOLATION — override desktop effects */
-    body::before {
-      display: none !important;
-    }
+    /* MOBILE ISOLATION — override desktop effects */
+    body::before { display: none !important; }
+    body { background: #05040a !important; }
 
-    body {
-      background: #05040a !important;
-    }
+    .mobile-shell { max-width: 520px; margin: 0 auto; padding: 0 18px 64px; }
 
-    /* Phone-only refinements */
-
-    .mobile-shell {
-      max-width: 520px;
-      margin: 0 auto;
-      padding: 0 18px 64px;
-    }
-
-    .mobile-hero {
-      text-align: center;
-      margin-bottom: 36px;
-    }
-
-    .mobile-hero h1 {
-      font-size: 1.9rem;
-      margin: 0 0 10px;
-    }
-
-    .mobile-hero p {
-      font-size: 0.95rem;
-      color: var(--text-soft);
-      line-height: 1.55;
-    }
-
-    /* HERO — full screen entry */
-    .mobile-hero {
-      min-height: 92vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      position: relative;
-    }
-
-    .mobile-hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at top, rgba(91,141,239,0.18), transparent 60%),
-        radial-gradient(circle at bottom, rgba(195,107,255,0.14), transparent 65%);
-      z-index: -1;
-    }
-
-    .mobile-hero-inner {
-      max-width: 420px;
-      padding: 0 12px;
-    }
-
-    .mobile-hero h1 {
-      font-size: 2.2rem;
-      letter-spacing: 0.18em;
-      margin-bottom: 14px;
-    }
-
-    .mobile-hero p {
-      font-size: 0.95rem;
-      line-height: 1.6;
-      color: var(--text-soft);
-    }
-
-    .mobile-hero-note {
-      display: inline-block;
-      margin-top: 18px;
-      font-size: 0.7rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.45);
-    }
-
-    /* Scroll reveal base */
-    .reveal {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Images: NO blur */
-    .reveal-item {
-      opacity: 0;
-      transform: translateY(18px);
-      transition: opacity 0.45s ease, transform 0.45s ease;
-    }
-
-    .reveal-item.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Slight stagger for wallpapers */
-    .reveal-item {
-      transition-delay: 0.06s;
-    }
-
-    /* Single drop layout */
-    .mobile-drop {
-      margin-top: 72px;
-    }
-
-    .mobile-drop h2 {
-      font-size: 1.3rem;
-      margin-bottom: 6px;
-      letter-spacing: 0.02em;
-    }
-
-    .drop-desc {
-      font-size: 0.85rem;
-      color: var(--text-soft);
-      margin-bottom: 26px;
-      line-height: 1.55;
-    }
-
-    .mobile-wall {
-      margin-bottom: 40px;
-      border-radius: 22px;
-      overflow: hidden;
-      background: #0b0b14;
-      box-shadow: 0 28px 80px rgba(0,0,0,0.95);
-      position: relative;
-    }
-
-    .mobile-section {
-      margin-top: 42px;
-    }
-
-    .mobile-section h2 {
-      font-size: 1.1rem;
-      margin-bottom: 10px;
-    }
-
-    .mobile-section p {
-      font-size: 0.9rem;
-      color: var(--text-soft);
-      line-height: 1.55;
-    }
-
-    
-
-    .mobile-wall img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .switch-desktop {
-      margin-top: 56px;
-      text-align: center;
-    }
-
-    .switch-desktop button {
-      background: transparent;
-      border: 1px solid rgba(255,255,255,0.18);
-      color: var(--text-soft);
-      padding: 10px 18px;
-      border-radius: 999px;
-      cursor: pointer;
-      font-size: 0.85rem;
-    }
-
-    /* Download button overlay */
-    .mobile-wall {
-      position: relative;
-    }
-
-    .mobile-download {
-      position: absolute;
-      bottom: 14px;
-      right: 14px;
-
-      padding: 8px 16px;
-      border-radius: 999px;
-
-      font-size: 0.75rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-
-      border: 1px solid rgba(255,255,255,0.28);
-      background: rgba(5,5,10,0.7);
-      color: #fff;
-
-      backdrop-filter: blur(6px);
-      cursor: pointer;
-
-      opacity: 0;
-      transform: translateY(6px);
-      transition:
-        opacity 0.3s ease,
-        transform 0.3s ease,
-        background 0.2s ease;
-    }
-
-    /* Show button on interaction */
-    .mobile-wall:active .mobile-download,
-    .mobile-wall:focus-within .mobile-download {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .mobile-download:hover {
-      background: rgba(20,20,35,0.85);
-    }
-    
     /* =========================
-       MOBILE HERO – IMAGE FIRST
+       MOBILE HEADER
        ========================= */
+    .mobile-header { padding: 28px 6px 18px; }
+    .mobile-header h1 { margin: 0; font-size: 1.35rem; letter-spacing: 0.22em; }
+    .mobile-header p { margin-top: 6px; font-size: 0.85rem; color: var(--text-soft); }
 
-    .mobile-hero {
-      position: relative;
-      height: 100vh;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+    /* =========================
+       SCROLL REVEAL — calm motion (no blur)
+       ========================= */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; filter: none; }
+    .reveal.visible { opacity: 1; transform: translateY(0); filter: none; }
 
-    .mobile-hero-bg {
-      position: absolute;
-      inset: 0;
-      background-image: url("assets/wallpapers/mobile/hero-dark.jpg");
-      background-size: cover;
-      background-position: center;
-      transform: scale(1.05);
-    }
+    .reveal-item { opacity: 0; transform: translateY(16px); transition: opacity 0.45s ease, transform 0.45s ease; }
+    .reveal-item.visible { opacity: 1; transform: translateY(0); }
+    .reveal-item { transition-delay: 0.06s; }
 
-    /* Dark overlay for readability */
-    .mobile-hero-bg::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(5,5,10,0.55),
-        rgba(5,5,10,0.85)
-      );
-    }
+    /* Drop header */
+    .mobile-drop { margin-top: 72px; }
+    .mobile-drop h2 { font-size: 1.3rem; margin-bottom: 6px; letter-spacing: 0.02em; }
+    .drop-desc { font-size: 0.85rem; color: var(--text-soft); margin-bottom: 26px; line-height: 1.55; }
 
-    .mobile-hero-content {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      padding: 0 20px;
-      max-width: 420px;
-    }
+    /* =========================
+       WALLPAPER CARDS
+       ========================= */
+    .wall-feed { margin-top: 28px; }
 
-    .mobile-hero h1 {
-      font-size: 2.4rem;
-      letter-spacing: 0.22em;
-      margin-bottom: 14px;
-    }
+    .wall-card { margin: 0 6px 34px; border-radius: 22px; overflow: hidden; background: #0b0b14; box-shadow: 0 18px 45px rgba(0,0,0,0.85), inset 0 0 0 1px rgba(255,255,255,0.05); transform: translateY(0); transition: transform 0.35s ease, box-shadow 0.35s ease; }
+    .wall-card img { width: 100%; display: block; }
+    .wall-card:active { transform: translateY(-4px); box-shadow: 0 26px 70px rgba(0,0,0,1), inset 0 0 0 1px rgba(255,255,255,0.08); }
 
-    .mobile-hero p {
-      font-size: 0.95rem;
-      line-height: 1.6;
-      color: var(--text-soft);
-    }
+    .mobile-section { margin-top: 42px; }
+    .mobile-section h2 { font-size: 1.1rem; margin-bottom: 10px; }
+    .mobile-section p { font-size: 0.9rem; color: var(--text-soft); line-height: 1.55; }
 
-    .mobile-hero-note {
-      display: inline-block;
-      margin-top: 22px;
-      font-size: 0.7rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.55);
-    }
+    .switch-desktop { margin-top: 56px; text-align: center; }
+    .switch-desktop button { background: transparent; border: 1px solid rgba(255,255,255,0.18); color: var(--text-soft); padding: 10px 18px; border-radius: 999px; cursor: pointer; font-size: 0.85rem; }
   </style>
 </head>
 
@@ -300,19 +65,11 @@
 
   <main class="mobile-shell">
 
-    <!-- HERO -->
-    <section class="mobile-hero">
-      <div class="mobile-hero-bg"></div>
-
-      <div class="mobile-hero-content">
-        <h1>VELERIS</h1>
-        <p>
-          Precision in every pixel.<br>
-          Calm, premium wallpapers for focused setups.
-        </p>
-        <span class="mobile-hero-note">Curated mobile drops</span>
-      </div>
-    </section>
+    <!-- MOBILE HEADER -->
+    <header class="mobile-header">
+      <h1>VELERIS</h1>
+      <p>Curated dark wallpapers for phones</p>
+    </header>
 
     <!-- MOBILE GALLERY (single drop: Dark Calm) -->
     <section class="mobile-section reveal" aria-label="Curated mobile drops">
@@ -325,291 +82,73 @@
         </p>
 
         <!-- Begin auto-generated gallery (single drop) -->
-        <div class="mobile-wall reveal-item">
-          <img
-            src="assets/wallpapers_thumbs/IMG_0560.JPG"
-            alt="Dark Calm wallpaper"
-          >
-          <button
-            class="mobile-download"
-            data-file="assets/wallpapers/mobile/IMG_0560.JPG"
-            aria-label="Download wallpaper"
-          >
-            Download
-          </button>
-        </div>
-        <div class="mobile-wall reveal-item">
-          <img
-            src="assets/wallpapers_thumbs/IMG_0561.JPG"
-            alt="Dark Calm wallpaper"
-          >
-          <button
-            class="mobile-download"
-            data-file="assets/wallpapers/mobile/IMG_0561.JPG"
-            aria-label="Download wallpaper"
-          >
-            Download
-          </button>
-        </div>
-        <div class="mobile-wall reveal-item">
-          <img
-            src="assets/wallpapers_thumbs/IMG_0562.JPG"
-            alt="Dark Calm wallpaper"
-          >
-          <button
-            class="mobile-download"
-            data-file="assets/wallpapers/mobile/IMG_0562.JPG"
-            aria-label="Download wallpaper"
-          >
-            Download
-          </button>
-        </div>
-        <div class="mobile-wall reveal-item">
-          <img
-            src="assets/wallpapers_thumbs/IMG_0563.JPG"
-            alt="Dark Calm wallpaper"
-          >
-          <button
-            class="mobile-download"
-            data-file="assets/wallpapers/mobile/IMG_0563.JPG"
-            aria-label="Download wallpaper"
-          >
-            Download
-          </button>
-        </div>
-        <div class="mobile-wall reveal-item">
-          <img
-            src="assets/wallpapers_thumbs/IMG_0564.JPG"
-            alt="Dark Calm wallpaper"
-          >
-          <button
-            class="mobile-download"
-            data-file="assets/wallpapers/mobile/IMG_0564.JPG"
-            aria-label="Download wallpaper"
-          >
-            Download
-          </button>
-        </div>
-        <div class="mobile-wall reveal-item">
-          <img
-            src="assets/wallpapers_thumbs/IMG_0566.JPG"
-            alt="Dark Calm wallpaper"
-          >
-          <button
-            class="mobile-download"
-            data-file="assets/wallpapers/mobile/IMG_0566.JPG"
-            aria-label="Download wallpaper"
-          >
-            Download
-          </button>
-        </div>
-        <div class="mobile-wall reveal-item">
-          <img
-            src="assets/wallpapers_thumbs/IMG_0567.JPG"
-            alt="Dark Calm wallpaper"
-          >
-          <button
-            class="mobile-download"
-            data-file="assets/wallpapers/mobile/IMG_0567.JPG"
-            aria-label="Download wallpaper"
-          >
-            Download
-          </button>
-        </div>
-        <div class="mobile-wall reveal-item">
-          <img
-            src="assets/wallpapers_thumbs/IMG_0568.JPG"
-            alt="Dark Calm wallpaper"
-          >
-          <button
-            class="mobile-download"
-            data-file="assets/wallpapers/mobile/IMG_0568.JPG"
-            aria-label="Download wallpaper"
-          >
-            Download
-          </button>
-        </div>
-        <div class="mobile-wall reveal-item">
-          <img
-            src="assets/wallpapers_thumbs/IMG_0569.JPG"
-            alt="Dark Calm wallpaper"
-          >
-          <button
-            class="mobile-download"
-            data-file="assets/wallpapers/mobile/IMG_0569.JPG"
-            aria-label="Download wallpaper"
-          >
-            Download
-          </button>
-        </div>
-        <div class="mobile-wall reveal-item">
-          <img
-            src="assets/wallpapers_thumbs/IMG_0570.JPG"
-            alt="Dark Calm wallpaper"
-          >
-          <button
-            class="mobile-download"
-            data-file="assets/wallpapers/mobile/IMG_0570.JPG"
-            aria-label="Download wallpaper"
-          >
-            Download
-          </button>
-        </div>
-        <div class="mobile-wall reveal-item">
-          <img
-            src="assets/wallpapers_thumbs/IMG_0571.JPG"
-            alt="Dark Calm wallpaper"
-          >
-          <button
-            class="mobile-download"
-            data-file="assets/wallpapers/mobile/IMG_0571.JPG"
-            aria-label="Download wallpaper"
-          >
-            Download
-          </button>
-        </div>
-        <div class="mobile-wall reveal-item">
-          <img
-            src="assets/wallpapers_thumbs/IMG_0572.JPG"
-            alt="Dark Calm wallpaper"
-          >
-          <button
-            class="mobile-download"
-            data-file="assets/wallpapers/mobile/IMG_0572.JPG"
-            aria-label="Download wallpaper"
-          >
-            Download
-          </button>
-        </div>
-        <div class="mobile-wall reveal-item">
-          <img
-            src="assets/wallpapers_thumbs/IMG_0573.JPG"
-            alt="Dark Calm wallpaper"
-          >
-          <button
-            class="mobile-download"
-            data-file="assets/wallpapers/mobile/IMG_0573.JPG"
-            aria-label="Download wallpaper"
-          >
-            Download
-          </button>
-        </div>
-        <div class="mobile-wall reveal-item">
-          <img
-            src="assets/wallpapers_thumbs/IMG_0596.JPG"
-            alt="Dark Calm wallpaper"
-          >
-          <button
-            class="mobile-download"
-            data-file="assets/wallpapers/mobile/IMG_0596.JPG"
-            aria-label="Download wallpaper"
-          >
-            Download
-          </button>
-        </div>
-        <div class="mobile-wall reveal-item">
-          <img
-            src="assets/wallpapers_thumbs/IMG_0597.JPG"
-            alt="Dark Calm wallpaper"
-          >
-          <button
-            class="mobile-download"
-            data-file="assets/wallpapers/mobile/IMG_0597.JPG"
-            aria-label="Download wallpaper"
-          >
-            Download
-          </button>
-        </div>
-        <div class="mobile-wall reveal-item">
-          <img
-            src="assets/wallpapers_thumbs/IMG_0598.JPG"
-            alt="Dark Calm wallpaper"
-          >
-          <button
-            class="mobile-download"
-            data-file="assets/wallpapers/mobile/IMG_0598.JPG"
-            aria-label="Download wallpaper"
-          >
-            Download
-          </button>
-        </div>
-        <div class="mobile-wall reveal-item">
-          <img
-            src="assets/wallpapers_thumbs/IMG_0599.JPG"
-            alt="Dark Calm wallpaper"
-          >
-          <button
-            class="mobile-download"
-            data-file="assets/wallpapers/mobile/IMG_0599.JPG"
-            aria-label="Download wallpaper"
-          >
-            Download
-          </button>
-        </div>
-        <div class="mobile-wall reveal-item">
-          <img
-            src="assets/wallpapers_thumbs/IMG_0600.JPG"
-            alt="Dark Calm wallpaper"
-          >
-          <button
-            class="mobile-download"
-            data-file="assets/wallpapers/mobile/IMG_0600.JPG"
-            aria-label="Download wallpaper"
-          >
-            Download
-          </button>
-        </div>
-        <div class="mobile-wall reveal-item">
-          <img
-            src="assets/wallpapers_thumbs/IMG_0611.JPG"
-            alt="Dark Calm wallpaper"
-          >
-          <button
-            class="mobile-download"
-            data-file="assets/wallpapers/mobile/IMG_0611.JPG"
-            aria-label="Download wallpaper"
-          >
-            Download
-          </button>
-        </div>
-        <div class="mobile-wall reveal-item">
-          <img
-            src="assets/wallpapers_thumbs/IMG_0612.JPG"
-            alt="Dark Calm wallpaper"
-          >
-          <button
-            class="mobile-download"
-            data-file="assets/wallpapers/mobile/IMG_0612.JPG"
-            aria-label="Download wallpaper"
-          >
-            Download
-          </button>
-        </div>
-        <div class="mobile-wall reveal-item">
-          <img
-            src="assets/wallpapers_thumbs/IMG_0615.JPG"
-            alt="Dark Calm wallpaper"
-          >
-          <button
-            class="mobile-download"
-            data-file="assets/wallpapers/mobile/IMG_0615.JPG"
-            aria-label="Download wallpaper"
-          >
-            Download
-          </button>
-        </div>
-        <div class="mobile-wall reveal-item">
-          <img
-            src="assets/wallpapers_thumbs/IMG_0640.JPG"
-            alt="Dark Calm wallpaper"
-          >
-          <button
-            class="mobile-download"
-            data-file="assets/wallpapers/mobile/IMG_0640.JPG"
-            aria-label="Download wallpaper"
-          >
-            Download
-          </button>
+        <div class="wall-feed">
+          <div class="wall-card reveal-item" data-file="assets/wallpapers/mobile/IMG_0560.JPG">
+            <img src="assets/wallpapers_thumbs/IMG_0560.JPG" alt="Dark Calm wallpaper">
+          </div>
+          <div class="wall-card reveal-item" data-file="assets/wallpapers/mobile/IMG_0561.JPG">
+            <img src="assets/wallpapers_thumbs/IMG_0561.JPG" alt="Dark Calm wallpaper">
+          </div>
+          <div class="wall-card reveal-item" data-file="assets/wallpapers/mobile/IMG_0562.JPG">
+            <img src="assets/wallpapers_thumbs/IMG_0562.JPG" alt="Dark Calm wallpaper">
+          </div>
+          <div class="wall-card reveal-item" data-file="assets/wallpapers/mobile/IMG_0563.JPG">
+            <img src="assets/wallpapers_thumbs/IMG_0563.JPG" alt="Dark Calm wallpaper">
+          </div>
+          <div class="wall-card reveal-item" data-file="assets/wallpapers/mobile/IMG_0564.JPG">
+            <img src="assets/wallpapers_thumbs/IMG_0564.JPG" alt="Dark Calm wallpaper">
+          </div>
+          <div class="wall-card reveal-item" data-file="assets/wallpapers/mobile/IMG_0566.JPG">
+            <img src="assets/wallpapers_thumbs/IMG_0566.JPG" alt="Dark Calm wallpaper">
+          </div>
+          <div class="wall-card reveal-item" data-file="assets/wallpapers/mobile/IMG_0567.JPG">
+            <img src="assets/wallpapers_thumbs/IMG_0567.JPG" alt="Dark Calm wallpaper">
+          </div>
+          <div class="wall-card reveal-item" data-file="assets/wallpapers/mobile/IMG_0568.JPG">
+            <img src="assets/wallpapers_thumbs/IMG_0568.JPG" alt="Dark Calm wallpaper">
+          </div>
+          <div class="wall-card reveal-item" data-file="assets/wallpapers/mobile/IMG_0569.JPG">
+            <img src="assets/wallpapers_thumbs/IMG_0569.JPG" alt="Dark Calm wallpaper">
+          </div>
+          <div class="wall-card reveal-item" data-file="assets/wallpapers/mobile/IMG_0570.JPG">
+            <img src="assets/wallpapers_thumbs/IMG_0570.JPG" alt="Dark Calm wallpaper">
+          </div>
+          <div class="wall-card reveal-item" data-file="assets/wallpapers/mobile/IMG_0571.JPG">
+            <img src="assets/wallpapers_thumbs/IMG_0571.JPG" alt="Dark Calm wallpaper">
+          </div>
+          <div class="wall-card reveal-item" data-file="assets/wallpapers/mobile/IMG_0572.JPG">
+            <img src="assets/wallpapers_thumbs/IMG_0572.JPG" alt="Dark Calm wallpaper">
+          </div>
+          <div class="wall-card reveal-item" data-file="assets/wallpapers/mobile/IMG_0573.JPG">
+            <img src="assets/wallpapers_thumbs/IMG_0573.JPG" alt="Dark Calm wallpaper">
+          </div>
+          <div class="wall-card reveal-item" data-file="assets/wallpapers/mobile/IMG_0596.JPG">
+            <img src="assets/wallpapers_thumbs/IMG_0596.JPG" alt="Dark Calm wallpaper">
+          </div>
+          <div class="wall-card reveal-item" data-file="assets/wallpapers/mobile/IMG_0597.JPG">
+            <img src="assets/wallpapers_thumbs/IMG_0597.JPG" alt="Dark Calm wallpaper">
+          </div>
+          <div class="wall-card reveal-item" data-file="assets/wallpapers/mobile/IMG_0598.JPG">
+            <img src="assets/wallpapers_thumbs/IMG_0598.JPG" alt="Dark Calm wallpaper">
+          </div>
+          <div class="wall-card reveal-item" data-file="assets/wallpapers/mobile/IMG_0599.JPG">
+            <img src="assets/wallpapers_thumbs/IMG_0599.JPG" alt="Dark Calm wallpaper">
+          </div>
+          <div class="wall-card reveal-item" data-file="assets/wallpapers/mobile/IMG_0600.JPG">
+            <img src="assets/wallpapers_thumbs/IMG_0600.JPG" alt="Dark Calm wallpaper">
+          </div>
+          <div class="wall-card reveal-item" data-file="assets/wallpapers/mobile/IMG_0611.JPG">
+            <img src="assets/wallpapers_thumbs/IMG_0611.JPG" alt="Dark Calm wallpaper">
+          </div>
+          <div class="wall-card reveal-item" data-file="assets/wallpapers/mobile/IMG_0612.JPG">
+            <img src="assets/wallpapers_thumbs/IMG_0612.JPG" alt="Dark Calm wallpaper">
+          </div>
+          <div class="wall-card reveal-item" data-file="assets/wallpapers/mobile/IMG_0615.JPG">
+            <img src="assets/wallpapers_thumbs/IMG_0615.JPG" alt="Dark Calm wallpaper">
+          </div>
+          <div class="wall-card reveal-item" data-file="assets/wallpapers/mobile/IMG_0640.JPG">
+            <img src="assets/wallpapers_thumbs/IMG_0640.JPG" alt="Dark Calm wallpaper">
+          </div>
         </div>
 
         <!-- End auto-generated gallery -->
@@ -620,8 +159,8 @@
     <section class="mobile-section reveal">
       <h2>About</h2>
       <p>
-        Veleris is a personal wallpaper studio focused on clean, modern visuals.
-        Designed for balance, clarity and restraint.
+        Veleris is a personal wallpaper studio focused on calm, modern visuals.
+        Designed for phones and distraction-free setups.
       </p>
     </section>
 
@@ -658,30 +197,24 @@
   </script>
 
   <script>
-    document.querySelectorAll(".mobile-download").forEach(button => {
-      button.addEventListener("click", async (e) => {
-        e.stopPropagation();
-
-        const file = button.getAttribute("data-file");
+    document.querySelectorAll(".wall-card").forEach(card => {
+      card.addEventListener("click", async () => {
+        const file = card.dataset.file;
 
         try {
-          const res = await fetch(file, { mode: "cors" });
-          if (!res.ok) throw new Error("Fetch failed");
-
+          const res = await fetch(file);
           const blob = await res.blob();
           const url = URL.createObjectURL(blob);
 
           const a = document.createElement("a");
           a.href = url;
           a.download = file.split("/").pop();
-
           document.body.appendChild(a);
           a.click();
           a.remove();
 
           URL.revokeObjectURL(url);
-        } catch (err) {
-          // Fallback: open image normally
+        } catch {
           window.open(file, "_blank");
         }
       });
