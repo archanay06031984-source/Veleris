@@ -16,201 +16,195 @@
 
   <style>
     /* MOBILE ISOLATION — override desktop effects */
-    body::before { display: none !important; }
-    body { background: #05040a !important; }
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <title>Veleris — Mobile</title>
 
-    .mobile-shell { max-width: 520px; margin: 0 auto; padding: 0 18px 64px; }
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta name="description" content="Calm, dark wallpapers designed for focused phone setups." />
 
-    /* =========================
-       MOBILE HEADER
-       ========================= */
-    .mobile-header { padding: 28px 6px 10px; }
-    .mobile-header h1 { margin: 0; font-size: 1.35rem; letter-spacing: 0.22em; }
-    .brand-desc { margin-top: 8px; font-size: 0.88rem; line-height: 1.55; color: var(--text-soft); max-width: 320px; }
+      <!-- Canonical + noindex -->
+      <link rel="canonical" href="https://veleris.in/" />
+      <meta name="robots" content="noindex, follow" />
 
-    /* =========================
-       SCROLL REVEAL — calm motion (no blur)
-       ========================= */
-    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; filter: none; }
-    .reveal.visible { opacity: 1; transform: translateY(0); filter: none; }
+      <!-- Minimal font -->
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-    .reveal-item { opacity: 0; transform: translateY(16px); transition: opacity 0.45s ease, transform 0.45s ease; }
-    .reveal-item.visible { opacity: 1; transform: translateY(0); }
-    .reveal-item { transition-delay: 0.06s; }
+      <style>
+        :root {
+          --bg: #05040a;
+          --card: #0b0b14;
+          --text: #f5f5f7;
+          --text-soft: #a3a3b8;
+          --radius: 22px;
+        }
 
-    /* Drop intro */
-    .drop-intro { margin: 18px 6px 22px; }
-    .drop-intro h2 { margin: 0; font-size: 1.15rem; }
-    .drop-intro p { margin-top: 6px; font-size: 0.85rem; line-height: 1.5; color: var(--text-soft); max-width: 340px; }
+        * {
+          box-sizing: border-box;
+          -webkit-tap-highlight-color: transparent;
+        }
 
-    /* =========================
-       WALLPAPER CARDS
-       ========================= */
-    .wall-feed { margin-top: 28px; }
+        html, body {
+          margin: 0;
+          padding: 0;
+          background: var(--bg);
+          color: var(--text);
+          font-family: Inter, system-ui, -apple-system, sans-serif;
+        }
 
-    .wall-card { margin: 0 6px 34px; border-radius: 22px; overflow: hidden; background: #0b0b14; box-shadow: 0 18px 45px rgba(0,0,0,0.85), inset 0 0 0 1px rgba(255,255,255,0.05); transform: translateY(0); transition: transform 0.35s ease, box-shadow 0.35s ease; }
-    .wall-card img { width: 100%; display: block; }
-    .wall-card:active { transform: translateY(-4px); box-shadow: 0 26px 70px rgba(0,0,0,1), inset 0 0 0 1px rgba(255,255,255,0.08); }
+        body {
+          padding-bottom: 60px;
+        }
 
-    .mobile-section { margin-top: 42px; }
-    .mobile-section h2 { font-size: 1.1rem; margin-bottom: 10px; }
-    .mobile-section p { font-size: 0.9rem; color: var(--text-soft); line-height: 1.55; }
+        /* ---------- HEADER (NOT HERO) ---------- */
+        .mobile-header {
+          padding: 34px 18px 18px;
+        }
 
-    .switch-desktop { margin-top: 56px; text-align: center; }
-    .switch-desktop button { background: transparent; border: 1px solid rgba(255,255,255,0.18); color: var(--text-soft); padding: 10px 18px; border-radius: 999px; cursor: pointer; font-size: 0.85rem; }
-  </style>
-</head>
+        .mobile-header h1 {
+          margin: 0;
+          font-size: 1.45rem;
+          letter-spacing: 0.24em;
+          font-weight: 500;
+        }
 
-<body>
+        .mobile-header p {
+          margin: 10px 0 0;
+          max-width: 340px;
+          font-size: 0.95rem;
+          line-height: 1.55;
+          color: var(--text-soft);
+        }
 
-  <main class="mobile-shell">
+        .mobile-header p.secondary {
+          margin-top: 6px;
+          font-size: 0.88rem;
+          opacity: 0.9;
+        }
 
-    <!-- MOBILE HEADER -->
-    <header class="mobile-header">
-      <h1>VELERIS</h1>
-      <p>Curated dark wallpapers for phones</p>
-    </header>
+        /* ---------- WALLPAPERS ---------- */
+        .wall-list {
+          display: flex;
+          flex-direction: column;
+          gap: 28px;
+          padding: 0 18px;
+        }
 
-    <!-- MOBILE GALLERY (single drop: Dark Calm) -->
-    <section class="mobile-section reveal" aria-label="Curated mobile drops">
+        .wall {
+          border-radius: var(--radius);
+          overflow: hidden;
+          background: var(--card);
+          box-shadow: 0 24px 70px rgba(0,0,0,0.95);
+          transform: translateY(24px);
+          opacity: 0;
+          transition: opacity 0.5s ease, transform 0.5s ease;
+        }
 
-        <!-- DROP: DARK CALM -->
-        <section class="drop-intro reveal">
-          <h2>Dark Calm</h2>
-          <p>
-            Low-light wallpapers designed for focus, balance, and deep contrast.
-          </p>
-        </section>
+        .wall.visible {
+          transform: translateY(0);
+          opacity: 1;
+        }
 
-        <!-- Begin auto-generated gallery (single drop) -->
-        <div class="wall-feed">
-          <div class="wall-card reveal-item" data-file="assets/wallpapers/mobile/IMG_0560.JPG">
-            <img src="assets/wallpapers_thumbs/IMG_0560.JPG" alt="Dark Calm wallpaper">
-          </div>
-          <div class="wall-card reveal-item" data-file="assets/wallpapers/mobile/IMG_0561.JPG">
-            <img src="assets/wallpapers_thumbs/IMG_0561.JPG" alt="Dark Calm wallpaper">
-          </div>
-          <div class="wall-card reveal-item" data-file="assets/wallpapers/mobile/IMG_0562.JPG">
-            <img src="assets/wallpapers_thumbs/IMG_0562.JPG" alt="Dark Calm wallpaper">
-          </div>
-          <div class="wall-card reveal-item" data-file="assets/wallpapers/mobile/IMG_0563.JPG">
-            <img src="assets/wallpapers_thumbs/IMG_0563.JPG" alt="Dark Calm wallpaper">
-          </div>
-          <div class="wall-card reveal-item" data-file="assets/wallpapers/mobile/IMG_0564.JPG">
-            <img src="assets/wallpapers_thumbs/IMG_0564.JPG" alt="Dark Calm wallpaper">
-          </div>
-          <div class="wall-card reveal-item" data-file="assets/wallpapers/mobile/IMG_0566.JPG">
-            <img src="assets/wallpapers_thumbs/IMG_0566.JPG" alt="Dark Calm wallpaper">
-          </div>
-          <div class="wall-card reveal-item" data-file="assets/wallpapers/mobile/IMG_0567.JPG">
-            <img src="assets/wallpapers_thumbs/IMG_0567.JPG" alt="Dark Calm wallpaper">
-          </div>
-          <div class="wall-card reveal-item" data-file="assets/wallpapers/mobile/IMG_0568.JPG">
-            <img src="assets/wallpapers_thumbs/IMG_0568.JPG" alt="Dark Calm wallpaper">
-          </div>
-          <div class="wall-card reveal-item" data-file="assets/wallpapers/mobile/IMG_0569.JPG">
-            <img src="assets/wallpapers_thumbs/IMG_0569.JPG" alt="Dark Calm wallpaper">
-          </div>
-          <div class="wall-card reveal-item" data-file="assets/wallpapers/mobile/IMG_0570.JPG">
-            <img src="assets/wallpapers_thumbs/IMG_0570.JPG" alt="Dark Calm wallpaper">
-          </div>
-          <div class="wall-card reveal-item" data-file="assets/wallpapers/mobile/IMG_0571.JPG">
-            <img src="assets/wallpapers_thumbs/IMG_0571.JPG" alt="Dark Calm wallpaper">
-          </div>
-          <div class="wall-card reveal-item" data-file="assets/wallpapers/mobile/IMG_0572.JPG">
-            <img src="assets/wallpapers_thumbs/IMG_0572.JPG" alt="Dark Calm wallpaper">
-          </div>
-          <div class="wall-card reveal-item" data-file="assets/wallpapers/mobile/IMG_0573.JPG">
-            <img src="assets/wallpapers_thumbs/IMG_0573.JPG" alt="Dark Calm wallpaper">
-          </div>
-          <div class="wall-card reveal-item" data-file="assets/wallpapers/mobile/IMG_0596.JPG">
-            <img src="assets/wallpapers_thumbs/IMG_0596.JPG" alt="Dark Calm wallpaper">
-          </div>
-          <div class="wall-card reveal-item" data-file="assets/wallpapers/mobile/IMG_0597.JPG">
-            <img src="assets/wallpapers_thumbs/IMG_0597.JPG" alt="Dark Calm wallpaper">
-          </div>
-          <div class="wall-card reveal-item" data-file="assets/wallpapers/mobile/IMG_0598.JPG">
-            <img src="assets/wallpapers_thumbs/IMG_0598.JPG" alt="Dark Calm wallpaper">
-          </div>
-          <div class="wall-card reveal-item" data-file="assets/wallpapers/mobile/IMG_0599.JPG">
-            <img src="assets/wallpapers_thumbs/IMG_0599.JPG" alt="Dark Calm wallpaper">
-          </div>
-          <div class="wall-card reveal-item" data-file="assets/wallpapers/mobile/IMG_0600.JPG">
-            <img src="assets/wallpapers_thumbs/IMG_0600.JPG" alt="Dark Calm wallpaper">
-          </div>
-          <div class="wall-card reveal-item" data-file="assets/wallpapers/mobile/IMG_0611.JPG">
-            <img src="assets/wallpapers_thumbs/IMG_0611.JPG" alt="Dark Calm wallpaper">
-          </div>
-          <div class="wall-card reveal-item" data-file="assets/wallpapers/mobile/IMG_0612.JPG">
-            <img src="assets/wallpapers_thumbs/IMG_0612.JPG" alt="Dark Calm wallpaper">
-          </div>
-          <div class="wall-card reveal-item" data-file="assets/wallpapers/mobile/IMG_0615.JPG">
-            <img src="assets/wallpapers_thumbs/IMG_0615.JPG" alt="Dark Calm wallpaper">
-          </div>
-          <div class="wall-card reveal-item" data-file="assets/wallpapers/mobile/IMG_0640.JPG">
-            <img src="assets/wallpapers_thumbs/IMG_0640.JPG" alt="Dark Calm wallpaper">
-          </div>
+        .wall img {
+          width: 100%;
+          height: auto;
+          display: block;
+        }
+
+        /* ---------- FOOTER ---------- */
+        .switch-desktop {
+          margin-top: 48px;
+          text-align: center;
+        }
+
+        .switch-desktop button {
+          background: transparent;
+          border: 1px solid rgba(255,255,255,0.2);
+          color: var(--text-soft);
+          padding: 10px 20px;
+          border-radius: 999px;
+          font-size: 0.85rem;
+          cursor: pointer;
+        }
+      </style>
+    </head>
+
+    <body>
+
+      <!-- HEADER -->
+      <header class="mobile-header">
+        <h1>VELERIS</h1>
+        <p>
+          A calm wallpaper studio for focused phone setups.
+        </p>
+        <p class="secondary">
+          Designed to disappear behind your apps.
+        </p>
+      </header>
+
+      <!-- WALLPAPERS -->
+      <main class="wall-list">
+
+        <!-- COPY / DUPLICATE THESE BLOCKS FOR MORE WALLPAPERS -->
+        <div class="wall">
+          <img src="assets/wallpapers/mobile/IMG_0560.JPG" alt="Wallpaper">
         </div>
 
-        <!-- End auto-generated gallery -->
-    </section>
+        <div class="wall">
+          <img src="assets/wallpapers/mobile/IMG_0561.JPG" alt="Wallpaper">
+        </div>
 
-    <!-- SWITCH -->
-    <div class="switch-desktop">
-      <button onclick="switchToDesktop()">View desktop version</button>
-    </div>
+        <div class="wall">
+          <img src="assets/wallpapers/mobile/IMG_0562.JPG" alt="Wallpaper">
+        </div>
 
-  </main>
+        <div class="wall">
+          <img src="assets/wallpapers/mobile/IMG_0563.JPG" alt="Wallpaper">
+        </div>
 
-  <script>
-    function switchToDesktop() {
-      localStorage.setItem("veleris_force_desktop", "1");
-      window.location.replace("index.html");
-    }
-  </script>
+      </main>
 
-  <script>
-    const revealObserver = new IntersectionObserver(
-      (entries, observer) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.15 }
-    );
+      <!-- FOOTER -->
+      <div class="switch-desktop">
+        <button onclick="switchToDesktop()">View desktop version</button>
+      </div>
 
-    document.querySelectorAll(".reveal, .reveal-item").forEach(el => {
-      revealObserver.observe(el);
-    });
-  </script>
-
-  <script>
-    document.querySelectorAll(".wall-card").forEach(card => {
-      card.addEventListener("click", async () => {
-        const file = card.dataset.file;
-
-        try {
-          const res = await fetch(file);
-          const blob = await res.blob();
-          const url = URL.createObjectURL(blob);
-
-          const a = document.createElement("a");
-          a.href = url;
-          a.download = file.split("/").pop();
-          document.body.appendChild(a);
-          a.click();
-          a.remove();
-
-          URL.revokeObjectURL(url);
-        } catch {
-          window.open(file, "_blank");
+      <!-- ---------- SCRIPTS ---------- -->
+      <script>
+        function switchToDesktop() {
+          localStorage.setItem("veleris_force_desktop", "1");
+          window.location.replace("index.html");
         }
-      });
-    });
-  </script>
 
-</body>
-</html>
+        // Scroll reveal
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.2 });
+
+        document.querySelectorAll(".wall").forEach(w => observer.observe(w));
+
+        // Tap image = direct download
+        document.querySelectorAll(".wall img").forEach(img => {
+          img.addEventListener("click", () => {
+            const a = document.createElement("a");
+            a.href = img.src;
+            a.download = img.src.split("/").pop();
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+          });
+        });
+      </script>
+
+    </body>
+    </html>
+        }
