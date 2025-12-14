@@ -42,6 +42,18 @@
   </script>
 
   <link rel="stylesheet" href="assets/css/style.css" />
+  <script>
+    (function () {
+      const isPhone = window.matchMedia("(max-width: 767px)").matches;
+
+      // Allow manual override
+      const forceDesktop = localStorage.getItem("veleris_force_desktop");
+
+      if (isPhone && !forceDesktop) {
+        window.location.replace("mobile.html");
+      }
+    })();
+  </script>
 </head>
 
 <body class="page-home">

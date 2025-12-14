@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Veleris – Mobile</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="description" content="Curated premium wallpapers by Veleris. Designed for calm, clean phone setups.">
+
+  <link rel="stylesheet" href="assets/css/style.css" />
+
+  <style>
+    /* Phone-only refinements */
+    body {
+      background: #05040a;
+    }
+
+    .mobile-shell {
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 32px 18px 56px;
+    }
+
+    .mobile-hero {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+
+    .mobile-hero h1 {
+      font-size: 1.9rem;
+      margin: 0 0 10px;
+    }
+
+    .mobile-hero p {
+      font-size: 0.95rem;
+      color: var(--text-soft);
+      line-height: 1.55;
+    }
+
+    .mobile-section {
+      margin-top: 42px;
+    }
+
+    .mobile-section h2 {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+
+    .mobile-section p {
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      line-height: 1.55;
+    }
+
+    .mobile-wall {
+      margin-top: 18px;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.9);
+    }
+
+    .mobile-wall img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .switch-desktop {
+      margin-top: 56px;
+      text-align: center;
+    }
+
+    .switch-desktop button {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.18);
+      color: var(--text-soft);
+      padding: 10px 18px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="mobile-shell">
+
+    <!-- HERO -->
+    <section class="mobile-hero">
+      <h1>VELERIS</h1>
+      <p>
+        Precision in every pixel.  
+        Calm, premium wallpapers crafted to sit quietly on your screen.
+      </p>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="mobile-section">
+      <h2>About</h2>
+      <p>
+        Veleris is a personal wallpaper studio focused on clean, modern visuals.
+        Designed for balance, clarity and restraint.
+      </p>
+    </section>
+
+    <!-- CURATED DROP (example) -->
+    <section class="mobile-section">
+      <h2>Dark Calm</h2>
+
+      <div class="mobile-wall">
+        <img src="assets/wallpapers/mobile/dark-01.jpg" alt="Dark calm wallpaper">
+      </div>
+
+      <div class="mobile-wall">
+        <img src="assets/wallpapers/mobile/dark-02.jpg" alt="Dark calm wallpaper">
+      </div>
+    </section>
+
+    <!-- SWITCH -->
+    <div class="switch-desktop">
+      <button onclick="switchToDesktop()">View desktop version</button>
+    </div>
+
+  </main>
+
+  <script>
+    function switchToDesktop() {
+      localStorage.setItem("veleris_force_desktop", "1");
+      window.location.replace("index.html");
+    }
+  </script>
+
+</body>
+</html>
