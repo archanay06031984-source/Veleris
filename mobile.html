@@ -15,10 +15,16 @@
   <meta name="robots" content="noindex, follow">
 
   <style>
-    /* Phone-only refinements */
-    body {
-      background: #05040a;
+    /* 🔒 MOBILE ISOLATION — override desktop effects */
+    body::before {
+      display: none !important;
     }
+
+    body {
+      background: #05040a !important;
+    }
+
+    /* Phone-only refinements */
 
     .mobile-shell {
       max-width: 520px;
@@ -89,23 +95,27 @@
     }
 
     /* Scroll reveal base */
-    .reveal,
-    .reveal-item {
+    .reveal {
       opacity: 0;
       transform: translateY(28px);
-      filter: blur(4px);
-      transition:
-        opacity 0.7s ease,
-        transform 0.7s ease,
-        filter 0.7s ease;
-      will-change: opacity, transform;
+      transition: opacity 0.6s ease, transform 0.6s ease;
     }
 
-    .reveal.visible,
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Images: NO blur */
+    .reveal-item {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.45s ease, transform 0.45s ease;
+    }
+
     .reveal-item.visible {
       opacity: 1;
       transform: translateY(0);
-      filter: blur(0);
     }
 
     /* Slight stagger for wallpapers */
@@ -132,7 +142,12 @@
     }
 
     .mobile-wall {
-      margin-bottom: 26px;
+      margin-bottom: 32px;
+      border-radius: 22px;
+      overflow: hidden;
+      background: #0b0b14;
+      box-shadow: 0 28px 80px rgba(0,0,0,0.95);
+      position: relative;
     }
 
     .mobile-section {
@@ -150,12 +165,7 @@
       line-height: 1.55;
     }
 
-    .mobile-wall {
-      margin-top: 18px;
-      border-radius: 18px;
-      overflow: hidden;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.9);
-    }
+    
 
     .mobile-wall img {
       width: 100%;
@@ -263,7 +273,6 @@
           <img
             src="assets/wallpapers_thumbs/IMG_0560.JPG"
             alt="Dark Calm wallpaper"
-            loading="lazy"
           >
           <button
             class="mobile-download"
@@ -277,7 +286,6 @@
           <img
             src="assets/wallpapers_thumbs/IMG_0561.JPG"
             alt="Dark Calm wallpaper"
-            loading="lazy"
           >
           <button
             class="mobile-download"
@@ -291,7 +299,6 @@
           <img
             src="assets/wallpapers_thumbs/IMG_0562.JPG"
             alt="Dark Calm wallpaper"
-            loading="lazy"
           >
           <button
             class="mobile-download"
@@ -305,7 +312,6 @@
           <img
             src="assets/wallpapers_thumbs/IMG_0563.JPG"
             alt="Dark Calm wallpaper"
-            loading="lazy"
           >
           <button
             class="mobile-download"
@@ -319,7 +325,6 @@
           <img
             src="assets/wallpapers_thumbs/IMG_0564.JPG"
             alt="Dark Calm wallpaper"
-            loading="lazy"
           >
           <button
             class="mobile-download"
@@ -333,7 +338,6 @@
           <img
             src="assets/wallpapers_thumbs/IMG_0566.JPG"
             alt="Dark Calm wallpaper"
-            loading="lazy"
           >
           <button
             class="mobile-download"
@@ -347,7 +351,6 @@
           <img
             src="assets/wallpapers_thumbs/IMG_0567.JPG"
             alt="Dark Calm wallpaper"
-            loading="lazy"
           >
           <button
             class="mobile-download"
@@ -361,7 +364,6 @@
           <img
             src="assets/wallpapers_thumbs/IMG_0568.JPG"
             alt="Dark Calm wallpaper"
-            loading="lazy"
           >
           <button
             class="mobile-download"
@@ -375,7 +377,6 @@
           <img
             src="assets/wallpapers_thumbs/IMG_0569.JPG"
             alt="Dark Calm wallpaper"
-            loading="lazy"
           >
           <button
             class="mobile-download"
@@ -389,7 +390,6 @@
           <img
             src="assets/wallpapers_thumbs/IMG_0570.JPG"
             alt="Dark Calm wallpaper"
-            loading="lazy"
           >
           <button
             class="mobile-download"
@@ -403,7 +403,6 @@
           <img
             src="assets/wallpapers_thumbs/IMG_0571.JPG"
             alt="Dark Calm wallpaper"
-            loading="lazy"
           >
           <button
             class="mobile-download"
@@ -417,7 +416,6 @@
           <img
             src="assets/wallpapers_thumbs/IMG_0572.JPG"
             alt="Dark Calm wallpaper"
-            loading="lazy"
           >
           <button
             class="mobile-download"
@@ -431,7 +429,6 @@
           <img
             src="assets/wallpapers_thumbs/IMG_0573.JPG"
             alt="Dark Calm wallpaper"
-            loading="lazy"
           >
           <button
             class="mobile-download"
@@ -445,7 +442,6 @@
           <img
             src="assets/wallpapers_thumbs/IMG_0596.JPG"
             alt="Dark Calm wallpaper"
-            loading="lazy"
           >
           <button
             class="mobile-download"
@@ -459,7 +455,6 @@
           <img
             src="assets/wallpapers_thumbs/IMG_0597.JPG"
             alt="Dark Calm wallpaper"
-            loading="lazy"
           >
           <button
             class="mobile-download"
@@ -473,7 +468,6 @@
           <img
             src="assets/wallpapers_thumbs/IMG_0598.JPG"
             alt="Dark Calm wallpaper"
-            loading="lazy"
           >
           <button
             class="mobile-download"
@@ -487,7 +481,6 @@
           <img
             src="assets/wallpapers_thumbs/IMG_0599.JPG"
             alt="Dark Calm wallpaper"
-            loading="lazy"
           >
           <button
             class="mobile-download"
@@ -501,7 +494,6 @@
           <img
             src="assets/wallpapers_thumbs/IMG_0600.JPG"
             alt="Dark Calm wallpaper"
-            loading="lazy"
           >
           <button
             class="mobile-download"
@@ -515,7 +507,6 @@
           <img
             src="assets/wallpapers_thumbs/IMG_0611.JPG"
             alt="Dark Calm wallpaper"
-            loading="lazy"
           >
           <button
             class="mobile-download"
@@ -529,7 +520,6 @@
           <img
             src="assets/wallpapers_thumbs/IMG_0612.JPG"
             alt="Dark Calm wallpaper"
-            loading="lazy"
           >
           <button
             class="mobile-download"
@@ -543,7 +533,6 @@
           <img
             src="assets/wallpapers_thumbs/IMG_0615.JPG"
             alt="Dark Calm wallpaper"
-            loading="lazy"
           >
           <button
             class="mobile-download"
@@ -557,7 +546,6 @@
           <img
             src="assets/wallpapers_thumbs/IMG_0640.JPG"
             alt="Dark Calm wallpaper"
-            loading="lazy"
           >
           <button
             class="mobile-download"
