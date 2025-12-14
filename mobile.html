@@ -113,6 +113,28 @@
       transition-delay: 0.06s;
     }
 
+    /* Single drop layout */
+    .mobile-drop {
+      margin-top: 56px;
+    }
+
+    .mobile-drop h2 {
+      font-size: 1.3rem;
+      margin-bottom: 6px;
+      letter-spacing: 0.02em;
+    }
+
+    .drop-desc {
+      font-size: 0.85rem;
+      color: var(--text-soft);
+      margin-bottom: 26px;
+      line-height: 1.55;
+    }
+
+    .mobile-wall {
+      margin-bottom: 26px;
+    }
+
     .mobile-section {
       margin-top: 42px;
     }
@@ -183,13 +205,17 @@
       </p>
     </section>
 
-    <!-- MOBILE GALLERY (auto-populated) -->
-    <section class="mobile-section reveal" aria-label="Mobile wallpapers">
-      <h2>Mobile Wallpapers</h2>
+    <!-- MOBILE GALLERY (single drop: Dark Calm) -->
+    <section class="mobile-section reveal" aria-label="Curated mobile drops">
 
-      <!-- Begin auto-generated gallery -->
-      <!-- Images from assets/wallpapers/mobile/ -->
-      <div class="mobile-gallery">
+      <!-- DROP: DARK CALM -->
+      <div class="mobile-drop">
+        <h2>Dark Calm</h2>
+        <p class="drop-desc">
+          Low-light wallpapers designed for focus, balance, and deep contrast.
+        </p>
+
+        <!-- Begin auto-generated gallery (single drop) -->
         <div class="mobile-wall reveal-item">
           <a href="assets/wallpapers/mobile/IMG_0560.JPG" target="_blank" rel="noopener">
             <img src="assets/wallpapers_thumbs/IMG_0560.JPG" alt="Wallpaper" loading="lazy">
@@ -300,8 +326,9 @@
             <img src="assets/wallpapers_thumbs/IMG_0640.JPG" alt="Wallpaper" loading="lazy">
           </a>
         </div>
-      </div>
-      <!-- End auto-generated gallery -->
+
+        <!-- End auto-generated gallery -->
+      </div> <!-- end mobile-drop -->
     </section>
 
     <!-- SWITCH -->
