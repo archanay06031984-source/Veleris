@@ -207,31 +207,45 @@ document.addEventListener("DOMContentLoaded", () => {
   let createdCount = 0;
   let missingCount = 0;
 
-  const gallerySections = document.querySelectorAll('section[data-gallery-prefix][data-gallery-count]');
+  const gallerySections = document.querySelectorAll('section[data-gallery-prefix]');
   gallerySections.forEach((section) => {
     const root = section.querySelector('[data-gallery-root]');
     if (!root) return;
-
     const prefix = section.getAttribute('data-gallery-prefix');
+    // Optional explicit list of filenames (comma-separated). When present
+    // we iterate that list instead of using the numeric prefix+count scheme.
+    const listAttr = section.getAttribute('data-gallery-list');
     const count = parseInt(section.getAttribute('data-gallery-count'), 10);
-    if (!prefix || !count || count <= 0) return;
-
     const promises = [];
 
-    for (let i = 1; i <= count; i++) {
-      const fileNum = String(i).padStart(2, '0');
-      const base = `${prefix}${fileNum}`; // e.g. assets/wallpapers/abstract-01
+    const items = [];
+    if (listAttr) {
+      listAttr.split(',').map(s => s.trim()).filter(Boolean).forEach((name) => {
+        // If the name already looks like a path, use it as-is; otherwise append to prefix
+        if (name.indexOf('/') !== -1) items.push(name);
+        else items.push(prefix + name);
+      });
+    } else {
+      if (!prefix || !count || count <= 0) return;
+      for (let i = 1; i <= count; i++) {
+        const fileNum = String(i).padStart(2, '0');
+        const base = `${prefix}${fileNum}`; // e.g. assets/wallpapers/abstract-01
+        items.push(base);
+      }
+    }
+
+    for (let idx = 0; idx < items.length; idx++) {
+      const base = items[idx];
       // Prefer flattened thumbs folder (assets/wallpapers_thumbs/<basename>),
       // then fallback to possible subfolder thumbs and finally full images.
-      const basename = base.split('/').pop();
+      const basename = base.split('/').pop().replace(/\.(jpg|jpeg|png)$/i, '');
       const flatThumb = `assets/wallpapers_thumbs/${basename}.jpg`;
-      const thumbCandidateJpg = base.replace('/wallpapers/', '/wallpapers_thumbs/') + '.jpg';
+      const thumbCandidateJpg = base.replace('/wallpapers/', '/wallpapers_thumbs/') + (base.match(/\.(jpg|jpeg|png)$/i) ? '' : '.jpg');
       const candidates = [
         flatThumb,
         thumbCandidateJpg,
-        base + '.jpg',
-        base + '.jpeg',
-        base + '.png'
+        // If base already contains an extension use it, otherwise try common ones
+        ...(base.match(/\.(jpg|jpeg|png)$/i) ? [base] : [base + '.jpg', base + '.jpeg', base + '.png'])
       ];
 
       const p = testImageCandidates(candidates)
