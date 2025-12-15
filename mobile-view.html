@@ -24,20 +24,18 @@
     body{margin:0;min-height:100vh;background:var(--bg);color:var(--accent);font-family:Inter,system-ui,-apple-system,sans-serif;display:flex;flex-direction:column}
 
     /* Topbar */
-    .topbar{display:flex;align-items:center;gap:12px;padding:12px 14px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);backdrop-filter:blur(6px)}
+    .topbar{display:flex;align-items:center;gap:12px;padding:12px 14px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);backdrop-filter:blur(6px);justify-content:space-between}
     .back-btn{width:40px;height:40px;border-radius:10px;border:0;background:transparent;color:var(--accent);display:inline-flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer}
-    .title{font-size:0.95rem;color:var(--accent);font-weight:600}
+    .title{font-size:0.95rem;color:var(--accent);font-weight:600;flex:1;text-align:left;margin-left:8px}
+    .top-download{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;background:#ffffff;color:#000;border-radius:999px;border:0;font-weight:600;box-shadow:0 6px 16px rgba(0,0,0,0.35);cursor:pointer}
 
     /* PREVIEW */
     .preview{flex:1;display:flex;align-items:center;justify-content:center;padding:18px}
     .preview-inner{width:100%;max-width:560px;border-radius:28px;overflow:hidden;background:linear-gradient(180deg,#0b0b0f, #0f1115);display:flex;align-items:center;justify-content:center;padding:20px}
     .preview img{width:100%;height:auto;max-height:82vh;object-fit:cover;border-radius:14px;box-shadow:0 20px 40px rgba(0,0,0,0.6)}
 
-    /* Controls floating over bottom */
-    .controls{position:fixed;left:0;right:0;bottom:18px;display:flex;justify-content:center;padding:0 18px}
-    .download{display:inline-flex;align-items:center;gap:10px;padding:12px 18px;background:#fff;color:#000;border-radius:999px;border:0;font-weight:600;box-shadow:0 8px 24px rgba(0,0,0,0.45);cursor:pointer}
-    .download svg{width:18px;height:18px}
-    .meta{position:fixed;left:18px;bottom:86px;color:var(--muted);font-size:0.875rem}
+    /* Controls now in topbar; no floating controls */
+    .top-download svg{width:16px;height:16px}
 
     .fallback{text-align:center;color:var(--muted);padding:40px;font-size:0.95rem}
   </style>
@@ -46,8 +44,14 @@
 <body>
 
   <div class="topbar">
-    <button class="back-btn" aria-label="Go back" onclick="goBack()">←</button>
-    <div class="title">Preview</div>
+    <div style="display:flex;align-items:center;gap:8px">
+      <button class="back-btn" aria-label="Go back" onclick="goBack()">←</button>
+      <div class="title">Preview</div>
+    </div>
+    <button class="top-download" id="downloadBtnTop" aria-label="Download">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 3v10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 11l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 21H3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Download
+    </button>
   </div>
 
   <div class="preview">
@@ -56,19 +60,14 @@
     </div>
   </div>
 
-  <div class="controls">
-    <button class="download" id="downloadBtn">
-      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 3v10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 11l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 21H3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      Download
-    </button>
-  </div>
+  <!-- download moved to topbar for better visibility -->
 
   <script>
     const params = new URLSearchParams(window.location.search);
     const img = params.get("img");
     const v = params.get("v") || Date.now();
     const imageEl = document.getElementById("wall");
-    const downloadBtn = document.getElementById('downloadBtn');
+    const downloadBtn = document.getElementById('downloadBtnTop');
 
     function goBack(){ if(window.history.length>1) window.history.back(); else window.location.href='collections.html'; }
     window.goBack = goBack;
