@@ -1,0 +1,39 @@
+name: Generate Galleries
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  generate:
+    name: Generate and commit galleries
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Run gallery generator
+        run: |
+          python tools/generate_all_galleries.py
+
+      - name: Commit and push changes (if any)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add collection-*.html || true
+          if ! git diff --staged --quiet; then
+            git commit -m "chore(collections): auto-sync galleries" || true
+            git push origin main
+          else
+            echo "No gallery changes"
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
