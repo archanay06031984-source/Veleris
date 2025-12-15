@@ -1,32 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
+  <!-- LANDING PAGE -->
   <url>
     <loc>https://veleris.in/</loc>
+    <priority>1.0</priority>
   </url>
 
+  <!-- DESKTOP HOMEPAGE -->
+  <url>
+    <loc>https://veleris.in/desktop.html</loc>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- MOBILE PAGES -->
+  <url>
+    <loc>https://veleris.in/mobile.html</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://veleris.in/mobile-view.html</loc>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- COLLECTIONS HUB -->
   <url>
     <loc>https://veleris.in/collections.html</loc>
+    <priority>0.95</priority>
   </url>
 
+  <!-- COLLECTION PAGES -->
   <url>
     <loc>https://veleris.in/collection-minimal.html</loc>
+    <priority>0.85</priority>
   </url>
 
   <url>
     <loc>https://veleris.in/collection-abstract.html</loc>
+    <priority>0.85</priority>
   </url>
 
   <url>
     <loc>https://veleris.in/collection-nature.html</loc>
+    <priority>0.85</priority>
   </url>
 
   <url>
     <loc>https://veleris.in/collection-anime.html</loc>
+    <priority>0.85</priority>
   </url>
 
   <url>
     <loc>https://veleris.in/collection-gradients.html</loc>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://veleris.in/collection-cars.html</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- CAR COLLECTION PAGES -->
+  <url>
+    <loc>https://veleris.in/car-tesla.html</loc>
+    <priority>0.75</priority>
+  </url>
+
+  <url>
+    <loc>https://veleris.in/car-bmw.html</loc>
+    <priority>0.75</priority>
+  </url>
+
+  <url>
+    <loc>https://veleris.in/car-porsche.html</loc>
+    <priority>0.75</priority>
+  </url>
+
+  <url>
+    <loc>https://veleris.in/car-lamborghini.html</loc>
+    <priority>0.75</priority>
+  </url>
+
+  <url>
+    <loc>https://veleris.in/car-ferrari.html</loc>
+    <priority>0.75</priority>
+  </url>
+
+  <url>
+    <loc>https://veleris.in/car-mercedes.html</loc>
+    <priority>0.75</priority>
+  </url>
+
+  <url>
+    <loc>https://veleris.in/car-bentley.html</loc>
+    <priority>0.75</priority>
+  </url>
+
+  <url>
+    <loc>https://veleris.in/car-jaguar.html</loc>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- CATEGORIES PAGE -->
+  <url>
+    <loc>https://veleris.in/categories.html</loc>
+    <priority>0.8</priority>
   </url>
 
 </urlset>
