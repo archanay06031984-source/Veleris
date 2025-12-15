@@ -235,6 +235,11 @@
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
       text-decoration: none;
       color: inherit;
+      overflow: hidden;
+    }
+
+    .device-card::before {
+      display: none;
     }
 
     .device-card:hover {
@@ -266,6 +271,8 @@
       margin-bottom: 0.5rem;
       letter-spacing: -0.01em;
       font-weight: 800;
+      text-decoration: none;
+      border: none;
     }
 
     .card-body p {
@@ -273,6 +280,8 @@
       margin-bottom: 1.2rem;
       line-height: 1.7;
       font-size: 1.05rem;
+      text-decoration: none;
+      border: none;
     }
 
     .card-body ul {
@@ -284,6 +293,8 @@
       gap: 0.6rem;
       color: var(--text-secondary);
       font-size: 0.95rem;
+      text-decoration: none;
+      border: none;
     }
 
     .card-body li::before {
@@ -291,6 +302,11 @@
       margin-right: 0.5rem;
       color: var(--accent-blue);
       font-weight: 700;
+    }
+
+    .card-body li {
+      text-decoration: none;
+      border: none;
     }
 
     .card-cta {
@@ -323,11 +339,9 @@
     /* ===== FOOTER ===== */
     footer {
       padding: 2.5rem 0;
-      border-top: 1px solid var(--border-subtle);
       text-align: center;
       color: var(--text-muted);
       font-size: 0.9rem;
-      background: rgba(0, 0, 0, 0.2);
       margin-top: auto;
     }
 
@@ -470,11 +484,11 @@
         <a href="mobile.html" class="device-card minimal">
           <div class="card-body">
             <h2>Mobile</h2>
-            <p>Portrait wallpapers tailored for modern phones—soft gradients and focused detail.</p>
+            <p>Portrait wallpapers built for your pocket—clean gradients, crisp shots, bold abstracts.</p>
             <ul>
-              <li>Optimized for all phone displays</li>
-              <li>Mobile-first curation</li>
-              <li>One-tap downloads</li>
+              <li>Fits every phone screen perfectly</li>
+              <li>Handpicked for mobile use</li>
+              <li>Download instantly</li>
             </ul>
           </div>
           <div class="card-cta">Explore Mobile <span class="arrow">→</span></div>
