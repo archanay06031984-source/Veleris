@@ -81,7 +81,10 @@
     * { box-sizing:border-box; }
     body { margin:0; background:var(--bg); color:var(--text); font-family:Inter, system-ui, sans-serif; min-height:100vh; }
 
-    .page-wrap { max-width:1100px; margin:0 auto; padding:2rem 1.25rem 2.5rem; }
+    /* keep the gradient flush so no white edges on tall screens */
+    .page-wrap { max-width:1100px; margin:0 auto; padding:2rem 1.25rem 2.5rem; background:var(--bg); }
+
+    /* page-wrap moved above to ensure background fill */
 
     /* ===== HEADER ===== */
     .mobile-header { 
@@ -316,7 +319,6 @@
     <p class="subhead">Wallpapers that sit quietly in the background and make everything else look better.</p>
     <p class="subtitle">Optimized for phones with crisp gradients, photography, and clean compositions.</p>
     <div class="actions">
-      <a class="btn primary" href="#grid">Browse collection</a>
       <a class="btn" href="index.html">Go to desktop site</a>
     </div>
   </header>
