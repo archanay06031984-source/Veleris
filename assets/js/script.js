@@ -211,6 +211,8 @@ document.addEventListener("DOMContentLoaded", () => {
   gallerySections.forEach((section) => {
     const root = section.querySelector('[data-gallery-root]');
     if (!root) return;
+    // Clear any statically-rendered cards to avoid duplicates when JS builds the grid.
+    while (root.firstChild) root.removeChild(root.firstChild);
     const prefix = section.getAttribute('data-gallery-prefix');
     // Optional explicit list of filenames (comma-separated). When present
     // we iterate that list instead of using the numeric prefix+count scheme.
@@ -261,9 +263,11 @@ document.addEventListener("DOMContentLoaded", () => {
               category = parts[parts.length - 1] || category;
             }
           } catch (e) { /* ignore */ }
-          const file_name = (base.split('/').pop() || '') + '.jpg';
-          const meta = { category, file_name, thumb_url: foundUrl, full_url: base + '.jpg' };
-          buildCard(root, foundUrl, base + '.jpg', meta);
+          const hasExtension = /\.[a-zA-Z0-9]+$/.test(base);
+          const fileName = base.split('/').pop() || '';
+          const fullUrl = hasExtension ? base : `${base}.jpg`;
+          const meta = { category, file_name: hasExtension ? fileName : `${fileName}.jpg`, thumb_url: foundUrl, full_url: fullUrl };
+          buildCard(root, foundUrl, fullUrl, meta);
         })
         .catch(() => {
           missingCount++;
