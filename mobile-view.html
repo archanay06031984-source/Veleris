@@ -56,8 +56,6 @@
     </div>
   </div>
 
-  <div class="meta" id="meta"></div>
-
   <div class="controls">
     <button class="download" id="downloadBtn">
       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 3v10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 11l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 21H3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -70,7 +68,6 @@
     const img = params.get("img");
     const v = params.get("v") || Date.now();
     const imageEl = document.getElementById("wall");
-    const metaEl = document.getElementById('meta');
     const downloadBtn = document.getElementById('downloadBtn');
 
     function goBack(){ if(window.history.length>1) window.history.back(); else window.location.href='collections.html'; }
@@ -81,8 +78,6 @@
     } else {
       const src = `assets/wallpapers/mobile/${img}?v=${v}`;
       imageEl.src = src;
-      metaEl.textContent = img.replace(/[-_]/g, ' ');
-
       async function downloadWallpaper(){
         try{
           const res = await fetch(src, {mode:'cors'});
