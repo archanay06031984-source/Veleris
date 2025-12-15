@@ -32,9 +32,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Redeploy trigger: updated at 2025-12-14T00:00:00Z -->
-
-  <!-- Google Analytics (ONLY on homepage) -->
+  <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-ES6BDQMP3K"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -43,202 +41,82 @@
     gtag('config', 'G-ES6BDQMP3K');
   </script>
 
-  <link rel="stylesheet" href="assets/css/style.css" />
-
   <style>
-    .device-gate{position:fixed;inset:0;background:rgba(5,4,10,0.92);backdrop-filter:blur(14px);display:flex;align-items:center;justify-content:center;padding:24px;z-index:9999;opacity:0;transition:opacity 180ms ease;}
-    .device-gate.visible{opacity:1}
-    .device-gate-card{max-width:420px;width:100%;background:linear-gradient(145deg,rgba(20,20,30,0.9),rgba(12,12,18,0.9));border:1px solid rgba(255,255,255,0.06);border-radius:22px;box-shadow:0 24px 60px rgba(0,0,0,0.65);padding:26px 24px;color:#f5f5f7;text-align:center}
-    .device-gate-eyebrow{margin:0;font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;color:#a3a3b8}
-    .device-gate-title{margin:8px 0 6px;font-size:1.6rem;letter-spacing:0.04em;font-weight:700}
-    .device-gate-desc{margin:0 0 18px;font-size:0.98rem;line-height:1.5;color:#c6c6d5}
-    .device-gate-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-    .device-gate-btn{padding:12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,0.12);background:#11121a;color:#f5f5f7;font-weight:600;cursor:pointer;transition:transform 120ms ease,box-shadow 120ms ease,border-color 120ms ease}
-    .device-gate-btn:hover{transform:translateY(-1px);box-shadow:0 10px 26px rgba(0,0,0,0.45);border-color:rgba(255,255,255,0.2)}
-    .device-gate-btn.primary{background:#ffffff;color:#000;}
-    .device-gate--hide{opacity:0;}
+    :root{--bg:#05040a;--text:#f5f5f7;--muted:#a3a3b8;--accent:#fff}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+    
+    .landing{min-height:100vh;display:flex;flex-direction:column;background:radial-gradient(ellipse at top,rgba(23,23,42,0.6) 0%,transparent 60%)}
+    .landing-header{padding:20px 24px;text-align:center}
+    .landing-logo{font-size:1.4rem;letter-spacing:0.06em;font-weight:700;color:var(--accent);text-decoration:none;display:inline-block}
+    
+    .landing-hero{flex:1;display:flex;align-items:center;justify-content:center;padding:40px 24px 20px;text-align:center}
+    .landing-hero-inner{max-width:780px;animation:fadeInUp 0.8s ease-out}
+    .landing-hero-tag{font-size:0.85rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+    .landing-hero-title{font-size:clamp(2rem,6vw,3.6rem);font-weight:800;letter-spacing:-0.02em;line-height:1.1;margin-bottom:20px;background:linear-gradient(135deg,#ffffff 0%,#a3a3b8 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .landing-hero-desc{font-size:clamp(1rem,2.5vw,1.2rem);color:var(--muted);line-height:1.6;margin-bottom:32px;max-width:600px;margin-left:auto;margin-right:auto}
+    
+    .landing-features{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:40px;padding:0 20px;max-width:700px;margin-left:auto;margin-right:auto}
+    .landing-feature{padding:14px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:12px;font-size:0.9rem;color:var(--muted)}
+    
+    .landing-cta{padding:0 24px 60px}
+    .landing-cta-inner{max-width:520px;margin:0 auto;background:linear-gradient(145deg,rgba(20,20,30,0.8),rgba(12,12,18,0.8));border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:32px 28px;box-shadow:0 24px 60px rgba(0,0,0,0.4);text-align:center}
+    .landing-cta-title{font-size:1.3rem;font-weight:700;margin-bottom:12px}
+    .landing-cta-subtitle{font-size:0.95rem;color:var(--muted);margin-bottom:24px;line-height:1.5}
+    .landing-actions{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .landing-btn{padding:14px 20px;border-radius:14px;border:1px solid rgba(255,255,255,0.14);background:rgba(17,18,26,0.9);color:var(--accent);font-weight:600;font-size:0.95rem;cursor:pointer;transition:all 0.2s ease;text-decoration:none;display:inline-block;text-align:center}
+    .landing-btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(0,0,0,0.5);border-color:rgba(255,255,255,0.25)}
+    .landing-btn.primary{background:linear-gradient(135deg,#ffffff 0%,#e8e8ea 100%);color:#000;border-color:transparent}
+    .landing-btn.primary:hover{box-shadow:0 12px 30px rgba(255,255,255,0.2)}
+    
+    @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+    
+    @media(max-width:640px){
+      .landing-hero{padding:30px 20px 15px}
+      .landing-hero-title{font-size:2.2rem}
+      .landing-features{grid-template-columns:1fr;gap:10px}
+      .landing-cta{padding:0 20px 40px}
+      .landing-cta-inner{padding:26px 22px}
+      .landing-actions{gap:10px}
+    }
   </style>
 </head>
 
-<body class="page-home">
+<body class="page-landing">
 
-  <div class="device-gate" id="deviceGate" hidden>
-    <div class="device-gate-card">
-      <p class="device-gate-eyebrow">Start</p>
-      <h2 class="device-gate-title">Choose your layout</h2>
-      <p class="device-gate-desc">Pick the version tuned for your screen. You can change this anytime.</p>
-      <div class="device-gate-actions">
-        <button class="device-gate-btn" data-device="desktop">PC / Tablet</button>
-        <button class="device-gate-btn primary" data-device="mobile">Phone</button>
+  <div class="landing">
+    <header class="landing-header">
+      <a href="index.html" class="landing-logo">VELERIS</a>
+    </header>
+
+    <main class="landing-hero">
+      <div class="landing-hero-inner">
+        <p class="landing-hero-tag">Wallpaper Studio</p>
+        <h1 class="landing-hero-title">Precision in every pixel</h1>
+        <p class="landing-hero-desc">
+          Premium 4K wallpapers crafted to sit quietly in the background and make everything else look better. 
+          Minimal, sharp, and tuned for modern displays.
+        </p>
+
+        <div class="landing-features">
+          <div class="landing-feature">✦ Curated collections</div>
+          <div class="landing-feature">✦ High resolution</div>
+          <div class="landing-feature">✦ Modern aesthetic</div>
+        </div>
+      </div>
+    </main>
+
+    <div class="landing-cta">
+      <div class="landing-cta-inner">
+        <h2 class="landing-cta-title">Choose your experience</h2>
+        <p class="landing-cta-subtitle">Pick the layout optimized for your device</p>
+        <div class="landing-actions">
+          <a href="desktop.html" class="landing-btn">PC / Tablet</a>
+          <a href="mobile.html" class="landing-btn primary">Phone</a>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- NAVBAR -->
-  <header class="nav">
-    <div class="nav-inner shell">
-      <a href="index.html" class="logo">VELERIS</a>
-      <nav class="nav-links" aria-label="Primary">
-        <a href="index.html" aria-current="page">Home</a>
-        <a href="collections.html">Collections</a>
-        <a href="#about">About</a>
-      </nav>
-    </div>
-  </header>
-
-  <!-- MAIN CONTENT -->
-  <main class="page-main">
-
-    <!-- HERO -->
-    <section id="hero" class="hero reveal" aria-labelledby="hero-title">
-      <div class="shell hero-inner">
-
-        <p class="hero-tag">Veleris Studio</p>
-
-        <h1 id="hero-title" class="hero-title">
-          Precision in every pixel
-        </h1>
-
-        <p class="hero-desc">
-          Wallpapers that sit quietly in the background and make everything else look better.
-        </p>
-
-      </div>
-    </section>
-
-    <!-- HIGHLIGHTS -->
-    <section class="highlights" aria-labelledby="highlights-heading">
-      <div class="shell">
-
-        <div class="highlights-head">
-          <h2 id="highlights-heading">From the studio wall</h2>
-          <p>A small selection from across the collections, rotated often.</p>
-        </div>
-
-        <div class="highlights-row" role="region" aria-label="Featured wallpapers">
-
-          <button class="highlight-nav" type="button" data-highlight-prev aria-label="Previous wallpapers">‹</button>
-
-          <div class="highlights-viewport">
-
-            <!-- SET 1 -->
-            <div class="highlight-set active">
-              <article class="highlight-card card-1a" aria-label="Featured wallpaper 1"></article>
-              <article class="highlight-card card-1b" aria-label="Featured wallpaper 2"></article>
-              <article class="highlight-card card-1c" aria-label="Featured wallpaper 3"></article>
-            </div>
-
-            <!-- SET 2 -->
-            <div class="highlight-set">
-              <article class="highlight-card card-2a" aria-label="Featured wallpaper 4"></article>
-              <article class="highlight-card card-2b" aria-label="Featured wallpaper 5"></article>
-              <article class="highlight-card card-2c" aria-label="Featured wallpaper 6"></article>
-            </div>
-
-            <!-- SET 3 -->
-            <div class="highlight-set">
-              <article class="highlight-card card-3a" aria-label="Featured wallpaper 7"></article>
-              <article class="highlight-card card-3b" aria-label="Featured wallpaper 8"></article>
-              <article class="highlight-card card-3c" aria-label="Featured wallpaper 9"></article>
-            </div>
-
-          </div>
-
-          <button class="highlight-nav" type="button" data-highlight-next aria-label="Next wallpapers">›</button>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- CTA PANEL -->
-    <section class="home-section reveal" aria-labelledby="cta-heading">
-      <div class="shell">
-        <div class="cta-panel">
-
-          <div class="cta-text">
-            <h2 id="cta-heading">Your aesthetic, elevated across your entire setup.</h2>
-            <p>
-              Premium, minimal and visually balanced wallpapers crafted to make your desktop look
-              intentional, modern and consistently high-end — whether it’s for gaming, work or just your everyday screen.
-            </p>
-          </div>
-
-          <div class="cta-actions">
-            <a href="collections.html" class="btn primary">View collections</a>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section id="about" class="home-section reveal" aria-labelledby="about-heading">
-      <div class="shell about-inner">
-
-        <div class="section-header">
-          <h2 id="about-heading">About Veleris</h2>
-          <p>A personal wallpaper studio.</p>
-        </div>
-
-        <div class="about-content">
-
-          <p>
-            Veleris is built around a simple idea: your screen should feel as considered as everything around it.
-            Every wallpaper is curated to be clean and modern — designed to sit in the background
-            while still giving your desktop a premium, finished look.
-          </p>
-
-          <p>
-            From minimal gradients to abstract pieces, nature scenes and anime-inspired visuals,
-            each collection is crafted to feel cohesive, sharp and tuned for high-resolution displays.
-          </p>
-
-          <p class="about-small">
-            You’re welcome to use these for your personal desktop.
-            If you share them online, a small credit back to <strong>Veleris</strong> goes a long way.
-          </p>
-
-        </div>
-
-      </div>
-    </section>
-
-  </main>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <p>©️ 2025 VELERIS • Crafted by Pratik.
-      <a href="#" onclick="localStorage.removeItem('veleris_device'); localStorage.removeItem('veleris_force_desktop'); location.reload();" style="opacity:0.08; font-size:0.8rem; margin-left:10px; text-decoration:underline;">Change device</a>
-    </p>
-  </footer>
-
-  <script>
-    (function(){
-      const gate=document.getElementById('deviceGate');
-      if(!gate) return;
-      const stored=localStorage.getItem('veleris_device');
-      const version='20251215';
-      const showGate=()=>{gate.hidden=false; requestAnimationFrame(()=>gate.classList.add('visible'));};
-      if(stored==='mobile') { window.location.replace(`mobile.html?v=${version}`); return; }
-      if(stored==='desktop') { gate.remove(); return; }
-      showGate();
-      gate.querySelectorAll('[data-device]').forEach(btn=>{
-        btn.addEventListener('click',()=>{
-          const choice=btn.getAttribute('data-device');
-          if(choice==='mobile'){
-            localStorage.setItem('veleris_device','mobile');
-            window.location.href=`mobile.html?v=${version}`;
-            return;
-          }
-          localStorage.setItem('veleris_device','desktop');
-          gate.classList.add('device-gate--hide');
-          setTimeout(()=>gate.remove(),280);
-        });
-      });
-    })();
-  </script>
-
-  <script src="assets/js/script.js"></script>
 </body>
 </html>
