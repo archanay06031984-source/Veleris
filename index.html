@@ -44,22 +44,35 @@
   </script>
 
   <link rel="stylesheet" href="assets/css/style.css" />
-  <script>
-    (function () {
-      const isPhone = window.matchMedia("(max-width: 767px)").matches;
 
-      // Allow manual override
-      const forceDesktop = localStorage.getItem("veleris_force_desktop");
-
-      if (isPhone && !forceDesktop) {
-        const v = "20251215";
-        window.location.replace("mobile.html?v=" + v);
-      }
-    })();
-  </script>
+  <style>
+    .device-gate{position:fixed;inset:0;background:rgba(5,4,10,0.92);backdrop-filter:blur(14px);display:flex;align-items:center;justify-content:center;padding:24px;z-index:9999;opacity:0;transition:opacity 180ms ease;}
+    .device-gate.visible{opacity:1}
+    .device-gate-card{max-width:420px;width:100%;background:linear-gradient(145deg,rgba(20,20,30,0.9),rgba(12,12,18,0.9));border:1px solid rgba(255,255,255,0.06);border-radius:22px;box-shadow:0 24px 60px rgba(0,0,0,0.65);padding:26px 24px;color:#f5f5f7;text-align:center}
+    .device-gate-eyebrow{margin:0;font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;color:#a3a3b8}
+    .device-gate-title{margin:8px 0 6px;font-size:1.6rem;letter-spacing:0.04em;font-weight:700}
+    .device-gate-desc{margin:0 0 18px;font-size:0.98rem;line-height:1.5;color:#c6c6d5}
+    .device-gate-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .device-gate-btn{padding:12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,0.12);background:#11121a;color:#f5f5f7;font-weight:600;cursor:pointer;transition:transform 120ms ease,box-shadow 120ms ease,border-color 120ms ease}
+    .device-gate-btn:hover{transform:translateY(-1px);box-shadow:0 10px 26px rgba(0,0,0,0.45);border-color:rgba(255,255,255,0.2)}
+    .device-gate-btn.primary{background:#ffffff;color:#000;}
+    .device-gate--hide{opacity:0;}
+  </style>
 </head>
 
 <body class="page-home">
+
+  <div class="device-gate" id="deviceGate" hidden>
+    <div class="device-gate-card">
+      <p class="device-gate-eyebrow">Start</p>
+      <h2 class="device-gate-title">Choose your layout</h2>
+      <p class="device-gate-desc">Pick the version tuned for your screen. You can change this anytime.</p>
+      <div class="device-gate-actions">
+        <button class="device-gate-btn" data-device="desktop">PC / Tablet</button>
+        <button class="device-gate-btn primary" data-device="mobile">Phone</button>
+      </div>
+    </div>
+  </div>
 
   <!-- NAVBAR -->
   <header class="nav">
@@ -196,9 +209,35 @@
   <!-- FOOTER -->
   <footer class="footer">
     <p>©️ 2025 VELERIS • Crafted by Pratik.
-      <a href="#" onclick="localStorage.removeItem('veleris_force_desktop'); location.reload();" style="opacity:0.06; font-size:0.8rem; margin-left:10px; text-decoration:underline;">Phone version</a>
+      <a href="#" onclick="localStorage.removeItem('veleris_device'); localStorage.removeItem('veleris_force_desktop'); location.reload();" style="opacity:0.08; font-size:0.8rem; margin-left:10px; text-decoration:underline;">Change device</a>
     </p>
   </footer>
+
+  <script>
+    (function(){
+      const gate=document.getElementById('deviceGate');
+      if(!gate) return;
+      const stored=localStorage.getItem('veleris_device');
+      const version='20251215';
+      const showGate=()=>{gate.hidden=false; requestAnimationFrame(()=>gate.classList.add('visible'));};
+      if(stored==='mobile') { window.location.replace(`mobile.html?v=${version}`); return; }
+      if(stored==='desktop') { gate.remove(); return; }
+      showGate();
+      gate.querySelectorAll('[data-device]').forEach(btn=>{
+        btn.addEventListener('click',()=>{
+          const choice=btn.getAttribute('data-device');
+          if(choice==='mobile'){
+            localStorage.setItem('veleris_device','mobile');
+            window.location.href=`mobile.html?v=${version}`;
+            return;
+          }
+          localStorage.setItem('veleris_device','desktop');
+          gate.classList.add('device-gate--hide');
+          setTimeout(()=>gate.remove(),280);
+        });
+      });
+    })();
+  </script>
 
   <script src="assets/js/script.js"></script>
 </body>
