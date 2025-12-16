@@ -187,31 +187,32 @@ SEO verification (collections.html):
 <style>
   /* Collections Hero */
   .collections-hero {
-    padding: 3rem 0;
+    padding: 4rem 0 3rem;
     text-align: center;
   }
 
   .hero-content {
-    max-width: 600px;
+    max-width: 700px;
     margin: 0 auto;
   }
 
   .collections-hero .hero-title {
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    font-weight: 700;
-    margin-bottom: 1rem;
-    letter-spacing: -0.5px;
+    font-size: clamp(2.25rem, 5.5vw, 3.5rem);
+    font-weight: 800;
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.8px;
+    line-height: 1.1;
   }
 
   .collections-hero .hero-desc {
-    font-size: clamp(1rem, 2vw, 1.125rem);
-    color: rgba(255, 255, 255, 0.7);
+    font-size: clamp(1.05rem, 2.2vw, 1.15rem);
+    color: rgba(255, 255, 255, 0.75);
     line-height: 1.6;
   }
 
   /* Collections Grid Section */
   .collections-grid-section {
-    padding: 4rem 0;
+    padding: 2rem 0 5rem;
   }
 
   .grid-intro {
@@ -220,26 +221,41 @@ SEO verification (collections.html):
   }
 
   .grid-intro h2 {
-    font-size: clamp(1.5rem, 4vw, 2.25rem);
-    font-weight: 700;
-    margin-bottom: 0.75rem;
+    font-size: clamp(1.75rem, 4.5vw, 2.25rem);
+    font-weight: 800;
+    margin-bottom: 1rem;
+    letter-spacing: -0.5px;
   }
 
   .grid-intro p {
-    font-size: 1rem;
-    color: rgba(255, 255, 255, 0.6);
-    max-width: 500px;
+    font-size: clamp(1rem, 2vw, 1.1rem);
+    color: rgba(255, 255, 255, 0.7);
+    max-width: 550px;
     margin: 0 auto;
+    line-height: 1.6;
   }
 
-  /* Collections Grid */
+  /* Collections Grid - Clean symmetric layout */
   .collections-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
     margin-top: 3rem;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
+  /* Very wide screens: 3 columns */
+  @media (min-width: 1400px) {
+    .collections-grid {
+      grid-template-columns: repeat(3, 1fr);
+      max-width: 1300px;
+      gap: 2.5rem;
+    }
+  }
+
+  /* Mobile: 1 column */
   @media (max-width: 768px) {
     .collections-grid {
       grid-template-columns: 1fr;
@@ -251,15 +267,17 @@ SEO verification (collections.html):
   .collection-card {
     display: flex;
     flex-direction: column;
-    padding: 2rem;
-    border-radius: 12px;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    transition: all 0.3s ease;
+    padding: 2.25rem;
+    border-radius: 16px;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0.04) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     text-decoration: none;
     color: inherit;
     position: relative;
     overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+    aspect-ratio: 1 / 1.15;
   }
 
   .collection-card::before {
@@ -274,9 +292,9 @@ SEO verification (collections.html):
 
   .collection-card:hover {
     border-color: rgba(255, 255, 255, 0.25);
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.05) 100%);
-    transform: translateY(-4px);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.05) 100%);
+    transform: translateY(-6px);
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.28), 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
   }
 
   .collection-card:hover::before {
@@ -287,15 +305,27 @@ SEO verification (collections.html):
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 80px;
+    height: 110px;
     margin-bottom: 1.5rem;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
-    border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: linear-gradient(140deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    transition: all 0.35s ease;
+  }
+
+  .collection-card:hover .card-visual {
+    background: linear-gradient(140deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.06) 100%);
+    border-color: rgba(255, 255, 255, 0.18);
+    transform: scale(1.03);
   }
 
   .card-icon {
-    font-size: 2.5rem;
+    font-size: 3.5rem;
+    transition: transform 0.3s ease;
+  }
+
+  .collection-card:hover .card-icon {
+    transform: scale(1.08);
   }
 
   .card-content {
@@ -307,40 +337,67 @@ SEO verification (collections.html):
   }
 
   .collection-card h3 {
-    font-size: 1.375rem;
-    font-weight: 700;
+    font-size: 1.5rem;
+    font-weight: 800;
     margin-bottom: 0.5rem;
+    letter-spacing: -0.3px;
   }
 
   .card-category {
-    font-size: 0.875rem;
-    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.55);
     text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 0.75rem;
+    letter-spacing: 0.8px;
+    margin-bottom: 0.85rem;
+    font-weight: 600;
   }
 
   .card-desc {
     font-size: 0.975rem;
     color: rgba(255, 255, 255, 0.7);
-    line-height: 1.5;
+    line-height: 1.6;
     flex: 1;
     margin-bottom: 1rem;
   }
 
   .card-arrow {
-    font-size: 1.5rem;
-    opacity: 0.6;
-    transition: all 0.3s ease;
+    font-size: 1.75rem;
+    opacity: 0.5;
+    transition: all 0.35s ease;
     display: inline-block;
     width: fit-content;
+    font-weight: 600;
   }
 
   .collection-card:hover .card-arrow {
     opacity: 1;
-    transform: translateX(4px);
+    transform: translateX(6px);
+    color: rgba(255, 255, 255, 0.95);
   }
 
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .collections-hero {
+      padding: 3rem 0 2rem;
+    }
+
+    .collections-grid-section {
+      padding: 1.5rem 0 4rem;
+    }
+
+    .collection-card {
+      padding: 2rem;
+      aspect-ratio: auto;
+    }
+
+    .card-visual {
+      height: 90px;
+    }
+
+    .card-icon {
+      font-size: 2.75rem;
+    }
+  }
 </style>
 
 <script src="assets/js/script.js"></script>
