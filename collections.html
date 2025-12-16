@@ -172,7 +172,7 @@ SEO verification (collections.html):
 <style>
   /* Intro (top center) */
   .collections-grid-section {
-    padding: 0.25rem 0 2rem; /* bring intro higher on the page */
+    padding: 0rem 0 1rem; /* move intro further up and tighten bottom */
     text-align: center;
   }
 
@@ -186,7 +186,7 @@ SEO verification (collections.html):
   /* grid intro spacing */
   .grid-intro {
     text-align: center;
-    margin-bottom: 2rem; /* reduce gap so content sits higher */
+    margin-bottom: 0.6rem; /* bring grid much closer to intro */
   }
 
   .grid-intro h2 {
@@ -210,8 +210,8 @@ SEO verification (collections.html):
   .collections-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1rem; /* slightly tighter gap so grid height reduces */
-    margin-top: 1rem; /* bring grid closer to intro */
+    gap: 0.6rem; /* tighter gap to reduce overall grid height */
+    margin-top: 0rem; /* raise grid flush with intro spacing */
     max-width: 1280px;
     margin-left: auto;
     margin-right: auto;
@@ -238,7 +238,7 @@ SEO verification (collections.html):
   .collection-card {
     display: flex;
     flex-direction: column;
-    padding: 1.45rem 1.05rem;
+    padding: 1.25rem 0.9rem;
     border-radius: 12px;
     background: linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
     border: 1px solid rgba(255, 255, 255, 0.10);
@@ -248,7 +248,7 @@ SEO verification (collections.html):
     position: relative;
     overflow: hidden;
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.10);
-    min-height: 200px; /* reduce slightly so footer can be visible */
+    min-height: 180px; /* reduce to bring overall grid height down */
     box-sizing: border-box;
   }
 
@@ -276,8 +276,8 @@ SEO verification (collections.html):
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 88px;
-    margin-bottom: 0.8rem;
+    height: 72px;
+    margin-bottom: 0.5rem;
     background: linear-gradient(140deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -370,19 +370,17 @@ SEO verification (collections.html):
 </style>
 
 <style>
-  /* Make footer visible without scrolling: fixed footer + main padding */
-  main.page-main { padding-bottom: 64px; }
+  /* Footer in normal flow below the content */
+  main.page-main { padding-bottom: 0; }
 
   .footer {
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(10, 10, 10, 0.9);
-    color: #fff;
+    position: static;
+    margin-top: 2rem; /* small gap below grid */
+    background: transparent; /* inherit page background */
+    color: rgba(255, 255, 255, 0.95);
     text-align: center;
-    padding: 10px 0;
-    z-index: 80;
+    padding: 12px 0;
+    z-index: auto;
     font-size: 0.95rem;
   }
 </style>
