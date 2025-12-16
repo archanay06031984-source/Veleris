@@ -271,7 +271,8 @@
 
     .tile-copy p {
       color: var(--text-secondary);
-      line-height: 1.6;
+      line-height: 1.65;
+      font-size: 0.98rem;
     }
 
     .tile-cta {
@@ -361,9 +362,11 @@
       }
 
       .device-grid { grid-template-columns: 1fr; gap: 1.25rem; }
-      .device-tile { height: 220px; padding: 1.4rem 1.4rem 1.25rem 1.4rem; }
-      .tile-copy { max-width: 100%; }
-      .tile-copy h2 { font-size: 1.4rem; }
+      .device-tile { height: auto; min-height: 220px; padding: 1.6rem 1.5rem 1.5rem 1.5rem; }
+      .tile-copy { max-width: 95%; gap: 0.6rem; }
+      .tile-copy h2 { font-size: 1.45rem; margin-bottom: 0.3rem; }
+      .tile-copy p { font-size: 0.96rem; line-height: 1.68; margin-bottom: 0.6rem; }
+      .tile-art { gap: 10px; }
 
       header .container {
         padding: 0 1.25rem;
@@ -388,12 +391,12 @@
         font-size: 0.95rem;
       }
 
-      .device-tile { height: 210px; padding: 1.1rem 1.2rem 1rem 1.2rem; }
-      .tile-copy { max-width: 100%; }
-      .tile-copy h2 { font-size: 1.25rem; margin-bottom: 0.3rem; }
-      .tile-copy p { font-size: 0.95rem; margin-bottom: 0.5rem; }
-      .tile-cta { padding: 0.75rem 0.9rem; font-size: 0.85rem; }
-      .tile-art { opacity: 0.6; }
+      .device-tile { height: auto; min-height: 200px; padding: 1.35rem 1.3rem 1.2rem 1.3rem; }
+      .tile-copy { max-width: 100%; gap: 0.5rem; }
+      .tile-copy h2 { font-size: 1.3rem; margin-bottom: 0.35rem; }
+      .tile-copy p { font-size: 0.94rem; line-height: 1.65; margin-bottom: 0.55rem; }
+      .tile-cta { padding: 0.8rem 1rem; font-size: 0.88rem; }
+      .tile-art { gap: 8px; opacity: 0.7; }
     }
   </style>
 </head>
