@@ -67,60 +67,13 @@
     <priority>0.8</priority>
   </url>
 
-  <!-- CAR COLLECTION PAGES -->
+  <!-- CAR COLLECTION PAGES - Coming Soon -->
+  <!-- Uncomment when car collections are ready:
   <url>
     <loc>https://veleris.in/car-tesla.html</loc>
     <lastmod>2025-12-15</lastmod>
     <priority>0.75</priority>
   </url>
-
-  <url>
-    <loc>https://veleris.in/car-bmw.html</loc>
-    <lastmod>2025-12-15</lastmod>
-    <priority>0.75</priority>
-  </url>
-
-  <url>
-    <loc>https://veleris.in/car-porsche.html</loc>
-    <lastmod>2025-12-15</lastmod>
-    <priority>0.75</priority>
-  </url>
-
-  <url>
-    <loc>https://veleris.in/car-lamborghini.html</loc>
-    <lastmod>2025-12-15</lastmod>
-    <priority>0.75</priority>
-  </url>
-
-  <url>
-    <loc>https://veleris.in/car-ferrari.html</loc>
-    <lastmod>2025-12-15</lastmod>
-    <priority>0.75</priority>
-  </url>
-
-  <url>
-    <loc>https://veleris.in/car-mercedes.html</loc>
-    <lastmod>2025-12-15</lastmod>
-    <priority>0.75</priority>
-  </url>
-
-  <url>
-    <loc>https://veleris.in/car-bentley.html</loc>
-    <lastmod>2025-12-15</lastmod>
-    <priority>0.75</priority>
-  </url>
-
-  <url>
-    <loc>https://veleris.in/car-jaguar.html</loc>
-    <lastmod>2025-12-15</lastmod>
-    <priority>0.75</priority>
-  </url>
-
-  <!-- CATEGORIES PAGE -->
-  <url>
-    <loc>https://veleris.in/categories.html</loc>
-    <lastmod>2025-12-15</lastmod>
-    <priority>0.8</priority>
-  </url>
+  -->
 
 </urlset>
