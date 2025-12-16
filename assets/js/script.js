@@ -99,12 +99,17 @@ document.addEventListener("DOMContentLoaded", () => {
     thumb.className = 'wall-thumb';
 
     const img = document.createElement('img');
-    img.loading = 'lazy';
+    const isDesktop = (typeof window !== 'undefined') && window.matchMedia('(min-width: 1024px)').matches;
+    // Desktop collections: no lazy-loading per request; mobile/tablet keep lazy for bandwidth
+    img.loading = isDesktop ? 'eager' : 'lazy';
     img.decoding = 'async';
     img.alt = 'Wallpaper preview';
     img.src = previewUrl;
     img.srcset = `${previewUrl} 1000w, ${fullUrl} 2160w`;
     img.sizes = '(min-width:1200px) 33vw, (min-width:700px) 50vw, 100vw';
+    if (isDesktop && typeof meta.index === 'number' && meta.index < 6) {
+      img.fetchPriority = 'high';
+    }
 
     thumb.appendChild(img);
 
@@ -266,7 +271,7 @@ document.addEventListener("DOMContentLoaded", () => {
           const hasExtension = /\.[a-zA-Z0-9]+$/.test(base);
           const fileName = base.split('/').pop() || '';
           const fullUrl = hasExtension ? base : `${base}.jpg`;
-          const meta = { category, file_name: hasExtension ? fileName : `${fileName}.jpg`, thumb_url: foundUrl, full_url: fullUrl };
+          const meta = { category, file_name: hasExtension ? fileName : `${fileName}.jpg`, thumb_url: foundUrl, full_url: fullUrl, index: idx };
           buildCard(root, foundUrl, fullUrl, meta);
         })
         .catch(() => {
