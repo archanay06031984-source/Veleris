@@ -690,9 +690,14 @@
           </div>
 
           <div class="form-group">
-            <label for="nc-reference">Reference Images (Optional)</label>
-            <input type="file" id="nc-reference" name="reference" accept=".png,.jpg,.jpeg,.gif,.webp">
-            <p class="helper-text">Upload images that inspire your collection</p>
+            <label for="nc-attachment">Reference Image (Optional)</label>
+            <input type="file" id="nc-attachment" name="attachment" accept=".png,.jpg,.jpeg,.gif,.webp">
+            <p class="helper-text">If upload fails or file is large, paste a share link below.</p>
+          </div>
+
+          <div class="form-group">
+            <label for="nc-ref-link">Reference Link (Optional)</label>
+            <input type="url" id="nc-ref-link" name="reference_link" placeholder="https://drive.google.com/... or https://dropbox.com/...">
           </div>
 
           <div class="form-group">
@@ -733,9 +738,14 @@
           
 
           <div class="form-group">
-            <label for="cp-screenshot">Upload Screenshot *</label>
-            <input type="file" id="cp-screenshot" name="screenshot" accept=".png,.jpg,.jpeg,.webp" required>
-            <p class="helper-text">Share a screenshot of the wallpaper you want to customize</p>
+            <label for="cp-attachment">Upload Screenshot (Recommended)</label>
+            <input type="file" id="cp-attachment" name="attachment" accept=".png,.jpg,.jpeg,.webp">
+            <p class="helper-text">If upload fails or file is large, paste a share link below.</p>
+          </div>
+
+          <div class="form-group">
+            <label for="cp-link">Screenshot Link (Optional)</label>
+            <input type="url" id="cp-link" name="screenshot_link" placeholder="https://drive.google.com/... or https://dropbox.com/...">
           </div>
 
           <div class="form-group">
