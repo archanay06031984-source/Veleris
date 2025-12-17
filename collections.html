@@ -83,6 +83,8 @@ SEO verification (collections.html):
     <nav class="nav-links">
       <a href="index.html">Home</a>
       <a href="collections.html" aria-current="page">Collections</a>
+      <a href="contact.html">Contact</a>
+      <a href="customs.html">Customs</a>
     </nav>
   </div>
 </header>
@@ -204,15 +206,16 @@ SEO verification (collections.html):
   }
 
 
-  /* Collections Grid - 3 columns on desktop, 2 on tablet */
+  /* Collections Grid - 3 columns on desktop, 2 on tablet, 1 on mobile */
   .collections-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 0.6rem; /* tighter gap to reduce overall grid height */
-    margin-top: 0rem; /* raise grid flush with intro spacing */
+    gap: 1.5rem;
+    margin-top: 1.5rem;
     max-width: 1280px;
     margin-left: auto;
     margin-right: auto;
+    padding: 0 1rem;
   }
 
   /* Tablet: 2 columns */
@@ -220,7 +223,8 @@ SEO verification (collections.html):
     .collections-grid {
       grid-template-columns: repeat(2, 1fr);
       max-width: 920px;
-      gap: 0.9rem;
+      gap: 1.3rem;
+      padding: 0 1rem;
     }
   }
 
@@ -228,7 +232,9 @@ SEO verification (collections.html):
   @media (max-width: 768px) {
     .collections-grid {
       grid-template-columns: 1fr;
-      gap: 0.6rem;
+      gap: 1rem;
+      max-width: 100%;
+      padding: 0;
     }
   }
 
@@ -236,34 +242,36 @@ SEO verification (collections.html):
   .collection-card {
     display: flex;
     flex-direction: column;
-    padding: 1.25rem 0.9rem;
-    border-radius: 12px;
-    background: linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
-    border: 1px solid rgba(255, 255, 255, 0.10);
-    transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 1.8rem 1.5rem;
+    border-radius: 16px;
+    background: rgba(20, 20, 35, 0.42);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
     text-decoration: none;
     color: inherit;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.10);
-    min-height: 180px; /* reduce to bring overall grid height down */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    min-height: 240px;
     box-sizing: border-box;
+    backdrop-filter: blur(12px);
   }
 
   .collection-card::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, transparent 100%);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, transparent 100%);
     opacity: 0;
     transition: opacity 0.22s ease;
     pointer-events: none;
   }
 
   .collection-card:hover {
-    border-color: rgba(255, 255, 255, 0.22);
-    transform: translateY(-4px);
-    box-shadow: 0 10px 36px rgba(0, 0, 0, 0.18), 0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+    border-color: rgba(255, 255, 255, 0.12);
+    transform: translateY(-12px);
+    box-shadow: 0 24px 56px rgba(0, 0, 0, 0.6);
+    background: rgba(25, 25, 40, 0.5);
   }
 
   .collection-card:hover::before {
@@ -274,25 +282,27 @@ SEO verification (collections.html):
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 72px;
-    margin-bottom: 0.5rem;
-    background: linear-gradient(140deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    transition: all 0.22s ease;
+    height: 100px;
+    margin-bottom: 1.2rem;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    transition: all 0.35s ease;
   }
 
   .collection-card:hover .card-visual {
     transform: scale(1.015);
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.1);
   }
 
   .card-icon {
-    font-size: 2.6rem;
-    transition: transform 0.18s ease;
+    font-size: 3.2rem;
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
 
   .collection-card:hover .card-icon {
-    transform: scale(1.04);
+    transform: scale(1.2) rotate(12deg);
   }
 
   .card-content {
@@ -306,26 +316,27 @@ SEO verification (collections.html):
   }
 
   .collection-card h3 {
-    font-size: 1.25rem;
+    font-size: 1.6rem;
     font-weight: 800;
-    margin: 0 0 0.3rem 0;
-    letter-spacing: -0.3px;
+    margin: 0 0 0.4rem 0;
+    letter-spacing: -0.6px;
+    line-height: 1.2;
   }
 
   .card-category {
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.62);
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.68);
     text-transform: uppercase;
-    letter-spacing: 0.7px;
-    margin-bottom: 0.4rem;
+    letter-spacing: 1.2px;
+    margin-bottom: 0.6rem;
     font-weight: 700;
   }
 
   .card-desc {
-    font-size: 1rem;
-    color: rgba(255, 255, 255, 0.9);
-    line-height: 1.5;
-    flex: none;
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.82);
+    line-height: 1.7;
+    flex: 1;
     margin: 0;
   }
 
