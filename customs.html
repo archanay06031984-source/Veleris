@@ -148,7 +148,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
-      padding: 28px 0 40px;
+      padding: 48px 0 60px;
     }
 
     /* HERO SECTION */
@@ -285,8 +285,72 @@
       }
     }
 
-    .form-card {
+    /* OPTIMIZE NEW COLLECTION FORM */
+    #newCollectionForm.active {
+      padding: 32px 0 40px;
+    }
+
+    #newCollectionForm.active main {
+      padding: 32px 0 40px;
+    }
+
+    #newCollectionForm .form-card {
       padding: 28px;
+    }
+
+    #newCollectionForm .form-header {
+      gap: 10px;
+      margin-bottom: 14px;
+      padding-bottom: 14px;
+    }
+
+    #newCollectionForm .form-icon {
+      font-size: 1.5rem;
+    }
+
+    #newCollectionForm .form-header h2 {
+      font-size: 1.3rem;
+    }
+
+    #newCollectionForm .form-intro {
+      margin-bottom: 16px;
+      font-size: 0.85rem;
+      line-height: 1.4;
+    }
+
+    #newCollectionForm .form-group {
+      gap: 5px;
+      margin-bottom: 14px;
+    }
+
+    #newCollectionForm label {
+      font-size: 0.85rem;
+    }
+
+    #newCollectionForm input, 
+    #newCollectionForm textarea, 
+    #newCollectionForm select {
+      padding: 9px 12px;
+      font-size: 0.85rem;
+    }
+
+    #newCollectionForm textarea {
+      min-height: 70px;
+    }
+
+    #newCollectionForm .helper-text {
+      font-size: 0.75rem;
+      margin-top: 3px;
+    }
+
+    #newCollectionForm .submit-btn {
+      padding: 11px 20px;
+      font-size: 0.9rem;
+      margin-top: 10px;
+    }
+
+    .form-card {
+      padding: 40px;
       border-radius: 18px;
       background: linear-gradient(135deg, rgba(91, 141, 239, 0.04), rgba(195, 107, 255, 0.02));
       border: 1px solid rgba(91, 141, 239, 0.15);
@@ -296,18 +360,18 @@
     .form-header {
       display: flex;
       align-items: center;
-      gap: 12px;
-      margin-bottom: 14px;
-      padding-bottom: 14px;
+      gap: 16px;
+      margin-bottom: 24px;
+      padding-bottom: 24px;
       border-bottom: 1px solid rgba(91, 141, 239, 0.15);
     }
 
     .form-icon {
-      font-size: 1.5rem;
+      font-size: 2rem;
     }
 
     .form-header h2 {
-      font-size: 1.3rem;
+      font-size: 1.8rem;
       font-weight: 700;
       margin: 0;
       letter-spacing: -0.01em;
@@ -315,9 +379,8 @@
 
     .form-intro {
       color: var(--text-soft);
-      margin-bottom: 14px;
-      line-height: 1.4;
-      font-size: 0.85rem;
+      margin-bottom: 24px;
+      line-height: 1.6;
     }
 
     .back-button {
@@ -344,24 +407,24 @@
     .form-group {
       display: flex;
       flex-direction: column;
-      gap: 5px;
-      margin-bottom: 14px;
+      gap: 8px;
+      margin-bottom: 24px;
     }
 
     label {
-      font-size: 0.85rem;
+      font-size: 0.95rem;
       font-weight: 600;
       color: var(--text);
     }
 
     input, textarea, select {
-      padding: 9px 12px;
+      padding: 12px 16px;
       border-radius: 10px;
       border: 1px solid rgba(91, 141, 239, 0.15);
       background: rgba(91, 141, 239, 0.05);
       color: var(--text);
       font-family: inherit;
-      font-size: 0.85rem;
+      font-size: 0.95rem;
       transition: all var(--transition-fast);
     }
 
@@ -374,7 +437,7 @@
 
     textarea {
       resize: vertical;
-      min-height: 70px;
+      min-height: 100px;
     }
 
     input::placeholder, textarea::placeholder {
@@ -382,23 +445,23 @@
     }
 
     .helper-text {
-      font-size: 0.75rem;
+      font-size: 0.85rem;
       color: var(--text-soft);
-      margin-top: 3px;
+      margin-top: 6px;
     }
 
     .submit-btn {
       width: 100%;
-      padding: 11px 20px;
+      padding: 14px 24px;
       border-radius: 10px;
       border: none;
       background: linear-gradient(135deg, var(--accent), var(--accent-2));
       color: #0a0a12;
       font-weight: 700;
-      font-size: 0.9rem;
+      font-size: 1rem;
       cursor: pointer;
       transition: all var(--transition-fast);
-      margin-top: 10px;
+      margin-top: 16px;
       box-shadow: 0 8px 24px rgba(91, 141, 239, 0.2);
     }
 
