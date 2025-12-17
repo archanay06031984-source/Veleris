@@ -67,6 +67,17 @@
   </script>
 
   <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    /* Scope: Desktop page customs CTA compact width */
+    #customs .shell.customs-inner { text-align: center; }
+    #customs .customs-compact {
+      display: inline-block;
+      width: max-content;
+      max-width: 100%;
+      margin: 0 auto;
+    }
+    #customs .customs-compact .section-header { margin-bottom: 8px; }
+  </style>
 </head>
 
 <body class="page-home">
@@ -171,18 +182,17 @@
     <!-- CUSTOMS -->
     <section id="customs" class="home-section reveal" aria-labelledby="customs-heading">
       <div class="shell customs-inner">
+        <div class="customs-compact">
+          <div class="section-header">
+            <h2 id="customs-heading">Custom Wallpapers</h2>
+          </div>
 
-        <div class="section-header">
-          <h2 id="customs-heading">Custom Wallpapers</h2>
-        </div>
-
-        <div class="customs-content">
-
-          <div class="customs-links-section">
-            <a href="customs.html" class="customs-cta">Explore Custom Options</a>
+          <div class="customs-content">
+            <div class="customs-links-section">
+              <a href="customs.html" class="customs-cta">Explore Custom Options</a>
+            </div>
           </div>
         </div>
-
       </div>
     </section>
 
