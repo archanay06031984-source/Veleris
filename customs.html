@@ -274,6 +274,14 @@
       display: none;
     }
 
+    body.form-active main {
+      padding: 32px 0 40px;
+    }
+
+    body.form-active .hero-customs {
+      display: none;
+    }
+
     @keyframes fadeIn {
       from {
         opacity: 0;
@@ -336,6 +344,62 @@
     }
 
     #newCollectionForm .submit-btn {
+      padding: 11px 20px;
+      font-size: 0.9rem;
+      margin-top: 10px;
+    }
+
+    /* OPTIMIZE CUSTOM COLOR PALETTE FORM */
+    #colorPaletteForm .form-card {
+      padding: 28px;
+    }
+
+    #colorPaletteForm .form-header {
+      gap: 10px;
+      margin-bottom: 14px;
+      padding-bottom: 14px;
+    }
+
+    #colorPaletteForm .form-icon {
+      font-size: 1.5rem;
+    }
+
+    #colorPaletteForm .form-header h2 {
+      font-size: 1.3rem;
+    }
+
+    #colorPaletteForm .form-intro {
+      margin-bottom: 16px;
+      font-size: 0.85rem;
+      line-height: 1.4;
+    }
+
+    #colorPaletteForm .form-group {
+      gap: 5px;
+      margin-bottom: 14px;
+    }
+
+    #colorPaletteForm label {
+      font-size: 0.85rem;
+    }
+
+    #colorPaletteForm input,
+    #colorPaletteForm textarea,
+    #colorPaletteForm select {
+      padding: 9px 12px;
+      font-size: 0.85rem;
+    }
+
+    #colorPaletteForm textarea {
+      min-height: 70px;
+    }
+
+    #colorPaletteForm .helper-text {
+      font-size: 0.75rem;
+      margin-top: 3px;
+    }
+
+    #colorPaletteForm .submit-btn {
       padding: 11px 20px;
       font-size: 0.9rem;
       margin-top: 10px;
@@ -692,6 +756,7 @@
         document.getElementById('colorPaletteForm').classList.add('active');
       }
 
+      document.body.classList.add('form-active');
       document.querySelector('main').scrollIntoView({ behavior: 'smooth' });
     }
 
@@ -699,6 +764,7 @@
       document.getElementById('newCollectionForm').classList.remove('active');
       document.getElementById('colorPaletteForm').classList.remove('active');
       document.getElementById('requestOptions').style.display = 'block';
+      document.body.classList.remove('form-active');
       document.getElementById('requestOptions').scrollIntoView({ behavior: 'smooth' });
     }
   </script>
