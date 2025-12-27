@@ -62,22 +62,22 @@
     /* ===== DESIGN TOKENS ===== */
     :root {
       --gradient-dark: linear-gradient(135deg, #0a0a12 0%, #1a1a2e 50%, #0f0f1a 100%);
-      --gradient-accent-1: linear-gradient(135deg, #5a9dff 0%, #7fc3ff 100%);
-      --gradient-accent-2: linear-gradient(135deg, #bb86fc 0%, #e0b5ff 100%);
+      --gradient-accent-1: linear-gradient(135deg, #ff6b6b 0%, #ff8e72 100%);
+      --gradient-accent-2: linear-gradient(135deg, #ffa94d 0%, #ffb366 100%);
       
       --surface-1: rgba(255, 255, 255, 0.04);
       --surface-2: rgba(255, 255, 255, 0.07);
       --surface-hover: rgba(255, 255, 255, 0.12);
       
       --border-subtle: rgba(255, 255, 255, 0.08);
-      --border-active: rgba(90, 157, 255, 0.3);
+      --border-active: rgba(255, 107, 107, 0.3);
       
       --text-primary: #ffffff;
       --text-secondary: rgba(255, 255, 255, 0.65);
       --text-muted: rgba(255, 255, 255, 0.45);
       
-      --accent-blue: #5a9dff;
-      --accent-purple: #bb86fc;
+      --accent-blue: #ff6b6b;
+      --accent-purple: #ffa94d;
     }
 
     * {
@@ -184,7 +184,7 @@
       letter-spacing: -0.025em;
       margin: 1rem 0 1rem;
       line-height: 1.15;
-      background: linear-gradient(135deg, #ffffff 0%, #a0c4ff 100%);
+      background: linear-gradient(135deg, #ffffff 0%, #ffb8a8 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -204,15 +204,13 @@
       padding: 0.6rem 1.2rem;
       border-radius: 999px;
       border: 1px solid var(--border-active);
-      background: linear-gradient(135deg, rgba(90, 157, 255, 0.15), rgba(187, 134, 252, 0.08));
+      background: linear-gradient(135deg, rgba(255, 107, 107, 0.15), rgba(255, 169, 77, 0.08));
       color: var(--accent-blue);
       font-size: 0.8rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       font-weight: 700;
     }
-
-    /* (removed duplicate .device-grid definition) */
 
     /* ===== GRID ===== */
     .device-grid {
@@ -234,8 +232,8 @@
       padding: 2rem 2rem 1.75rem 2rem;
       height: 280px;
       border-radius: 20px;
-      background: radial-gradient(1200px 300px at -10% -30%, rgba(127,195,255,0.18), transparent 50%),
-                  radial-gradient(900px 300px at 120% 130%, rgba(187,134,252,0.16), transparent 50%),
+      background: radial-gradient(1200px 300px at -10% -30%, rgba(255,107,107,0.18), transparent 50%),
+                  radial-gradient(900px 300px at 120% 130%, rgba(255,169,77,0.16), transparent 50%),
                   linear-gradient(145deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
       border: 1px solid var(--border-subtle);
       text-decoration: none;
@@ -249,7 +247,7 @@
     .device-tile:hover {
       transform: translateY(-6px);
       border-color: var(--border-active);
-      box-shadow: 0 28px 80px rgba(90,157,255,0.22);
+      box-shadow: 0 28px 80px rgba(255,107,107,0.22);
     }
 
     .tile-copy {
@@ -261,8 +259,6 @@
       max-width: 80%;
       align-items: center;
     }
-
-    /* tile-badge removed to avoid duplicate labeling */
 
     .tile-copy h2 {
       font-size: 1.6rem;
@@ -284,32 +280,17 @@
       padding: 0.9rem 1.05rem;
       border-radius: 10px;
       border: 1px solid var(--accent-blue);
-      background: linear-gradient(135deg, rgba(90,157,255,0.28), rgba(187,134,252,0.18));
+      background: linear-gradient(135deg, rgba(255,107,107,0.28), rgba(255,169,77,0.18));
       color: var(--text-primary);
       font-weight: 800;
       letter-spacing: 0.01em;
       position: relative;
       z-index: 3;
-      box-shadow: 0 10px 28px rgba(90,157,255,0.25);
+      box-shadow: 0 10px 28px rgba(255,107,107,0.25);
       align-self: center;
     }
 
-    .device-tile:hover .tile-cta { box-shadow: 0 12px 32px rgba(90,157,255,0.25); }
-
-    .tile-art {
-      position: static;
-      display: flex;
-      align-items: flex-end;
-      gap: 12px;
-      transform: translateZ(0);
-      transition: transform .35s ease;
-      opacity: 0.9;
-      margin-top: auto;
-    }
-
-    .device-tile:hover .tile-art { transform: translateY(-4px); }
-
-    .tile-art.single { }
+    .device-tile:hover .tile-cta { box-shadow: 0 12px 32px rgba(255,107,107,0.25); }
 
     .arrow { font-weight: 900; margin-left: 0.3rem; }
 
@@ -428,10 +409,6 @@
               <p>Designed for large screens and tablets — elegant, widescreen wallpapers with balanced tones.</p>
               <span class="tile-cta">Explore PC / Tab <span class="arrow">→</span></span>
             </div>
-            <div class="tile-art">
-              <div class="icon-pc"><div class="icon-pc-stand"></div></div>
-              <div class="icon-block"></div>
-            </div>
           </a>
 
           <a href="mobile.html" class="device-tile">
@@ -445,12 +422,7 @@
             </div>
           </a>
 
-        </div>
-
-    </div>
   </main>
-
-  
 
 </body>
 
