@@ -2,14 +2,14 @@
    CORE THEME & GLOBALS
    ========================= */
 :root {
-  --bg: #05040a;
-  --bg-elevated: #0b0b14;
-  --bg-soft: #10101b;
-  --accent: #18a558;
-  --accent-2: #c1121f;
-  --accent-soft: rgba(24, 165, 88, 0.16);
-  --text: #f5f5f7;
-  --text-soft: #a3a3b8;
+  --bg: #0a0f15;
+  --bg-elevated: #0d1319;
+  --bg-soft: #101820;
+  --accent: #4da6d6;
+  --accent-2: #7dd3fc;
+  --accent-soft: rgba(77, 166, 214, 0.16);
+  --text: #e8f2f8;
+  --text-soft: #a8b8c8;
   --border-subtle: rgba(255, 255, 255, 0.06);
   --radius-lg: 18px;
   --radius-xl: 26px;
@@ -50,7 +50,7 @@ body::before {
   content: "";
   position: fixed;
   inset: 0 0 45vh 0;
-  background: radial-gradient(circle at top, #132017 0, #05040a 42%);
+  background: radial-gradient(circle at top, #1a3a4a 0, #0a0f15 42%);
   pointer-events: none;
   z-index: -1;
 }
@@ -72,8 +72,8 @@ body::before {
   backdrop-filter: blur(20px);
   background: linear-gradient(
     to bottom,
-    rgba(5, 4, 12, 0.96),
-    rgba(5, 4, 12, 0.9),
+    rgba(10, 15, 21, 0.96),
+    rgba(10, 15, 21, 0.9),
     transparent
   );
   border-bottom: 1px solid rgba(255, 255, 255, 0.04);
@@ -224,7 +224,7 @@ button:focus-visible {
 
 /* Home page layout spacing – slightly lifted */
 body.page-home .page-main {
-  gap: 72px;
+  gap: 48px;
   padding: 56px 0 80px;
 }
 
@@ -317,8 +317,8 @@ body.page-collections .page-main > * {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 2px;
-  margin-bottom: 10px;
+  gap: 1px;
+  margin-bottom: 6px;
 }
 
 .section-header h2 {
@@ -535,41 +535,47 @@ body.page-collections .page-main > * {
 }
 
 .cta-panel {
-  max-width: 960px;
+  max-width: 750px;
   margin: 0 auto;
-  border-radius: 22px;
-  padding: 16px 18px;
-  background: rgba(20, 20, 35, 0.42);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(22px);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.85);
+  border-radius: 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+  backdrop-filter: none;
+  box-shadow: none;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
+  justify-content: center;
+  gap: 14px;
+  text-align: center;
 }
 
 .cta-panel h2 {
   margin: 0;
-  font-size: 1.35rem;
+  font-size: 1.3rem;
   color: var(--text);
+  line-height: 1.25;
+  max-width: 620px;
+  font-weight: 700;
 }
 
 .cta-panel p {
-  margin: 2px 0 0;
-  font-size: 0.9rem;
-  line-height: 1.35;
+  margin: 0 0 4px;
+  font-size: 0.95rem;
+  line-height: 1.5;
   color: var(--text-soft);
-  max-width: 500px;
+  max-width: 600px;
 }
 
 .cta-actions {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .cta-actions .btn.primary {
-  padding: 12px 22px;
+  padding: 12px 24px;
   font-size: 0.92rem;
   box-shadow: 0 18px 50px rgba(0, 0, 0, 0.9);
 }
@@ -623,17 +629,17 @@ body.page-collections .page-main > * {
    CUSTOMS SECTION
    ========================= */
 .customs-inner {
-  max-width: 620px;
+  max-width: 580px;
   margin: 0 auto;
-  border-radius: 16px;
-  padding: 20px 24px;
-  background: rgba(20, 20, 35, 0.5);
-  border: 1px solid rgba(24, 165, 88, 0.12);
-  backdrop-filter: blur(20px);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+  border-radius: 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+  backdrop-filter: none;
+  box-shadow: none;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
   align-items: center;
 }
 
@@ -643,7 +649,7 @@ body.page-collections .page-main > * {
 
 .section-header h2 {
   margin: 0;
-  font-size: 1.7rem;
+  font-size: 1.45rem;
   font-weight: 800;
   color: var(--text);
   letter-spacing: -0.01em;
@@ -659,9 +665,9 @@ body.page-collections .page-main > * {
 
 .customs-content {
   text-align: center;
-  font-size: 0.93rem;
+  font-size: 0.95rem;
   color: var(--text-soft);
-  line-height: 1.42;
+  line-height: 1.4;
   margin-bottom: 0;
 }
 
@@ -677,14 +683,14 @@ body.page-collections .page-main > * {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 12px 32px;
+  padding: 11px 30px;
   border-radius: 10px;
   border: none;
   background: linear-gradient(135deg, var(--accent), var(--accent-2));
   color: #fff;
   text-decoration: none;
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 0.93rem;
   transition: all 0.3s ease;
   box-shadow: 0 14px 40px rgba(0, 0, 0, 0.7);
 }
@@ -1039,7 +1045,9 @@ body.page-collections .shell {
 
   .cta-panel {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    text-align: center;
+    padding: 24px 24px;
   }
 
   .hero-title {
