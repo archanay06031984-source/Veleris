@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /collections.html
+Disallow: /collection-cars.html
 
 Sitemap: https://veleris.in/sitemap.xml
